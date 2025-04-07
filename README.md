@@ -1,2 +1,2 @@
-# PraktikumZ-hlke
+# PraktikumZuehlke
 Projektaufgabe für das Kurzzeitpraktikum bei Zühlke: Dungeon and Dragons - Character Configuration
