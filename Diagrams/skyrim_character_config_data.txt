@@ -8,6 +8,8 @@ Stats:
 -Weapon
 -Item
 -Skill
+-Damage(Weapon)
+-Defense(Clothing)
 
 Races:
 [Breton]
@@ -28,24 +30,24 @@ Clothing:
 -Legs
 
 Weapons:
--Daggers
--Swords
--War Axes
--Bows
--Staves(Staff)
+-Daggers (14/hit)very fast
+-Swords (31/hit)medium
+-War Axes (34/hit)slow
+-Bows (17/hit)fast
+-Staves(22/hit)medium
 
-Items:
+Consumables:
 -Potions
 -Scrolls
 -Food
 -Ingredients
--Keys
+-Lockpicks
 
 Nord Default:
 Health(120)
 Magicka(60)
 Stamina(120)
-Nord Clothing
+Default Clothing
 Sword
 Food
 Smithing
@@ -54,7 +56,7 @@ Redguard Default:
 Health(120)
 Magicka(80)
 Stamina(100)
-Redguard Clothing
+Default Clothing
 Bow
 Ingredient
 Archery
@@ -63,7 +65,7 @@ Altmer Default:
 Health(70)
 Magicka(150)
 Stamina(80)
-Altmer Clothing
+Default Clothing
 Staff
 Scroll
 Enchanting
@@ -72,7 +74,7 @@ Orc Default:
 Health(140)
 Magicka(80)
 Stamina(80)
-Orc Clothing
+Default Clothing
 War Axe
 Potion
 None
@@ -81,9 +83,9 @@ Khajiit Default:
 Health(90)
 Magicka(70)
 Stamina(140)
-Khajiit Clothing
+Default Clothing
 Dagger
-Key
+Lockpick
 Lockpicking
 
 
