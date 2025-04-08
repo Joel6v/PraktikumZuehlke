@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    public abstract class Item
+    enum AttackSpeed
     {
-        public int Id { get; set; }
-        public required string Name { get; set; }
-        public required string PathImage { get; set; }
+        SLOW,
+        MEDIUM,
+        FAST,
+        VERY_FAST
     }
 }
