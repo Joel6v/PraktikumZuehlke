@@ -8,7 +8,7 @@ namespace CharacterConfigurator.Model
 {
     class Character
     {
-        public ulong Id { get; private set; }
+        public uint Id { get; private set; }
 
         public string Name { get; set; }
 
