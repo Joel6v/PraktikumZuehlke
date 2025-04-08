@@ -1,4 +1,4 @@
-Skyrim Character Configuration
+Skirym Character Configuration
 
 Stats:
 -Health(100)
