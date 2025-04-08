@@ -21,7 +21,7 @@ Races:
 -Orc(Orsimer or Pariah Folk)
 -Khajiit
 
-Clothing/Equipment:
+Clothing:
 -Headgear
 -Chest
 -Gloves
