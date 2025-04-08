@@ -1,0 +1,94 @@
+Skyrim Character Configuration
+
+Stats:
+-Health(100)
+-Magicka(100)
+-Stamina(100)
+-Clothing
+-Weapon
+-Item
+-Skill
+
+Races:
+[Breton]
+[Imperial]
+[Bosmer(Wood Elves)]
+[Dunmer(Dark Elves)]
+[Argonian]
+-Nord
+-Redguard
+-Altmer(High Elves)
+-Orc(Orsimer or Pariah Folk)
+-Khajiit
+
+Clothing/Equipment:
+-Headgear
+-Chest
+-Gloves
+-Legs
+
+Weapons:
+-Daggers
+-Swords
+-War Axes
+-Bows
+-Staves(Staff)
+
+Items:
+-Potions
+-Scrolls
+-Food
+-Ingredients
+-Keys
+
+Nord Default:
+Health(120)
+Magicka(60)
+Stamina(120)
+Nord Clothing
+Sword
+Food
+Smithing
+
+Redguard Default:
+Health(120)
+Magicka(80)
+Stamina(100)
+Redguard Clothing
+Bow
+Ingredient
+Archery
+
+Altmer Default:
+Health(70)
+Magicka(150)
+Stamina(80)
+Altmer Clothing
+Staff
+Scroll
+Enchanting
+
+Orc Default:
+Health(140)
+Magicka(80)
+Stamina(80)
+Orc Clothing
+War Axe
+Potion
+None
+
+Khajiit Default:
+Health(90)
+Magicka(70)
+Stamina(140)
+Khajiit Clothing
+Dagger
+Key
+Lockpicking
+
+
+
+
+
+
+
