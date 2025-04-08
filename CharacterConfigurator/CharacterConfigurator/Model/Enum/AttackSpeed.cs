@@ -8,9 +8,13 @@ namespace CharacterConfigurator.Model
 {
     enum AttackSpeed
     {
+        [StringValue("Slow")]
         SLOW,
+        [StringValue("Medium")]
         MEDIUM,
+        [StringValue("Fast")]
         FAST,
+        [StringValue("Very Fast")]
         VERY_FAST
     }
 }
