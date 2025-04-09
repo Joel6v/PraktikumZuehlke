@@ -74,5 +74,18 @@ namespace CharacterConfigurator.Model
         public Consumable Consumable {  get; set; }
 
         public Weapon Weapon { get; set; }
+
+        public Character(uint id, string name, Race race, Clothing clothingHeadgears, Clothing clothingChest, Clothing clothingGloves, Clothing clothingLegs, Consumable consumable, Weapon weapon)
+        {
+            Id = id;
+            Name = name;
+            Race = race;
+            ClothingHeadgears = clothingHeadgears;
+            ClothingChest = clothingChest;
+            ClothingGloves = clothingGloves;
+            ClothingLegs = clothingLegs;
+            Consumable = consumable;
+            Weapon = weapon;
+        }
     }
 }

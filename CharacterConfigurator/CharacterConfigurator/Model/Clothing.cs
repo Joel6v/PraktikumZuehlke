@@ -12,7 +12,7 @@ namespace CharacterConfigurator.Model
 
         public int Defense { get; private set; }
 
-        public Clothing(int id, string name, string pathImage, ClothingType clothingType, int defense) 
+        public Clothing(uint id, string name, string pathImage, ClothingType clothingType, int defense) 
         {
             Id = id;
             Name = name;
