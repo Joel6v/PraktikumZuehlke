@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    class Clothing : Item
+    class Clothing : Item<Clothing>
     {
         public ClothingType ClothingType { get; private set; }
 
         public int Defense { get; private set; }
+
+        static Clothing()
+        {
+            DbTableName = "";
+        }
 
         public Clothing(uint id, string name, string pathImage, ClothingType clothingType, int defense) 
         {

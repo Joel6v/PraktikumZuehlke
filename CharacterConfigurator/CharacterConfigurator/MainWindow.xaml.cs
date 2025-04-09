@@ -9,6 +9,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using CharacterConfigurator.View;
+
 namespace CharacterConfigurator;
 
 /// <summary>
@@ -19,5 +21,10 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        //LoginWindow loginWindow = new LoginWindow();
+        //loginWindow.Show();
+        RegisterWindow registerWindow = new RegisterWindow();
+        registerWindow.Show();
+        this.Close();
     }
 }

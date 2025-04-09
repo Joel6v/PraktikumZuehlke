@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    class Consumable : Item
+    class Consumable : Item<Consumable>
     {
-        public Consumable(int id, string name, string pathImage)
+        public Consumable(uint id, string name, string pathImage)
         {
             Id = id;
             Name = name;

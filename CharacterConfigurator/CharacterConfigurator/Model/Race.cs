@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    class Race : Item
+    class Race : Item<Race>
     {
         public int Health { get; private set; }
 
