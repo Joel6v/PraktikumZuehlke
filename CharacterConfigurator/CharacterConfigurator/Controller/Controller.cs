@@ -1,10 +1,12 @@
 ﻿using CharacterConfigurator.Model;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CharacterConfigurator.Repository;
 
 namespace CharacterConfigurator.Controller
 {
@@ -47,11 +49,10 @@ namespace CharacterConfigurator.Controller
 
         private void Load()
         {
-            //Only placeholder code
-            string tableName = BaseModel<TBaseModel>.DbTableName;
-            BaseModelsList = new List<TBaseModel>();
+            DbConnection dbConnection = new();
             string selectCommandStr = $"SELECT * FROM {BaseModel<TBaseModel>.DbTableName};";
-            MySqlCommand selectCommand = new MySqlCommand();
+            MySqlCommand selectCommand = new MySqlCommand(selectCommandStr, dbConnection.Connection);
+            selectCommand.ExecuteNonQuery();
         }
     }
 }

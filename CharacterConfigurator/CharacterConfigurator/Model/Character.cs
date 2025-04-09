@@ -8,9 +8,13 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    class Character : BaseModel<Character>
+    public class Character : BaseModel<Character>
     {
         public new const string DbTableName = "character";
+
+        public override string Name { get { return _Name; } set { if()} }
+
+        private string _Name {  get; set; }
 
         public User User { get; private set; }
 

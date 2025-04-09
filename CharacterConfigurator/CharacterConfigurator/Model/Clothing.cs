@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    class Clothing : Item
+    public class Clothing : Item
     {
         public new const string DbTableName = "clothing";
 

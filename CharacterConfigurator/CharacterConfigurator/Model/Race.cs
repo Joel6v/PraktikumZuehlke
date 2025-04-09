@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    class Race : Item
+    public class Race : Item
     {
         public new const string DbTableName = "race";
+
+        public override string Name {  }
 
         public int Health { get; private set; }
 

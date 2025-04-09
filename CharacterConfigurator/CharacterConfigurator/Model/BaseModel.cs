@@ -11,7 +11,7 @@ namespace CharacterConfigurator.Model
     {
         public uint Id { get; protected set; }
 
-        public string Name { get; protected set; }
+        public abstract string Name { get; set; }
 
         public static string DbTableName { get; private set; }
 
