@@ -21,11 +21,13 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+
+
         //LoginWindow loginWindow = new LoginWindow();
         //loginWindow.Show();
         //RegisterWindow registerWindow = new RegisterWindow();
         //registerWindow.Show();
-        DbConnection dBConnection = new DbConnection();
-        this.Close();
+        //DbConnection dBConnection = new DbConnection();
+        //this.Close();
     }
 }

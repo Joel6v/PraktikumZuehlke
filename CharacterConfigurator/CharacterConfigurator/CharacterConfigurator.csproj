@@ -9,11 +9,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Font\**" />
+    <EmbeddedResource Remove="Font\**" />
+    <None Remove="Font\**" />
+    <Page Remove="Font\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="View\Font\Balgruf-JRye7.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MySql.Data" Version="9.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Font\" />
+    <Folder Include="Resources\Image\Clothing\Headgear\" />
+    <Folder Include="Resources\Image\Clothing\Chest\" />
+    <Folder Include="Resources\Image\Clothing\Gloves\" />
+    <Folder Include="Resources\Image\Clothing\Legs\" />
+    <Folder Include="Resources\Image\Consumable\" />
+    <Folder Include="Resources\Image\Race\Male\" />
+    <Folder Include="Resources\Image\Race\Female\" />
+    <Folder Include="Resources\Image\Weapon\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\Font\Balgruf-JRye7.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

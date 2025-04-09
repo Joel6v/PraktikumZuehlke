@@ -15,8 +15,8 @@ namespace CharacterConfigurator.Model
     {
         public new const string DbTableName = "user";
 
-        public const int MinUsernameLenght = 3;
-        public const int MaxUsernameLenght = 30;
+        public const int MinUsernameLength = 3;
+        public const int MaxUsernameLength = 30;
 
         //Username must be check if it is already existing
         public new string Name { get { return _Username; } set 
@@ -26,7 +26,7 @@ namespace CharacterConfigurator.Model
                     throw new ExceptionAlreadyExistingName();
                 }
                 bool usernameValid = true;
-                if (value.Length >= MinUsernameLenght && value.Length < MaxUsernameLenght)
+                if (value.Length >= MinUsernameLength && value.Length < MaxUsernameLength)
                 {
                     foreach (char c in value)
                     {
@@ -47,7 +47,7 @@ namespace CharacterConfigurator.Model
                 }
                 else
                 {
-                    throw new Exception($"The Username ist to short or to long. The minimum is {MinUsernameLenght} and the maximum is {MaxUsernameLenght}");
+                    throw new Exception($"The Username is too short or too long. The minimum length is {MinUsernameLength} and the maximum length is {MaxUsernameLength}");
                 }
             }
         }

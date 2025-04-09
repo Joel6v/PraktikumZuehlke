@@ -6,9 +6,38 @@
     <Application.Resources>
         <Style x:Key="SkirymFont">
             <Setter Property="TextElement.FontFamily"
-                    Value="View/Font/#Balgruf">
+                    Value="pack://application:,,,View/Font/Balgruf-JRye7.ttf#Balgruf">
             </Setter>
         </Style>
-         
+
+        <Style x:Key="HoverOverText" TargetType="TextBlock">
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="Black"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation To="CornflowerBlue"
+                                        Duration="0:0:0.3"
+                                        Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation To="Black"
+                                        Duration="0:0:0.3"
+                                        Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
     </Application.Resources>
 </Application>
