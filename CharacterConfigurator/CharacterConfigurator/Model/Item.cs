@@ -8,8 +8,9 @@ namespace CharacterConfigurator.Model
 {
     public abstract class Item
     {
-        public int Id { get; set; }
-        public required string Name { get; set; }
-        public required string PathImage { get; set; }
+        public uint Id { get; protected set; }
+        //public required string Name { get; set; }
+        public string Name { get; protected set; }
+        public string PathImage { get; protected set; }
     }
 }

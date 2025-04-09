@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharacterConfigurator.Model
+namespace CharacterConfigurator.Controller
 {
-    enum AttackSpeed
+    class Controller<Item>
     {
-        SLOW,
-        MEDIUM,
-        FAST,
-        VERY_FAST
     }
 }
