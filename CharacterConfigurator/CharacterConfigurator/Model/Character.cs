@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CharacterConfigurator.Controller;
+using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    class Character
+    class Character : BaseModel<Character>
     {
-        public uint Id { get; private set; }
+        public new const string DbTableName = "character";
 
-        public string Name { get; set; }
+        public User User { get; private set; }
 
         public Race Race { get; set; }
 
@@ -78,6 +80,7 @@ namespace CharacterConfigurator.Model
         public Character(uint id, string name, Race race, Clothing clothingHeadgears, Clothing clothingChest, Clothing clothingGloves, Clothing clothingLegs, Consumable consumable, Weapon weapon)
         {
             Id = id;
+            User = MainController.CurrentUser;
             Name = name;
             Race = race;
             ClothingHeadgears = clothingHeadgears;
@@ -86,6 +89,12 @@ namespace CharacterConfigurator.Model
             ClothingLegs = clothingLegs;
             Consumable = consumable;
             Weapon = weapon;
+        }
+
+        public override string ConvertToSqlInsert()
+        {
+            return $"INSERT INTO {DbTableName} (name, user_userId, race_raceId, clothing_headgearId, clothing_chestId, clothing_glovesId, clothing_legsId, weapon_weaponId, consumable_consumableId) VALUE " +
+                $"{Name}, {User.Id}, {Race.Id}, {ClothingHeadgears.Id}, {ClothingChest.Id}, {ClothingGloves.Id}, {ClothingLegs.Id}, {Weapon.Id}, {Consumable.Id};";
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Asn1.X509;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    class Weapon : Item<Weapon>
+    public class Weapon : Item
     {
         public int DamagePerHit {  get; private set; }
+
+        public new const string DbTableName = "weapon";
 
         public AttackSpeed AttackSpeed { get; private set; }
 
@@ -19,6 +22,11 @@ namespace CharacterConfigurator.Model
             PathImage = pathImage;
             DamagePerHit = damagePerHit;
             AttackSpeed = attackSpeed;
+        }
+
+        public override string ConvertToSqlInsert()
+        {
+            return $"INSERT INTO {DbTableName} (name, pathImage, damagePerHit, attackSpeed) VALUE {Name}, {PathImage}, {DamagePerHit}, {Convert.ToInt32(AttackSpeed)};";
         }
     }
 }

@@ -5,9 +5,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
+//All enums are in the same namespace with this class
 namespace CharacterConfigurator.Model
 {
-    class StringValue : Attribute
+    public class StringValue : Attribute
     {
         public string Value { get; set; }
 

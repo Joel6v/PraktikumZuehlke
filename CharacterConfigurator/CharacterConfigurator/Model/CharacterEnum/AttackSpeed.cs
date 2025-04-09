@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    enum AttackSpeed
+    public enum AttackSpeed
     {
         [StringValue("Slow")]
         SLOW,

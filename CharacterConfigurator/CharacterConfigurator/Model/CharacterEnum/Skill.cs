@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    enum Skill
+    public enum Skill
     {
         [StringValue("None")]
         NONE,

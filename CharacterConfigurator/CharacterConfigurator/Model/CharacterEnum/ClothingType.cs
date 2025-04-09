@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    enum ClothingType : int
+    public enum ClothingType
     {
         [StringValue("Headgear")]
         HEADGEAR,
