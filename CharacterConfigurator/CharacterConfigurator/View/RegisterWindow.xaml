@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CharacterConfigurator.View"
         mc:Ignorable="d"
-        Title="Register" Height="160" Width="360">
+        Title="Skirym Register" Height="160" Width="360" Style="{StaticResource SkirymFont}">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
@@ -19,8 +20,8 @@
 
         <Label Content="Username" Grid.Column="0" Grid.Row="0" Margin="30,25,0,0"/>
         <Label Content="Password" Grid.Column="0" Grid.Row="1" Margin="30,10,0,0"/>
-        <TextBox Name="txtRegisterUsername" Grid.Column="1" Grid.Row="0" Margin="0,30,30,0" FontSize="15px"/>
-        <TextBox Name="txtRegisterPassword" Grid.Column="1" Grid.Row="1" Margin="0,15,30,15" FontSize="15px"/>
+        <TextBox Name="txtRegisterUsername" Grid.Column="1" Grid.Row="0" Margin="0,30,30,0"/>
+        <TextBox Name="txtRegisterPassword" Grid.Column="1" Grid.Row="1" Margin="0,15,30,15"/>
         <Button Content="Register" Name="btnRegister" Click="btnRegister_Click" Grid.Column="1" Grid.Row="2" Margin="145,0,30,25"/>
         <!--<Label Content="Login" Grid.Column="1" Grid.Row="2" Margin="95,-2.5,115,15"/>-->
         <TextBlock Name="txtblRegisterLogin" Text="Login" Grid.Column="1" Grid.Row="2" Margin="95,2,115,25" PreviewMouseDown="txtblRegisterLogin_PreviewMouseDown"/>
