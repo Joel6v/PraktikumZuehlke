@@ -23,5 +23,20 @@ namespace CharacterConfigurator.View
         {
             InitializeComponent();
         }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void txtbl_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void txtblRegisterLogin_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
