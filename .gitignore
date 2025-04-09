@@ -404,4 +404,4 @@ FodyWeavers.xsd
 *.mwb.bak
 
 #Exclude DbCredentials
-/CharacterConfigurator/CharacterConfigurator/DbCredentials.config
+/CharacterConfigurator/CharacterConfigurator/App.config
