@@ -1,4 +1,5 @@
 ﻿using CharacterConfigurator.Model;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,40 +8,50 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Controller
 {
-    class Controller<TItem> where TItem : Item<TItem>
+    public class Controller<TBaseModel> where TBaseModel : BaseModel<TBaseModel>
     {
-        public List<TItem> Items { get; private set; }
+        public List<TBaseModel> BaseModelsList { get; private set; }
 
         public Controller() 
         {
             Load();
         }
 
-        public void AddItem(TItem item)
+        public void AddBaseModel(TBaseModel baseModel)
         {
-            Items.Add(item);
+            BaseModelsList.Add(baseModel);
         }
 
-        public void RemoveItem(int index)
+        public void RemoveBaseModel(int index)
         {
-            Items.RemoveAt(index);
+            BaseModelsList.RemoveAt(index);
         }
 
-        public void UpdateItem(int index, TItem item)
+        public void UpdateBaseModel(int index, TBaseModel baseModel)
         {
-            Items[index] = item;
+            BaseModelsList[index] = baseModel;
         }
 
-        public void Save()
+        public bool CheckIfNameExists(string newName)
         {
+            foreach (TBaseModel baseModel in BaseModelsList)
+            {
+                if(baseModel.Name == newName)
+                {
+                    return true;
+                }
+            }
 
+            return false;
         }
 
         private void Load()
         {
             //Only placeholder code
-            string tableName = Item<TItem>.DbTableName;
-            Items = new List<TItem>();
+            string tableName = BaseModel<TBaseModel>.DbTableName;
+            BaseModelsList = new List<TBaseModel>();
+            string selectCommandStr = $"SELECT * FROM {BaseModel<TBaseModel>.DbTableName};";
+            MySqlCommand selectCommand = new MySqlCommand();
         }
     }
 }

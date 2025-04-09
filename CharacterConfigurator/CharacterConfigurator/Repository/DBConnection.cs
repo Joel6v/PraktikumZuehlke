@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using System.Windows;
 
 namespace CharacterConfigurator.Repository
 {
@@ -23,11 +24,17 @@ namespace CharacterConfigurator.Repository
 
         public void Connect()
         {
-            if (Connection == null)
+            try
             {
-                Connection = new MySqlConnection(ConnectionString);
+                if (Connection == null)
+                {
+                    Connection = new MySqlConnection(ConnectionString);
+                }
+                Connection.Open();
+            }catch (Exception ex) 
+            { 
+                MessageBox.Show(ex.Message, "Error while connecting to the MySql DB", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            Connection.Open();
         }
 
         public void Close()
