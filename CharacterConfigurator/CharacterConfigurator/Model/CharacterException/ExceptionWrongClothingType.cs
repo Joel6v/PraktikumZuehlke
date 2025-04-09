@@ -13,7 +13,7 @@ namespace CharacterConfigurator.Model
 
         public ExceptionWrongClothingType(string requiredClothing) 
         {
-            _Message = $"Wrong clothing for this type selected. The required clothing is {requiredClothing}.";
+            _Message = $"Wrong clothing for this clothing type selected. The required clothing type is {requiredClothing}.";
         }
     }
 }

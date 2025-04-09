@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Font\**" />
+    <EmbeddedResource Remove="Font\**" />
+    <None Remove="Font\**" />
+    <Page Remove="Font\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="View\Font\Balgruf-JRye7.ttf" />
   </ItemGroup>
 
@@ -17,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Font\" />
     <Folder Include="Resources\Image\Clothing\Headgear\" />
     <Folder Include="Resources\Image\Clothing\Chest\" />
     <Folder Include="Resources\Image\Clothing\Gloves\" />

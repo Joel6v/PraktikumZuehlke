@@ -33,7 +33,7 @@ namespace CharacterConfigurator.Repository
                 Connection.Open();
             }catch (Exception ex) 
             { 
-                MessageBox.Show(ex.Message, "Error while connecting to the MySql DB", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error while connecting to the MySqlDB", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
