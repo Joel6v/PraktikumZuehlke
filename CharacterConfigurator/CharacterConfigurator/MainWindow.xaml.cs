@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using CharacterConfigurator.Repository;
 using CharacterConfigurator.View;
 
 namespace CharacterConfigurator;
@@ -23,8 +23,9 @@ public partial class MainWindow : Window
         InitializeComponent();
         //LoginWindow loginWindow = new LoginWindow();
         //loginWindow.Show();
-        RegisterWindow registerWindow = new RegisterWindow();
-        registerWindow.Show();
+        //RegisterWindow registerWindow = new RegisterWindow();
+        //registerWindow.Show();
+        DbConnection dBConnection = new DbConnection();
         this.Close();
     }
 }

@@ -10,13 +10,13 @@ using System.Configuration;
 
 namespace CharacterConfigurator.Repository
 {
-    class DBConnection
+    class DbConnection
     {
         private static string ConnectionString = ConfigurationManager.ConnectionStrings["DbConnectionString"].ConnectionString;
 
         public MySqlConnection Connection { get; private set; }
 
-        public DBConnection()
+        public DbConnection()
         {
             Connect();
         }
