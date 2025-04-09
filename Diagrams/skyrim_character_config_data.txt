@@ -11,6 +11,10 @@ Stats:
 -Damage(Weapon)
 -Defense(Clothing)
 
+Sex:
+-Male
+-Female
+
 Races:
 [Breton]
 [Imperial]
