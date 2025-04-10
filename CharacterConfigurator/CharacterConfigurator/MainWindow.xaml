@@ -7,38 +7,128 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Title="Skirym Character Configuration" Height="800" Width="1240" Style="{StaticResource SkirymFont}" FontSize="18px">
+        Title="Skirym Character Configuration" Height="825" Width="1255" Style="{StaticResource SkirymFont}" FontSize="18px">
+
+    <!--Outer Grid-->
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="72.5"/>
             <RowDefinition Height="600"/>
             <RowDefinition Height="72.5"/>
         </Grid.RowDefinitions>
+        <Border Grid.Row="0" Style="{StaticResource GridBorderOutLine}"/>
+        <Border Grid.Row="1" Style="{StaticResource GridBorderOutLine}" Margin="0,12.5,0,12.5"/>
+        <Border Grid.Row="2" Style="{StaticResource GridBorderOutLine}"/>
 
+        <!--Top Middle Grid-->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="325"/>
                 <ColumnDefinition Width="550"/>
                 <ColumnDefinition Width="325"/>
             </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource GridBorderOutLine}" Margin="12.5,12.5,125,12.5">
+                <TextBlock Text="Skirym" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+            </Border>
 
+
+            <!--Top Right Grid-->
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="162.5"/>
                     <ColumnDefinition Width="162.5"/>
                 </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="username" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Button Grid.Row="0" Grid.Column="1" Content="log out" Margin="12.5,12.5,12.5,12.5"
+                        Name="btnLogOut" Click="btnLogOut_Click"/>
             </Grid>
         </Grid>
 
+
+        <!--Middle Grid-->
         <Grid Grid.Row="1">
             <DockPanel>
                 <!-- Left Column -->
                 <StackPanel DockPanel.Dock="Left" Width="325">
                     <Grid Height="600">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="325"/>
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="350"/>
                             <RowDefinition Height="250"/>
                         </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource GridBorderOutLine}" Margin="12.5,25,12.5,12.5">
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="12.5">
+
+                            </TextBlock>
+                        </Border>
+
+                        <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource GridBorderOutLine}" Margin="12.5,0,12.5,25">
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="12.5,50,12.5,12.5">
+
+                            </TextBlock>
+                        </Border>
+                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,12.5,25,205" Name="cmbConsumable">
+
+                        </ComboBox>
+                        <TextBlock Text="Consumable" IsHitTestVisible="False" Grid.Row="1" Margin="37.5,15,175,207.5"/>
+
+                        <Grid Grid.Row="0" Margin="25,37.5,25,25">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="95"/>
+                                <ColumnDefinition Width="132.5"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.5"/>
+                                <RowDefinition Height="41"/>
+                                <RowDefinition Height="41"/>
+                                <RowDefinition Height="41"/>
+                                <RowDefinition Height="41"/>
+                                <RowDefinition Height="41"/>
+                                <RowDefinition Height="41"/>
+                                <RowDefinition Height="41"/>
+                                <RowDefinition Height="1.5"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Health" Style="{StaticResource StatsTextBlockLeft}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Magicka" Style="{StaticResource StatsTextBlockLeft}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Stamina" Style="{StaticResource StatsTextBlockLeft}"/>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Text="Defense" Style="{StaticResource StatsTextBlockLeft}"/>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Text="Damage" Style="{StaticResource StatsTextBlockLeft}"/>
+                            <TextBlock Grid.Row="6" Grid.Column="0" Text="Atk Speed" Style="{StaticResource StatsTextBlockLeft}"/>
+                            <TextBlock Grid.Row="7" Grid.Column="0" Text="Skill" Style="{StaticResource StatsTextBlockLeft}"/>
+
+                            <ProgressBar Grid.Row="1" Grid.Column="1" Style="{StaticResource ProgressBarStat}" Name="prgHealth">
+                                <ProgressBar.Foreground>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Color="DarkGreen" Offset="0"/>
+                                        <GradientStop Color="LightGreen" Offset="1.5"/>
+                                    </LinearGradientBrush>
+                                </ProgressBar.Foreground>
+                            </ProgressBar>
+                            <ProgressBar Grid.Row="2" Grid.Column="1" Style="{StaticResource ProgressBarStat}" Name="prgMagicka">
+                                <ProgressBar.Foreground>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Color="DarkBlue" Offset="0"/>
+                                        <GradientStop Color="Blue" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </ProgressBar.Foreground>
+                            </ProgressBar>
+                            <ProgressBar Grid.Row="3" Grid.Column="1" Style="{StaticResource ProgressBarStat}" Name="prgStamina">
+                                <ProgressBar.Foreground>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Color="DarkRed" Offset="0"/>
+                                        <GradientStop Color="Red" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </ProgressBar.Foreground>
+                            </ProgressBar>
+                            <TextBlock Grid.Row="4" Grid.Column="1" Text="0" Style="{StaticResource StatsTextBlockRight}" Name="txtblDefense"/>
+                            <TextBlock Grid.Row="5" Grid.Column="1" Text="0" Style="{StaticResource StatsTextBlockRight}" Name="txtblDamage"/>
+                            <TextBlock Grid.Row="6" Grid.Column="1" Text="medium" Style="{StaticResource StatsTextBlockRight}" Name="txtblAtkSpeed"/>
+                            <TextBlock Grid.Row="7" Grid.Column="1" Text="None" Style="{StaticResource StatsTextBlockRight}" Name="txtblSkill"/>
+                        </Grid>
                     </Grid>
                 </StackPanel>
 
@@ -49,41 +139,98 @@
                             <RowDefinition Height="350"/>
                             <RowDefinition Height="250"/>
                         </Grid.RowDefinitions>
+
+                        <Border Style="{StaticResource GridBorderOutLine}" Margin="12.5,25,12.5,12.5">
+                            <TextBlock Grid.Column="0" Margin="12.5,50,12.5,12.5">
+
+                            </TextBlock>
+                        </Border>
+                        <ComboBox Grid.Row="0" Grid.Column="0" Margin="25,37.5,25,280" Name="cmbWeapon">
+
+                        </ComboBox>
+                        <TextBlock Text="Weapon" IsHitTestVisible="False" Grid.Row="0" Margin="37.5,40,200,280"/>
+
+
+                        <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource GridBorderOutLine}" Margin="12.5,0,12.5,25">
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="12.5,50,12.5,12.5">
+
+                            </TextBlock>
+                        </Border>
+
+                        <Border Grid.Row="1" Grid.Column="0" Margin="25,12.5,25,205" BorderBrush="DarkGray" BorderThickness="1" Background="WhiteSmoke">
+                            <TextBlock Text="Clothing" Margin="12.5,1,175,0">
+
+                            </TextBlock>
+                        </Border>
+
                     </Grid>
                 </StackPanel>
 
                 <!-- Middle Column -->
                 <StackPanel>
                     <!--Placeholder-->
+                    <Grid Height="600">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="550"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Style="{StaticResource GridBorderOutLine}" Margin="12.5,25,12.5,25">
+                            <TextBlock Grid.Column="0" Margin="12.5">
+
+                            </TextBlock>
+                        </Border>
+                    </Grid>
+
                 </StackPanel>
             </DockPanel>
         </Grid>
 
+        <!--Bottom Grid-->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="325"/>
                 <ColumnDefinition Width="550"/>
                 <ColumnDefinition Width="325"/>
             </Grid.ColumnDefinitions>
+            <!--<Border Style="{StaticResource GridBorderOutLine}" Grid.ColumnSpan="3"/>-->
 
+            <!--Bottom Left Grid-->
             <Grid Grid.Row="2" Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="225"/>
                 </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Style="{StaticResource StandardButton}" Content="&lt;" Margin="12.5,12.5,12.5,12.5"
+                        Name="btnPageLeft" IsEnabled="False" Click="btnPageLeft_Click"/>
+                <Button Grid.Column="1" Style="{StaticResource StandardButton}" Margin="0,12.5,25,12.5" Content="&gt;"
+                        Name="btnPageRight" Click="btnPageRight_Click"/>
             </Grid>
 
+            <!--Bottom Middle Grid-->
             <Grid Grid.Row="2" Grid.Column="1" Margin="5,0,5,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="180"/>
                     <ColumnDefinition Width="180"/>
                     <ColumnDefinition Width="180"/>
                 </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Style="{StaticResource StandardButton}" Margin="42.5,12.5,0,12.5" Content="New"
+                        Name="btnNew" Click="btnNew_Click"/>
+                <Button Grid.Column="1" Style="{StaticResource StandardButton}" Margin="21.25,12.5,21.25,12.5" Content="Edit"
+                        Name="btnEdit" Click="btnEdit_Click"/>
+                <Button Grid.Column="2" Style="{StaticResource StandardButton}" Margin="0,12.5,42.5,12.5" Content="Delete"
+                        Name="btnDelete" Click="btnDelete_Click"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="160"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Style="{StaticResource StandardButton}" Content="Cancel" Margin="20,12.5,5,12.5"
+                        Name="btnCancel" Click="btnCancel_Click"/>
+                <Button Grid.Column="1" Style="{StaticResource StandardButton}" Content="Save" Margin="17.5,12.5,7.5,12.5"
+                        Name="btnSave" Click="btnSave_Click"/>
             </Grid>
         </Grid>
-
-       
-
     </Grid>
 </Window>
