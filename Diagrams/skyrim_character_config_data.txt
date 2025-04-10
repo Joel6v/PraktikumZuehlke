@@ -48,45 +48,45 @@ Consumables:
 -Lockpicks
 
 Nord Default:
-Health(120)
-Magicka(60)
-Stamina(120)
+Health(120) 85%
+Magicka(60) 40%
+Stamina(120) 85%
 Default Clothing
 Sword
 Food
 Smithing
 
 Redguard Default:
-Health(120)
-Magicka(80)
-Stamina(100)
+Health(120) 85%
+Magicka(80) 55%
+Stamina(100) 70%
 Default Clothing
 Bow
 Ingredient
 Archery
 
 Altmer Default:
-Health(70)
-Magicka(150)
-Stamina(80)
+Health(70) 50%
+Magicka(150) 100%
+Stamina(80) 60%
 Default Clothing
 Staff
 Scroll
 Enchanting
 
 Orc Default:
-Health(140)
-Magicka(80)
-Stamina(80)
+Health(140) 100%
+Magicka(80) 55%
+Stamina(80) 60%
 Default Clothing
 War Axe
 Potion
 None
 
 Khajiit Default:
-Health(90)
-Magicka(70)
-Stamina(140)
+Health(90) 65%
+Magicka(70) 45%
+Stamina(140) 100%
 Default Clothing
 Dagger
 Lockpick
