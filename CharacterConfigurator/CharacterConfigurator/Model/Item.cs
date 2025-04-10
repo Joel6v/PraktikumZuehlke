@@ -8,8 +8,6 @@ namespace CharacterConfigurator.Model
 {
     public abstract class Item : BaseModel<Item>
     {
-        //public required string Name { get; set; }
-        public string Name { get; protected set; }
         public string PathImage { get; protected set; }
 
         public override string ConvertToSqlInsert()

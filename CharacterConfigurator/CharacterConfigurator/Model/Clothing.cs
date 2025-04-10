@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CharacterConfigurator.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,23 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    class Clothing : Item
+    public class Clothing : Item
     {
         public new const string DbTableName = "clothing";
+
+        public override string Name
+        {
+            get { return _Name; }
+            set
+            {
+                if (!MainController.ClothingController.CheckIfNameExists(value))
+                {
+                    _Name = value;
+                }
+            }
+        }
+
+        private string _Name { get; set; }
 
         public ClothingType ClothingType { get; private set; }
 

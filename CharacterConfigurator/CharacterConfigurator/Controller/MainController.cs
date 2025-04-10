@@ -12,5 +12,9 @@ namespace CharacterConfigurator.Controller
         public static User CurrentUser { get; set; }
 
         public static Controller<User> UserController { get; set; }
+
+        public static Controller<Character> CharacterController { get; set; }
+
+        public static Controller<Clothing> ClothingController { get; set; }
     }
 }
