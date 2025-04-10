@@ -10,9 +10,11 @@ namespace CharacterConfigurator.Model
 {
     public class Consumable : Item
     {
-        public override DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.CONSUMABLE;
+        public int Id { get; private set; }
 
-        public override string Name
+        public static DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.CONSUMABLE;
+
+        public string Name
         {
             get { return _Name; }
             set
@@ -25,17 +27,17 @@ namespace CharacterConfigurator.Model
         }
         private string _Name { get; set; }
 
-        public override string GetAttributs()
+        public string GetAttributs()
         {
             return $"'{Name}'";
         }
 
-        public override List<string> GetListAttributes()
+        public List<string> GetListAttributes()
         {
             return new List<string>() { $"'{Name}'"};
         }
 
-        public override void SetAttributes(MySqlDataReader sqlResult)
+        public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
             Name = sqlResult.GetString(1);

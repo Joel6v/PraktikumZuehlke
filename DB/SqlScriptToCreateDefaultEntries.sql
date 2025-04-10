@@ -25,17 +25,17 @@ INSERT INTO weapon (name, damagePerHit, attackSpeed) VALUES
 ('Swords', 31, 1),
 ('War Axes', 34, 0),
 ('Bows', 17, 2),
-('Staves', 22, 1);
+('Staff', 22, 1);
 
 -- -----------------------------------------------------
 -- Table 'consumable'
 -- -----------------------------------------------------
 INSERT INTO consumable (name) VALUES
-('Potions'),
-('Scrolls'),
+('Potion'),
+('Scroll'),
 ('Food'),
-('Ingredients'),
-('Lockpicks');
+('Ingredient'),
+('Lockpick');
 
 -- -----------------------------------------------------
 -- Table 'consumable'

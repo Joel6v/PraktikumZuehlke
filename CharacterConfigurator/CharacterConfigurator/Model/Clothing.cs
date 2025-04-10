@@ -12,9 +12,11 @@ namespace CharacterConfigurator.Model
 {
     public class Clothing : Item
     {
-        public override ModelTypeDb DbModel { get; protected set; } = ModelTypeDb.CLOTHING;
+        public int Id { get; private set; }
 
-        public override string Name
+        public static ModelTypeDb DbModel { get; private set; } = ModelTypeDb.CLOTHING;
+
+        public string Name
         {
             get { return _Name; }
             set
@@ -29,17 +31,17 @@ namespace CharacterConfigurator.Model
 
         public override string PathImage { get; protected set; }
 
-        public override string GetAttributs()
+        public string GetAttributs()
         {
             return $"'{Name}', {Defense}, {(int)ClothingType}";
         }
 
-        public override List<string> GetListAttributes()
+        public List<string> GetListAttributes()
         {
             return new List<string>() { $"'{Name}'", $"{Defense}", $"{(int)ClothingType}" };
         }
 
-        public override void SetAttributes(MySqlDataReader sqlResult)
+        public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
             Name = sqlResult.GetString(1);

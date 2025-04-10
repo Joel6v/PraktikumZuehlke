@@ -11,18 +11,15 @@ using CharacterConfigurator.Model.DbEnum;
 
 namespace CharacterConfigurator.Controller
 {
-    public class Controller<TBaseModel> where TBaseModel : IBaseModel, new()
+    public class Controller<TBaseModel> where TBaseModel : IBaseModel<TBaseModel>, new()
     {
         private List<TBaseModel> BaseModelsList { get; set; }
 
-        private ModelTypeDb DbModel;
-
         private Repository<TBaseModel> Repository;
 
-        public Controller(ModelTypeDb dbModel) 
+        public Controller() 
         {
-            DbModel = dbModel;
-            Repository = new Repository<TBaseModel> (DbModel);
+            Repository = new Repository<TBaseModel> ();
             Load();
         }
 

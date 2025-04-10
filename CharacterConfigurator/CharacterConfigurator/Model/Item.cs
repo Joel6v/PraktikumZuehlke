@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    public abstract class Item : IBaseModel
+    public abstract class Item : IBaseModel<Item>
     {
         public abstract string PathImage { get; protected set; }
     }

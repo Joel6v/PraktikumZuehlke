@@ -13,14 +13,14 @@ namespace CharacterConfigurator.Model
     {
         public int Id { get; protected set; }
 
-        public static abstract ModelTypeDb DbModel { get; }
+        public static ModelTypeDb DbModel { get; }
 
-        public abstract string Name { get; set; }
+        public string Name { get; set; }
 
-        public abstract string GetAttributs();
+        public string GetAttributs();
 
-        public abstract List<string> GetListAttributes();
+        public List<string> GetListAttributes();
 
-        public abstract void SetAttributes(MySqlDataReader sqlResult);
+        public void SetAttributes(MySqlDataReader sqlResult);
     }
 }

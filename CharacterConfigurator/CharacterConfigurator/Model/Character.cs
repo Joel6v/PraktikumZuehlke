@@ -12,9 +12,11 @@ namespace CharacterConfigurator.Model
 {
     public class Character : IBaseModel<Character>
     {
-        public override DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.CHARACTER;
+        public int Id {  get; set; }
 
-        public override string Name { get { return _Name; } set 
+        public static DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.CHARACTER;
+
+        public string Name { get { return _Name; } set 
             {
                 if (!MainController.CharacterController.CheckIfNameExists(value))
                 {
@@ -25,17 +27,17 @@ namespace CharacterConfigurator.Model
 
         private string _Name {  get; set; }
 
-        public override string GetAttributs()
+        public string GetAttributs()
         {
             return $"'{Name}', {User.Id}, {Race.Id}, {ClothingHeadgear.Id}, {ClothingChest.Id}, {ClothingGloves.Id}, {ClothingLegs.Id}, {Weapon.Id}, {Consumable.Id}";
         }
 
-        public override List<string> GetListAttributes()
+        public List<string> GetListAttributes()
         {
             return new List<string>() { $"'{Name}'", $"{User.Id}", $"{Race.Id}", $"{ClothingHeadgear.Id}", $"{ClothingChest.Id}", $"{ClothingGloves.Id}", $"{ClothingLegs.Id}", $"{Weapon.Id}", $"{Consumable.Id}" };
         }
 
-        public override void SetAttributes(MySqlDataReader sqlResult)
+        public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
             Sex = (Sex)sqlResult.GetInt32(1);

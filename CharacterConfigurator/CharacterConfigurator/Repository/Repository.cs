@@ -1,22 +1,20 @@
-﻿using CharacterConfigurator.Model.DbEnum;
+﻿using CharacterConfigurator.Model;
+using CharacterConfigurator.Model.DbEnum;
 using MySql.Data.MySqlClient;
 
 namespace CharacterConfigurator.Repository
 {
-    public class Repository<TBaseModel> where TBaseModel : Model.IBaseModel
+    public class Repository<TBaseModel> where TBaseModel : Model.IBaseModel<TBaseModel>
     {
-        private ModelTypeDb DbModel {  get; set; }
-
-        public Repository(ModelTypeDb dbModel) 
+        public Repository() 
         {
-            DbModel = dbModel;
         }
 
         public MySqlDataReader Load() 
         {
             using (DbConnection dbConnection = new())
             {
-                string selectCommandStr = $"SELECT * FROM {DbModel.GetStringTable};";
+                string selectCommandStr = $"SELECT * FROM {TBaseModel.DbModel.GetStringTable};";
                 MySqlCommand selectCommand = new MySqlCommand(selectCommandStr, dbConnection.Connection);
                 return selectCommand.ExecuteReader();
             }
@@ -24,7 +22,7 @@ namespace CharacterConfigurator.Repository
 
         public void SaveAll(List<TBaseModel> baseModelList) 
         {
-            string sqlInsert = $"INSERT INTO {baseModelList[0].DbModel.GetStringTable()} ({baseModelList[0].DbModel.GetStringColumns()}) VALUES ";
+            string sqlInsert = $"INSERT INTO {TBaseModel.DbModel.GetStringTable()} ({TBaseModel.DbModel.GetStringColumns()}) VALUES ";
             foreach (TBaseModel baseModel in baseModelList)
             {
                 sqlInsert += "(" + baseModel.GetAttributs() + "),";
@@ -41,7 +39,7 @@ namespace CharacterConfigurator.Repository
 
         public void Save(TBaseModel baseModel)
         {
-            string sqlInsert = $"INSERT INTO {baseModel.DbModel.GetStringTable()} ({baseModel.DbModel.GetStringColumns()}) VALUE ";
+            string sqlInsert = $"INSERT INTO {TBaseModel.DbModel.GetStringTable()} ({TBaseModel.DbModel.GetStringColumns()}) VALUE ";
             sqlInsert += "(" + baseModel.GetAttributs() + ");";
             using (DbConnection dbConnection = new())
             {
@@ -52,10 +50,10 @@ namespace CharacterConfigurator.Repository
 
         public void Update(TBaseModel baseModel)
         {
-            string sqlUpdate = $"UPDATE {baseModel.DbModel.GetStringTable()} SET ";
-            for(int i = 0; i < baseModel.DbModel.GetListColumns().Count; i++)
+            string sqlUpdate = $"UPDATE {TBaseModel.DbModel.GetStringTable()} SET ";
+            for(int i = 0; i < TBaseModel.DbModel.GetListColumns().Count; i++)
             {
-                sqlUpdate += baseModel.DbModel.GetListColumns()[i] + " = " + baseModel.GetListAttributes()[i] + ",";
+                sqlUpdate += TBaseModel.DbModel.GetListColumns()[i] + " = " + baseModel.GetListAttributes()[i] + ",";
             }
             sqlUpdate.Remove(sqlUpdate.Length - 1);
 
@@ -71,7 +69,7 @@ namespace CharacterConfigurator.Repository
 
         public void Delete(TBaseModel baseModel)
         {
-            string sqlDelete = $"DELETE FROM {baseModel.DbModel.GetStringTable} WHERE id = {baseModel.Id};";
+            string sqlDelete = $"DELETE FROM {TBaseModel.DbModel.GetStringTable} WHERE id = {baseModel.Id};";
             using (DbConnection dbConnection = new())
             {
                 MySqlCommand command = new MySqlCommand(sqlDelete, dbConnection.Connection);
