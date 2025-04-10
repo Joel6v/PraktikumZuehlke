@@ -11,15 +11,13 @@ using CharacterConfigurator.Controller;
 
 namespace CharacterConfigurator.Model
 {
-    public class User : BaseModel<User>
+    public class User : BaseModel
     {
-        public new const string DbTableName = "user";
+        public override DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.USER;
 
         public const int MinUsernameLength = 3;
         public const int MaxUsernameLength = 30;
-
-        //Username must be check if it is already existing
-        public new string Name { get { return _Username; } set 
+        public override string Name { get { return _Name; } set 
             {
                 if (MainController.UserController.CheckIfNameExists(value))
                 {
@@ -38,7 +36,7 @@ namespace CharacterConfigurator.Model
                     }
                     if (usernameValid)
                     {
-                        _Username = value;
+                        _Name = value;
                     }
                     else
                     {
@@ -51,11 +49,33 @@ namespace CharacterConfigurator.Model
                 }
             }
         }
-        private string _Username { get; set; }
+        private string _Name { get; set; }
+
+        public override string GetAttributs()
+        {
+            return $"'{Name}', {Convert.ToInt64(Password)}";
+        }
+
+        public override List<string> GetListAttributes()
+        {
+            return new List<string>() { $"'{Name}'", $"{Convert.ToInt64(Password)}"};
+        }
+
+        public override void SetAttributes(MySqlDataReader sqlResult)
+        {
+            Id = sqlResult.GetInt32(0);
+            Name = sqlResult.GetString(1);
+            Password = BitConverter.GetBytes(sqlResult.GetInt64(2));
+        }
 
         public byte[] Password { get; set; }
 
-        public User(uint id, string username, byte[] password) 
+        public User()
+        {
+
+        }
+
+        public User(int id, string username, byte[] password) 
         {
             Id = id;
             Name = username;
@@ -69,11 +89,6 @@ namespace CharacterConfigurator.Model
             {
                 Password = s.ComputeHash(bytesToBytes);
             }
-        }
-
-        public override string ConvertToSqlInsert()
-        {
-            return $"INSERT INTO {DbTableName} (name, password) VALUE {Name}, {Convert.ToInt64(Password)};";
         }
     }
 }

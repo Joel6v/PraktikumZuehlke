@@ -7,30 +7,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CharacterConfigurator.Repository;
+using CharacterConfigurator.Model.DbEnum;
 
 namespace CharacterConfigurator.Controller
 {
-    public class Controller<TBaseModel> where TBaseModel : BaseModel<TBaseModel>
+    public class Controller<TBaseModel> where TBaseModel : BaseModel, new()
     {
-        public List<TBaseModel> BaseModelsList { get; private set; }
+        private List<TBaseModel> BaseModelsList { get; set; }
 
-        public Controller() 
+        private ModelTypeDb DbModel;
+
+        private Repository<TBaseModel> Repository;
+
+        public Controller(ModelTypeDb dbModel) 
         {
+            DbModel = dbModel;
+            Repository = new Repository<TBaseModel> (DbModel);
             Load();
         }
 
-        public void AddBaseModel(TBaseModel baseModel)
+        public TBaseModel Get(int index)
         {
+            return BaseModelsList[index];
+        }
+
+        public void Add(TBaseModel baseModel)
+        {
+            Repository.Save(baseModel);
             BaseModelsList.Add(baseModel);
         }
 
-        public void RemoveBaseModel(int index)
+        public void Delete(int index)
         {
+            Repository.Delete(BaseModelsList[index]);
             BaseModelsList.RemoveAt(index);
         }
 
-        public void UpdateBaseModel(int index, TBaseModel baseModel)
+        public void Update(TBaseModel baseModel)
         {
+            int index = -1;
+            for(int i = 0; i < BaseModelsList.Count; i++)
+            {
+                if(BaseModelsList[i].Id == baseModel.Id)
+                {
+                    index = i; 
+                    break;
+                }
+            }
+            Repository.Update(baseModel);
             BaseModelsList[index] = baseModel;
         }
 
@@ -49,10 +73,11 @@ namespace CharacterConfigurator.Controller
 
         private void Load()
         {
-            DbConnection dbConnection = new();
-            string selectCommandStr = $"SELECT * FROM {BaseModel<TBaseModel>.DbTableName};";
-            MySqlCommand selectCommand = new MySqlCommand(selectCommandStr, dbConnection.Connection);
-            selectCommand.ExecuteNonQuery();
+            MySqlDataReader result = Repository.Load();
+            while (result.Read())
+            {
+
+            }
         }
     }
 }

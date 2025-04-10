@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace CharacterConfigurator.Repository
 {
-    class DbConnection
+    class DbConnection : System.IDisposable
     {
         private static string ConnectionString = ConfigurationManager.ConnectionStrings["DbConnectionString"].ConnectionString;
 
@@ -31,13 +31,15 @@ namespace CharacterConfigurator.Repository
                     Connection = new MySqlConnection(ConnectionString);
                 }
                 Connection.Open();
-            }catch (Exception ex) 
-            { 
-                MessageBox.Show(ex.Message, "Error while connecting to the MySqlDB", MessageBoxButton.OK, MessageBoxImage.Error);
+            }            
+            catch (Exception ex) 
+            {
+                //MessageBox.Show(ex.Message, "Error while connecting to the MySqlDB", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw;
             }
         }
 
-        public void Close()
+        public void Dispose()
         {
             Connection.Close();
         }

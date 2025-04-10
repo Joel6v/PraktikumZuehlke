@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CharacterConfigurator.Model.CharacterEnum;
+using MySql.Data.MySqlClient;
 
 namespace CharacterConfigurator.Model
 {
-    public class Character : BaseModel<Character>
+    public class Character : BaseModel
     {
-        public new const string DbTableName = "character";
+        public override DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.CHARACTER;
 
         public override string Name { get { return _Name; } set 
             {
@@ -23,11 +25,38 @@ namespace CharacterConfigurator.Model
 
         private string _Name {  get; set; }
 
+        public override string GetAttributs()
+        {
+            return $"'{Name}', {User.Id}, {Race.Id}, {ClothingHeadgear.Id}, {ClothingChest.Id}, {ClothingGloves.Id}, {ClothingLegs.Id}, {Weapon.Id}, {Consumable.Id}";
+        }
+
+        public override List<string> GetListAttributes()
+        {
+            return new List<string>() { $"'{Name}'", $"{User.Id}", $"{Race.Id}", $"{ClothingHeadgear.Id}", $"{ClothingChest.Id}", $"{ClothingGloves.Id}", $"{ClothingLegs.Id}", $"{Weapon.Id}", $"{Consumable.Id}" };
+        }
+
+        public override void SetAttributes(MySqlDataReader sqlResult)
+        {
+            Id = sqlResult.GetInt32(0);
+            Sex = (Sex)sqlResult.GetInt32(1);
+            Name = sqlResult.GetString(2);
+            User = MainController.UserController.Get(sqlResult.GetInt32(3));
+            Race = MainController.RaceController.Get(sqlResult.GetInt32(4));
+            ClothingHeadgear = MainController.ClothingController.Get(sqlResult.GetInt32(5));
+            ClothingChest = MainController.ClothingController.Get(sqlResult.GetInt32(6));
+            ClothingGloves = MainController.ClothingController.Get(sqlResult.GetInt32(7));
+            ClothingLegs = MainController.ClothingController.Get(sqlResult.GetInt32(8));
+            Weapon = MainController.WeaponController.Get(sqlResult.GetInt32(9));
+            Consumable = MainController.ConsumableController.Get(sqlResult.GetInt32(10));
+        }
+
+        public Sex Sex { get; private set; }
+
         public User User { get; private set; }
 
         public Race Race { get; set; }
 
-        public Clothing ClothingHeadgears 
+        public Clothing ClothingHeadgear 
         {
             get { return _ClothingHeadgears; } 
             set 
@@ -88,24 +117,24 @@ namespace CharacterConfigurator.Model
 
         public Weapon Weapon { get; set; }
 
-        public Character(uint id, string name, Race race, Clothing clothingHeadgears, Clothing clothingChest, Clothing clothingGloves, Clothing clothingLegs, Consumable consumable, Weapon weapon)
+        public Character()
+        {
+
+        }
+
+        public Character(int id, string name, Sex sex, Race race, Clothing clothingHeadgear, Clothing clothingChest, Clothing clothingGloves, Clothing clothingLegs, Consumable consumable, Weapon weapon)
         {
             Id = id;
+            Sex = sex;
             User = MainController.CurrentUser;
             Name = name;
             Race = race;
-            ClothingHeadgears = clothingHeadgears;
+            ClothingHeadgear = clothingHeadgear;
             ClothingChest = clothingChest;
             ClothingGloves = clothingGloves;
             ClothingLegs = clothingLegs;
             Consumable = consumable;
             Weapon = weapon;
-        }
-
-        public override string ConvertToSqlInsert()
-        {
-            return $"INSERT INTO {DbTableName} (name, user_userId, race_raceId, clothing_headgearId, clothing_chestId, clothing_glovesId, clothing_legsId, weapon_weaponId, consumable_consumableId) VALUE " +
-                $"{Name}, {User.Id}, {Race.Id}, {ClothingHeadgears.Id}, {ClothingChest.Id}, {ClothingGloves.Id}, {ClothingLegs.Id}, {Weapon.Id}, {Consumable.Id};";
         }
     }
 }

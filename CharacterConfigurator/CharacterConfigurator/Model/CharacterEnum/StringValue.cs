@@ -5,8 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-//All enums are in the same namespace with this class
-namespace CharacterConfigurator.Model
+namespace CharacterConfigurator.Model.CharacterEnum
 {
     public class StringValue : Attribute
     {
@@ -19,7 +18,7 @@ namespace CharacterConfigurator.Model
     }
 
 
-    public static class EnumExtensions
+    public static class EnumExtensionsCharacter
         {
             public static string GetStringValue(this Enum value)
             {
