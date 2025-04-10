@@ -30,4 +30,63 @@ public partial class MainWindow : Window
         //DbConnection dBConnection = new DbConnection();
         //this.Close();
     }
+
+    private void btnLogOut_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void btnPageLeft_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void btnPageRight_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void btnNew_Click(object sender, RoutedEventArgs e)
+    {
+        cmbConsumable.IsEnabled = true;
+        cmbWeapon.IsEnabled = true;
+
+        btnPageLeft.Visibility = Visibility.Hidden;
+        btnPageRight.Visibility = Visibility.Hidden;
+
+        btnNew.Visibility = Visibility.Hidden;
+        btnEdit.Visibility = Visibility.Hidden;
+        btnDelete.Visibility = Visibility.Hidden;
+
+        btnCancel.Visibility = Visibility.Visible;
+        btnSave.Visibility = Visibility.Visible;
+    }
+
+    private void btnEdit_Click(object sender, RoutedEventArgs e)
+    {
+        btnPageLeft.Visibility = Visibility.Hidden;
+        btnPageRight.Visibility = Visibility.Hidden;
+
+        btnNew.Visibility = Visibility.Hidden;
+        btnEdit.Visibility = Visibility.Hidden;
+        btnDelete.Visibility = Visibility.Hidden;
+
+        btnCancel.Visibility = Visibility.Visible;
+        btnSave.Visibility = Visibility.Visible;
+    }
+
+    private void btnDelete_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void btnCancel_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void btnSave_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
 }

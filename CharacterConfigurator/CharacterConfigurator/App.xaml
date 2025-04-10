@@ -39,5 +39,31 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="GridBorderOutLine" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1px"/>
+            <Setter Property="Padding" Value="2.5px"/>
+        </Style>
+
+        <Style x:Key="StandardButton" TargetType="Button">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="FontSize" Value="28px"/>
+        </Style>
+        
+        <Style x:Key="StatsTextBlockLeft" TargetType="TextBlock">
+            <Setter Property="Margin" Value="12.5,12.5,0,0"/>
+        </Style>
+
+        <Style x:Key="ProgressBarStat" TargetType="ProgressBar">
+            <Setter Property="Height" Value="12.5"/>
+            <Setter Property="Margin" Value="15,18.5,-37.5,10"/>
+            <Setter Property="Value" Value="100"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+
+        <Style x:Key="StatsTextBlockRight" TargetType="TextBlock">
+            <Setter Property="Margin" Value="15,12.5,0,0"/>
+        </Style>
+
     </Application.Resources>
 </Application>
