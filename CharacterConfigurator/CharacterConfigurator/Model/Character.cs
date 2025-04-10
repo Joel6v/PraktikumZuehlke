@@ -10,7 +10,7 @@ using MySql.Data.MySqlClient;
 
 namespace CharacterConfigurator.Model
 {
-    public class Character : BaseModel
+    public class Character : IBaseModel<Character>
     {
         public override DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.CHARACTER;
 

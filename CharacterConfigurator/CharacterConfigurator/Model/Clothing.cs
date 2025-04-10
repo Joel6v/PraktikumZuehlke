@@ -27,6 +27,8 @@ namespace CharacterConfigurator.Model
         }
         private string _Name { get; set; }
 
+        public override string PathImage { get; protected set; }
+
         public override string GetAttributs()
         {
             return $"'{Name}', {Defense}, {(int)ClothingType}";

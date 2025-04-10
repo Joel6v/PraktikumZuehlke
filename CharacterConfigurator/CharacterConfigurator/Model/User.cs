@@ -11,7 +11,7 @@ using CharacterConfigurator.Controller;
 
 namespace CharacterConfigurator.Model
 {
-    public class User : BaseModel
+    public class User : IBaseModel
     {
         public override DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.USER;
 

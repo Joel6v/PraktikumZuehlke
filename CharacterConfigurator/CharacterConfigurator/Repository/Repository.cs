@@ -3,7 +3,7 @@ using MySql.Data.MySqlClient;
 
 namespace CharacterConfigurator.Repository
 {
-    public class Repository<TBaseModel> where TBaseModel : Model.BaseModel
+    public class Repository<TBaseModel> where TBaseModel : Model.IBaseModel
     {
         private ModelTypeDb DbModel {  get; set; }
 

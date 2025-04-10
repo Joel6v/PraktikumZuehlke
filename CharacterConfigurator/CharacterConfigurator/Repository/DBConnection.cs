@@ -34,8 +34,8 @@ namespace CharacterConfigurator.Repository
             }            
             catch (Exception ex) 
             {
-                //MessageBox.Show(ex.Message, "Error while connecting to the MySqlDB", MessageBoxButton.OK, MessageBoxImage.Error);
-                throw;
+                MessageBox.Show(ex.Message, "Error while connecting to the MySqlDB", MessageBoxButton.OK, MessageBoxImage.Error);
+                //throw;
             }
         }
 
