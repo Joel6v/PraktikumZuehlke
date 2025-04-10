@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Title="Skirym Character Configuration" Height="825" Width="1255" Style="{StaticResource SkirymFont}" FontSize="18px">
+        Title="Skirym Character Configuration" Height="825" Width="1255" Style="{StaticResource SkirymFont}" FontSize="18">
 
     <!--Outer Grid-->
     <Grid Margin="20">
@@ -38,8 +38,8 @@
                     <ColumnDefinition Width="162.5"/>
                     <ColumnDefinition Width="162.5"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="username" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Button Grid.Row="0" Grid.Column="1" Content="log out" Margin="12.5,12.5,12.5,12.5"
+                <Label Grid.Row="0" Grid.Column="0" Content="username" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="28"/>
+                <Button Grid.Row="0" Grid.Column="1" Content="log out" Margin="12.5,12.5,12.5,12.5" Style="{StaticResource StandardButton}"
                         Name="btnLogOut" Click="btnLogOut_Click"/>
             </Grid>
         </Grid>
@@ -71,7 +71,7 @@
 
                             </TextBlock>
                         </Border>
-                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,12.5,25,205" Name="cmbConsumable">
+                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,12.5,25,205" Name="cmbConsumable" IsEnabled="False">
 
                         </ComboBox>
                         <TextBlock Text="Consumable" IsHitTestVisible="False" Grid.Row="1" Margin="37.5,15,175,207.5"/>
@@ -145,7 +145,7 @@
 
                             </TextBlock>
                         </Border>
-                        <ComboBox Grid.Row="0" Grid.Column="0" Margin="25,37.5,25,280" Name="cmbWeapon">
+                        <ComboBox Grid.Row="0" Grid.Column="0" Margin="25,37.5,25,280" Name="cmbWeapon" IsEnabled="False">
 
                         </ComboBox>
                         <TextBlock Text="Weapon" IsHitTestVisible="False" Grid.Row="0" Margin="37.5,40,200,280"/>
@@ -226,9 +226,9 @@
                     <ColumnDefinition Width="160"/>
                     <ColumnDefinition Width="160"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Style="{StaticResource StandardButton}" Content="Cancel" Margin="20,12.5,5,12.5"
+                <Button Grid.Column="0" Style="{StaticResource StandardButton}" Content="Cancel" Margin="20,12.5,5,12.5" Visibility="Hidden"
                         Name="btnCancel" Click="btnCancel_Click"/>
-                <Button Grid.Column="1" Style="{StaticResource StandardButton}" Content="Save" Margin="17.5,12.5,7.5,12.5"
+                <Button Grid.Column="1" Style="{StaticResource StandardButton}" Content="Save" Margin="17.5,12.5,7.5,12.5" Visibility="Hidden"
                         Name="btnSave" Click="btnSave_Click"/>
             </Grid>
         </Grid>

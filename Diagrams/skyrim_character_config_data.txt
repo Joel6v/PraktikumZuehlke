@@ -47,6 +47,12 @@ Consumables:
 -Ingredients
 -Lockpicks
 
+Default Clothing:
+-Default Headgear
+-Default Chest
+-Default Gloves
+-Default Legs
+
 Nord Default:
 Health(120) 85%
 Magicka(60) 40%

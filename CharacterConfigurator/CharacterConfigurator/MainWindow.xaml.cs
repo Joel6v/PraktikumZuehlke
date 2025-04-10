@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CharacterConfigurator.Controller;
 using CharacterConfigurator.Repository;
 using CharacterConfigurator.View;
 
@@ -33,7 +34,10 @@ public partial class MainWindow : Window
 
     private void btnLogOut_Click(object sender, RoutedEventArgs e)
     {
-
+        //MainController.CurrentUser = null;
+        LoginWindow loginWindow = new LoginWindow();
+        loginWindow.Show();
+        this.Close();
     }
 
     private void btnPageLeft_Click(object sender, RoutedEventArgs e)
@@ -64,6 +68,9 @@ public partial class MainWindow : Window
 
     private void btnEdit_Click(object sender, RoutedEventArgs e)
     {
+        cmbConsumable.IsEnabled = true;
+        cmbWeapon.IsEnabled = true;
+
         btnPageLeft.Visibility = Visibility.Hidden;
         btnPageRight.Visibility = Visibility.Hidden;
 
@@ -82,11 +89,34 @@ public partial class MainWindow : Window
 
     private void btnCancel_Click(object sender, RoutedEventArgs e)
     {
+        cmbConsumable.IsEnabled = false;
+        cmbWeapon.IsEnabled = false;
+
+        btnPageLeft.Visibility = Visibility.Visible;
+        btnPageRight.Visibility = Visibility.Visible;
+
+        btnNew.Visibility = Visibility.Visible;
+        btnEdit.Visibility = Visibility.Visible;
+        btnDelete.Visibility = Visibility.Visible;
+
+        btnCancel.Visibility = Visibility.Hidden;
+        btnSave.Visibility = Visibility.Hidden;
 
     }
 
     private void btnSave_Click(object sender, RoutedEventArgs e)
     {
+        cmbConsumable.IsEnabled = false;
+        cmbWeapon.IsEnabled = false;
 
+        btnPageLeft.Visibility = Visibility.Visible;
+        btnPageRight.Visibility = Visibility.Visible;
+
+        btnNew.Visibility = Visibility.Visible;
+        btnEdit.Visibility = Visibility.Visible;
+        btnDelete.Visibility = Visibility.Visible;
+
+        btnCancel.Visibility = Visibility.Hidden;
+        btnSave.Visibility = Visibility.Hidden;
     }
 }

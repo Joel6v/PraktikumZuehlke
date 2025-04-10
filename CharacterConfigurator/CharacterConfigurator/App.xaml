@@ -41,13 +41,13 @@
 
         <Style x:Key="GridBorderOutLine" TargetType="Border">
             <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="1px"/>
-            <Setter Property="Padding" Value="2.5px"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="2.5"/>
         </Style>
 
         <Style x:Key="StandardButton" TargetType="Button">
             <Setter Property="Margin" Value="0"/>
-            <Setter Property="FontSize" Value="28px"/>
+            <Setter Property="FontSize" Value="28"/>
         </Style>
         
         <Style x:Key="StatsTextBlockLeft" TargetType="TextBlock">

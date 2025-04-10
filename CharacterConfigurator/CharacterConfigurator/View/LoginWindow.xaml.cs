@@ -32,8 +32,8 @@ namespace CharacterConfigurator.View
         private void txtblLoginRegister_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             RegisterWindow objRegisterWindow = new RegisterWindow();
-            this.Visibility = Visibility.Hidden;
             objRegisterWindow.Show();
+            this.Close();
         }
     }
 }
