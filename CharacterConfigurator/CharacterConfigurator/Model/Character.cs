@@ -12,7 +12,14 @@ namespace CharacterConfigurator.Model
     {
         public new const string DbTableName = "character";
 
-        public override string Name { get { return _Name; } set { if()} }
+        public override string Name { get { return _Name; } set 
+            {
+                if (!MainController.CharacterController.CheckIfNameExists(value))
+                {
+                    _Name = value;
+                }
+            } 
+        }
 
         private string _Name {  get; set; }
 
