@@ -15,7 +15,6 @@ namespace CharacterConfigurator.Controller
 
         public static Controller<User> UserController { get; set; } = new Controller<User>(ModelTypeDb.USER);
 
-
         public static Controller<Consumable> ConsumableController { get; set; } = new Controller<Consumable>(ModelTypeDb.CONSUMABLE);
 
         public static Controller<Weapon> WeaponController { get; set; } = new Controller<Weapon> (ModelTypeDb.WEAPON);

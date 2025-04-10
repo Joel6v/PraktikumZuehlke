@@ -11,7 +11,7 @@ using CharacterConfigurator.Model.DbEnum;
 
 namespace CharacterConfigurator.Controller
 {
-    public class Controller<TBaseModel> where TBaseModel : BaseModel, new()
+    public class Controller<TBaseModel> where TBaseModel : IBaseModel, new()
     {
         private List<TBaseModel> BaseModelsList { get; set; }
 

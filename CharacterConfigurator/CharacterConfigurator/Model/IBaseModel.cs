@@ -9,11 +9,11 @@ using CharacterConfigurator.Model.DbEnum;
 
 namespace CharacterConfigurator.Model
 {
-    public abstract class BaseModel
+    public interface IBaseModel<T> where T : IBaseModel<T>
     {
         public int Id { get; protected set; }
 
-        public abstract ModelTypeDb DbModel { get; protected set; }
+        public static abstract ModelTypeDb DbModel { get; }
 
         public abstract string Name { get; set; }
 

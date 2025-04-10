@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    public abstract class Item : BaseModel
+    public abstract class Item : IBaseModel
     {
-        public string PathImage { get; protected set; }
+        public abstract string PathImage { get; protected set; }
     }
 }
