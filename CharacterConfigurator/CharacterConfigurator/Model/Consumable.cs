@@ -15,7 +15,7 @@ namespace CharacterConfigurator.Model
             get { return _Name; }
             set
             {
-                if (!MainController.ConsumableController.CheckIfNameExists(value))
+                if (!MainController.Consumable.CheckIfNameExists(value))
                 {
                     _Name = value;
                 }

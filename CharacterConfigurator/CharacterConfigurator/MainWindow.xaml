@@ -126,8 +126,6 @@
                             </TextBlock>
                         </Border>
                         <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,12.5,25,205" Name="cmbConsumable" IsEnabled="False">
-                            //ItemsSource="{StaticResource ConsumableOptions}" SelectionChanged="cmbConsumable_SelectionChanged">
-
                         </ComboBox>
                         <TextBlock Text="Consumable" IsHitTestVisible="False" Grid.Row="1" Margin="37.5,15,175,207.5"/>
 

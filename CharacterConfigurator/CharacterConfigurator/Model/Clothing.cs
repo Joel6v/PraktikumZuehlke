@@ -17,7 +17,7 @@ namespace CharacterConfigurator.Model
             get { return _Name; }
             set
             {
-                if (!MainController.ClothingController.CheckIfNameExists(value))
+                if (!MainController.Clothing.CheckIfNameExists(value))
                 {
                     _Name = value;
                 }

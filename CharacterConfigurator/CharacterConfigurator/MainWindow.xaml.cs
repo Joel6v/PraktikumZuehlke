@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CharacterConfigurator.Controller;
-using CharacterConfigurator.Repository;
+using CharacterConfigurator.Model;
 using CharacterConfigurator.View;
 
 namespace CharacterConfigurator;
@@ -20,12 +20,13 @@ namespace CharacterConfigurator;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private int CurrentCharaterIndex = -1;
     
     public MainWindow()
     {
         InitializeComponent();
-
-
+        LoadUiStatic();
+        LoadUiCharacter();
 
         //LoginWindow loginWindow = new LoginWindow();
         //loginWindow.Show();
@@ -35,9 +36,30 @@ public partial class MainWindow : Window
         //this.Close();
     }
 
+    private void LoadUiStatic() //For ComboBoxes and so
+    {
+        for (int i = 0; i < MainController.Consumable.Count(); i++)
+        {
+            cmbConsumable.Items.Add(MainController.Consumable.Get(i));
+        }
+    }
+
+    private void LoadUiCharacter()
+    {
+        if(MainController.Character.Count() > 0)
+        {
+            btnPageRight.Focus();
+            CurrentCharaterIndex = 0;
+        }
+        else
+        {
+            btnNew.Focus();
+        }
+    }
+
     private void btnLogOut_Click(object sender, RoutedEventArgs e)
     {
-        //MainController.CurrentUser = null;
+        MainController.User.Logout();
         LoginWindow loginWindow = new LoginWindow();
         loginWindow.Show();
         this.Close();
@@ -125,6 +147,6 @@ public partial class MainWindow : Window
 
     private void cmbConsumable_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        imgConsumable.Source = MainController.ConsumableController.Get(cmbConsumable.SelectedIndex).GetFullPathImage();
+        imgConsumable.Source = MainController.Consumable.Get(cmbConsumable.SelectedIndex).GetFullPathImage();
     }
 }

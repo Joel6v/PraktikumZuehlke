@@ -12,7 +12,7 @@ namespace CharacterConfigurator.Model
 
         public string Name { get { return _Name; } set 
             {
-                if (!MainController.CharacterController.CheckIfNameExists(value))
+                if (!MainController.Character.CheckIfNameExists(value))
                 {
                     _Name = value;
                 }
@@ -35,14 +35,14 @@ namespace CharacterConfigurator.Model
         {
             Id = sqlResult.GetInt32(0);
             _Name = sqlResult.GetString(1);
-            User = MainController.UserController.Get(sqlResult.GetInt32(2));
-            Race = MainController.RaceController.Get(sqlResult.GetInt32(3));
-            ClothingHeadgear = MainController.ClothingController.Get(sqlResult.GetInt32(4));
-            ClothingChest = MainController.ClothingController.Get(sqlResult.GetInt32(5));
-            ClothingGloves = MainController.ClothingController.Get(sqlResult.GetInt32(6));
-            ClothingLegs = MainController.ClothingController.Get(sqlResult.GetInt32(7));
-            Weapon = MainController.WeaponController.Get(sqlResult.GetInt32(8));
-            Consumable = MainController.ConsumableController.Get(sqlResult.GetInt32(9));
+            User = MainController.User.Get(sqlResult.GetInt32(2));
+            Race = MainController.Race.Get(sqlResult.GetInt32(3));
+            ClothingHeadgear = MainController.Clothing.Get(sqlResult.GetInt32(4));
+            ClothingChest = MainController.Clothing.Get(sqlResult.GetInt32(5));
+            ClothingGloves = MainController.Clothing.Get(sqlResult.GetInt32(6));
+            ClothingLegs = MainController.Clothing.Get(sqlResult.GetInt32(7));
+            Weapon = MainController.Weapon.Get(sqlResult.GetInt32(8));
+            Consumable = MainController.Consumable.Get(sqlResult.GetInt32(9));
         }
 
         public User User { get; private set; }
