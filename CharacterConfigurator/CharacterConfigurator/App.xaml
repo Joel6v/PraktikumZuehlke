@@ -10,7 +10,10 @@
             </Setter>
         </Style>
 
-        
+        <Style x:Key="EnchantingTableFont">
+            <Setter Property="TextElement.FontFamily"
+                    Value="pack://application:,,,View/Font/#minecraft enchantment"/>
+        </Style>
 
         <Style x:Key="HoverOverText" TargetType="TextBlock">
             <Setter Property="Foreground">
