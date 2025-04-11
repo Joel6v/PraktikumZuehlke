@@ -1,11 +1,5 @@
-﻿using Org.BouncyCastle.Asn1.X509;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CharacterConfigurator.Controller;
 using CharacterConfigurator.Model.CharacterEnum;
-using CharacterConfigurator.Controller;
 using MySql.Data.MySqlClient;
 using System.Windows.Media.Imaging;
 
@@ -34,7 +28,7 @@ namespace CharacterConfigurator.Model
 
         public string GetFullPathImageStr()
         {
-            return BasePathImage + Name + ".png";
+            return BasePathImage + Name + ImagePath.FileExtension;
         }
 
         public BitmapImage GetFullPathImage()

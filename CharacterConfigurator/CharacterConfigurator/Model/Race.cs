@@ -1,9 +1,4 @@
 ﻿using CharacterConfigurator.Controller;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CharacterConfigurator.Model.CharacterEnum;
 using MySql.Data.MySqlClient;
 using System.Windows.Media.Imaging;
@@ -33,7 +28,7 @@ namespace CharacterConfigurator.Model
 
         public string GetFullPathImageStr()
         {
-            return BasePathImage + Sex.GetStringPathImage() + "\\" + Name + ".png";
+            return BasePathImage + Sex.GetStringPathImage() + "\\" + Name + ImagePath.FileExtension;
         }
 
         public BitmapImage GetFullPathImage()

@@ -1,14 +1,7 @@
-﻿using Org.BouncyCastle.Tls.Crypto.Impl.BC;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
+﻿using CharacterConfigurator.Controller;
 using MySql.Data.MySqlClient;
-using System.ComponentModel;
-using CharacterConfigurator.Controller;
-using System.Collections;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace CharacterConfigurator.Model
 {
@@ -56,7 +49,7 @@ namespace CharacterConfigurator.Model
 
         public string GetAttributs()
         {
-            return $"'{Name}', UNHEX('{BitConverter.ToString(Password).Replace("-", "")})'";
+            return $"'{Name}', '{BitConverter.ToString(Password).Replace("-", "")}'";
         }
 
         public List<string> GetListAttributes()
@@ -87,11 +80,7 @@ namespace CharacterConfigurator.Model
 
         public void SetPasswordStr(string password)
         {
-            byte[] bytesToBytes = Encoding.Unicode.GetBytes(password);
-            using (SHA256 s = SHA256.Create()) //256 bit 32 byte 
-            {
-                Password = s.ComputeHash(bytesToBytes);
-            }
+            Password = DataConverter.GenerateHex(password);
         }
     }
 }
