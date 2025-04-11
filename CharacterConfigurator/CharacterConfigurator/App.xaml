@@ -10,6 +10,19 @@
             </Setter>
         </Style>
 
+        <Style x:Key="TestImg" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <Image Source="pack://application:,,,/Resources/" Width="64" Height="64" Margin="5"/>
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style x:Key="HoverOverText" TargetType="TextBlock">
             <Setter Property="Foreground">
                 <Setter.Value>

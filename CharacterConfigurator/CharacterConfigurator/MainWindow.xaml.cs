@@ -23,7 +23,6 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-
         //LoginWindow loginWindow = new LoginWindow();
         //loginWindow.Show();
         //RegisterWindow registerWindow = new RegisterWindow();
