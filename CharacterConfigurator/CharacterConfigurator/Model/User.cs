@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using MySql.Data.MySqlClient;
 using System.ComponentModel;
 using CharacterConfigurator.Controller;
+using System.Collections;
 
 namespace CharacterConfigurator.Model
 {
@@ -55,19 +56,19 @@ namespace CharacterConfigurator.Model
 
         public string GetAttributs()
         {
-            return $"'{Name}', {Convert.ToInt64(Password)}";
+            return $"'{Name}', UNHEX('{BitConverter.ToString(Password).Replace("-", "")})'";
         }
 
         public List<string> GetListAttributes()
         {
-            return new List<string>() { $"'{Name}'", $"{Convert.ToInt64(Password)}"};
+            return new List<string>() { $"'{Name}'", $"'{BitConverter.ToString(Password).Replace("-", "")})'" };
         }
 
         public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
-            Name = sqlResult.GetString(1);
-            Password = BitConverter.GetBytes(sqlResult.GetInt64(2));
+            _Name = sqlResult.GetString(1);
+            Password = Convert.FromHexString(sqlResult.GetString(2));
         }
 
         public byte[] Password { get; set; }
@@ -87,7 +88,7 @@ namespace CharacterConfigurator.Model
         public void SetPasswordStr(string password)
         {
             byte[] bytesToBytes = Encoding.Unicode.GetBytes(password);
-            using (SHA256 s = SHA256.Create()) //8 bytes 
+            using (SHA256 s = SHA256.Create()) //256 bit 32 byte 
             {
                 Password = s.ComputeHash(bytesToBytes);
             }

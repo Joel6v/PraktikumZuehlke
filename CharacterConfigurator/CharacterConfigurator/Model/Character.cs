@@ -40,19 +40,16 @@ namespace CharacterConfigurator.Model
         public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
-            Sex = (Sex)sqlResult.GetInt32(1);
-            Name = sqlResult.GetString(2);
-            User = MainController.UserController.Get(sqlResult.GetInt32(3));
-            Race = MainController.RaceController.Get(sqlResult.GetInt32(4));
-            ClothingHeadgear = MainController.ClothingController.Get(sqlResult.GetInt32(5));
-            ClothingChest = MainController.ClothingController.Get(sqlResult.GetInt32(6));
-            ClothingGloves = MainController.ClothingController.Get(sqlResult.GetInt32(7));
-            ClothingLegs = MainController.ClothingController.Get(sqlResult.GetInt32(8));
-            Weapon = MainController.WeaponController.Get(sqlResult.GetInt32(9));
-            Consumable = MainController.ConsumableController.Get(sqlResult.GetInt32(10));
+            _Name = sqlResult.GetString(1);
+            User = MainController.UserController.Get(sqlResult.GetInt32(2));
+            Race = MainController.RaceController.Get(sqlResult.GetInt32(3));
+            ClothingHeadgear = MainController.ClothingController.Get(sqlResult.GetInt32(4));
+            ClothingChest = MainController.ClothingController.Get(sqlResult.GetInt32(5));
+            ClothingGloves = MainController.ClothingController.Get(sqlResult.GetInt32(6));
+            ClothingLegs = MainController.ClothingController.Get(sqlResult.GetInt32(7));
+            Weapon = MainController.WeaponController.Get(sqlResult.GetInt32(8));
+            Consumable = MainController.ConsumableController.Get(sqlResult.GetInt32(9));
         }
-
-        public Sex Sex { get; private set; }
 
         public User User { get; private set; }
 
@@ -124,10 +121,9 @@ namespace CharacterConfigurator.Model
 
         }
 
-        public Character(int id, string name, Sex sex, Race race, Clothing clothingHeadgear, Clothing clothingChest, Clothing clothingGloves, Clothing clothingLegs, Consumable consumable, Weapon weapon)
+        public Character(int id, string name, Race race, Clothing clothingHeadgear, Clothing clothingChest, Clothing clothingGloves, Clothing clothingLegs, Consumable consumable, Weapon weapon)
         {
             Id = id;
-            Sex = sex;
             User = MainController.CurrentUser;
             Name = name;
             Race = race;

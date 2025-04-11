@@ -8,17 +8,17 @@ namespace CharacterConfigurator.Model.DbEnum
 {
     public enum ModelTypeDb
     {
-        [StringDbTable("character")]
-        [StringDbColumns(["name", "sex", "user_userId", "race_raceId", "clothing_headgearId", "clothing_chestId", "clothing_glovesId", "clothing_legsId", "weapon_weaponId", "consumable_consumableId"])]
+        [StringDbTable("characterConfiguration")] //New name in the DB, because character is a syntax name
+        [StringDbColumns(["name", "user_userId", "race_raceId", "clothing_headgearId", "clothing_chestId", "clothing_glovesId", "clothing_legsId", "weapon_weaponId", "consumable_consumableId"])]
         CHARACTER,
         [StringDbTable("clothing")]
         [StringDbColumns(["name", "defense", "clothingType"])]
-        CLOTHING,
+        CLOTHING, 
         [StringDbTable("consumable")]
         [StringDbColumns(["name"])]
         CONSUMABLE,
         [StringDbTable("race")]
-        [StringDbColumns(["name", "health", "magicka", "stamina", "skill"])]
+        [StringDbColumns(["name", "health", "magicka", "stamina", "skill", "sex"])]
         RACE,
         [StringDbTable("user")]
         [StringDbColumns(["name", "password"])]

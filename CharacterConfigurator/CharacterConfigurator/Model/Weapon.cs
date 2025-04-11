@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CharacterConfigurator.Model.CharacterEnum;
 using CharacterConfigurator.Controller;
 using MySql.Data.MySqlClient;
+using System.Windows.Media.Imaging;
 
 namespace CharacterConfigurator.Model
 {
@@ -29,11 +30,16 @@ namespace CharacterConfigurator.Model
         }
         private string _Name { get; set; }
 
-        public static string BasePathImage { get; } = AppContext.BaseDirectory + ImagePath.RootPath + "Weapon\\";
+        public static string BasePathImage { get; } = ImagePath.FullRootPath + "Weapon\\";
 
-        public string GetFullPathImage()
+        public string GetFullPathImageStr()
         {
-            return BasePathImage;
+            return BasePathImage + Name + ".png";
+        }
+
+        public BitmapImage GetFullPathImage()
+        {
+            return new BitmapImage(new Uri(GetFullPathImageStr(), UriKind.Absolute));
         }
 
         public string GetAttributs()
@@ -49,7 +55,7 @@ namespace CharacterConfigurator.Model
         public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
-            Name = sqlResult.GetString(1);
+            _Name = sqlResult.GetString(1);
             DamagePerHit = sqlResult.GetInt32(2);
             AttackSpeed = (AttackSpeed)sqlResult.GetInt32(3);
         }
@@ -61,14 +67,6 @@ namespace CharacterConfigurator.Model
         public Weapon()
         {
 
-        }
-
-        public Weapon(int id, string name, int damagePerHit, AttackSpeed attackSpeed) 
-        { 
-            Id = id;
-            Name = name;
-            DamagePerHit = damagePerHit;
-            AttackSpeed = attackSpeed;
         }
     }
 }

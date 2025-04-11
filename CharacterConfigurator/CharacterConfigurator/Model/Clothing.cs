@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using CharacterConfigurator.Model.CharacterEnum;
 using MySql.Data.MySqlClient;
+using System.Windows.Media;
+using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace CharacterConfigurator.Model
 {
@@ -29,11 +32,17 @@ namespace CharacterConfigurator.Model
         }
         private string _Name { get; set; }
 
-        public static string BasePathImage { get; } = AppContext.BaseDirectory + ImagePath.RootPath + "Clothing\\";
+        public static string BasePathImage { get; } = ImagePath.FullRootPath + "Clothing\\";
 
-        public string GetFullPathImage()
+        public string GetFullPathImageStr()
         {
-            return BasePathImage + ClothingType.GetStringPathImage();
+            
+            return BasePathImage + ClothingType.GetStringPathImage() + "\\" + Name + ".png";
+        }
+
+        public BitmapImage GetFullPathImage()
+        {
+            return new BitmapImage(new Uri(GetFullPathImageStr(), UriKind.Absolute));
         }
 
         public string GetAttributs()
@@ -49,7 +58,7 @@ namespace CharacterConfigurator.Model
         public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
-            Name = sqlResult.GetString(1);
+            _Name = sqlResult.GetString(1);
             Defense = sqlResult.GetInt32(2);
             ClothingType = (ClothingType)sqlResult.GetInt32(3);
         }

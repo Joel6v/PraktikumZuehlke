@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Drawing;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -124,7 +125,6 @@ public partial class MainWindow : Window
 
     private void cmbConsumable_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        
-        //imgConsumable.Source = MainController.ConsumableController.Get(cmbConsumable.SelectedIndex).GetFullPathImage();
+        imgConsumable.Source = MainController.ConsumableController.Get(cmbConsumable.SelectedIndex).GetFullPathImage();
     }
 }

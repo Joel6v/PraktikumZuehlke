@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CharacterConfigurator.Model.CharacterEnum;
 using MySql.Data.MySqlClient;
+using System.Windows.Media.Imaging;
 
 namespace CharacterConfigurator.Model
 {
@@ -28,31 +29,37 @@ namespace CharacterConfigurator.Model
         }
         private string _Name { get; set; }
 
-        public static string BasePathImage { get; } = AppContext.BaseDirectory + ImagePath.RootPath + "Race\\";
+        public static string BasePathImage { get; } = ImagePath.FullRootPath + "Race\\";
 
-        public string GetFullPathImage()
+        public string GetFullPathImageStr()
         {
-            return BasePathImage;
+            return BasePathImage + Sex.GetStringPathImage() + "\\" + Name + ".png";
+        }
+
+        public BitmapImage GetFullPathImage()
+        {
+            return new BitmapImage(new Uri(GetFullPathImageStr(), UriKind.Absolute));
         }
 
         public string GetAttributs()
         {
-            return $"'{Name}', {Health}, {Magicka}, {Stamina}, {(int)Skill}";
+            return $"'{Name}', {Health}, {Magicka}, {Stamina}, {(int)Skill}, {(int)Sex}";
         }
 
         public List<string> GetListAttributes()
         {
-            return new List<string>() { $"'{Name}'", $"{Health}", $"{Magicka}", $"{Stamina}", $"{(int)Skill}"};
+            return new List<string>() { $"'{Name}'", $"{Health}", $"{Magicka}", $"{Stamina}", $"{(int)Skill}", $"{Sex}"};
         }
 
         public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
-            Name = sqlResult.GetString(1);
+            _Name = sqlResult.GetString(1);
             Health = sqlResult.GetInt32(2);
             Magicka = sqlResult.GetInt32(3);
             Stamina = sqlResult.GetInt32(4);
             Skill = (Skill)sqlResult.GetInt32(5);
+            Sex = (Sex)sqlResult.GetInt32(6);
         }
 
         public int Health { get; private set; }
@@ -63,19 +70,11 @@ namespace CharacterConfigurator.Model
 
         public Skill Skill { get; private set; }
 
+        public Sex Sex { get; private set; }
+
         public Race()
         {
 
-        }
-
-        public Race(int id, string name, int health, int magicka, int stamina, Skill skill)
-        {
-            Id = id;
-            Name = name;
-            Health = health;
-            Magicka = magicka;
-            Stamina = stamina;
-            Skill = skill;
         }
     }
 }
