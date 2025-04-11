@@ -11,6 +11,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CharacterConfigurator.Controller;
 using CharacterConfigurator.Model;
+using CharacterConfigurator.Model.CharacterEnum;
 using CharacterConfigurator.View;
 
 namespace CharacterConfigurator;
@@ -26,6 +27,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         LoadUiStatic();
+        CheckAmountCharacter();
         LoadUiCharacter();
 
         //LoginWindow loginWindow = new LoginWindow();
@@ -40,13 +42,21 @@ public partial class MainWindow : Window
     {
         for (int i = 0; i < MainController.Consumable.Count(); i++)
         {
-            cmbConsumable.Items.Add(MainController.Consumable.Get(i));
+            cmbConsumable.Items.Add(MainController.Consumable.Get(i).Name);
+        }
+        for (int i = 0; i < MainController.Weapon.Count(); i++)
+        {
+            cmbWeapon.Items.Add(MainController.Weapon.Get(i).Name);
+        }
+        for (int i = 0; i < MainController.Clothing.GetAllFromType(ClothingType.HEADGEAR).Count; i++)
+        {
+            
         }
     }
 
-    private void LoadUiCharacter()
+    private void CheckAmountCharacter()
     {
-        if(MainController.Character.Count() > 0)
+        if (MainController.Character.Count() > 0)
         {
             btnPageRight.Focus();
             CurrentCharaterIndex = 0;
@@ -54,6 +64,14 @@ public partial class MainWindow : Window
         else
         {
             btnNew.Focus();
+        }
+    }
+
+    private void LoadUiCharacter()
+    {
+        if (CurrentCharaterIndex != -1)
+        {
+
         }
     }
 
@@ -109,7 +127,9 @@ public partial class MainWindow : Window
 
     private void btnDelete_Click(object sender, RoutedEventArgs e)
     {
-
+        MainController.Character.Delete(CurrentCharaterIndex);
+        CheckAmountCharacter();
+        LoadUiCharacter();
     }
 
     private void btnCancel_Click(object sender, RoutedEventArgs e)

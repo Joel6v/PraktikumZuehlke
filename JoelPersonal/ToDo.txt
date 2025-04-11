@@ -1,0 +1,9 @@
+ToDo
+Add the static variable BasePathImage and a value --
+implement the variable FullPathImage --
+set attributes by the enums --
+set Id & DbModel to private --
+change sex --
+load in controller --
+add user login validation backend --
+add abstract class for checking if the image exists
