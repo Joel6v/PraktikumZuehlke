@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CharacterConfigurator"
         mc:Ignorable="d"
-        ResizeMode="NoResize"
+        ResizeMode="CanMinimize"
+        WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen"
         Title="Skirym Character Configuration" Height="825" Width="1255" Style="{StaticResource SkirymFont}" FontSize="18">
 
@@ -38,7 +39,8 @@
                     <ColumnDefinition Width="162.5"/>
                     <ColumnDefinition Width="162.5"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="username" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="28"/>
+                <Label Grid.Row="0" Grid.Column="0" Content="username" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       FontSize="28"/>
                 <Button Grid.Row="0" Grid.Column="1" Content="log out" Margin="12.5,12.5,12.5,12.5" Style="{StaticResource StandardButton}"
                         Name="btnLogOut" Click="btnLogOut_Click"/>
             </Grid>
@@ -125,7 +127,8 @@
 
                             </TextBlock>
                         </Border>
-                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,12.5,25,205" Name="cmbConsumable" IsEnabled="False">
+                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,12.5,25,205" Name="cmbConsumable" SelectionChanged="cmbConsumable_SelectionChanged"  IsEnabled="False">
+
                         </ComboBox>
                         <TextBlock Text="Consumable" IsHitTestVisible="False" Grid.Row="1" Margin="37.5,15,175,207.5"/>
 

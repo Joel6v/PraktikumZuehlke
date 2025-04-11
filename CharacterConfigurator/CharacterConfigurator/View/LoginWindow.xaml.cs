@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CharacterConfigurator.View
 {
@@ -19,14 +21,32 @@ namespace CharacterConfigurator.View
     /// </summary>
     public partial class LoginWindow : Window
     {
+       
         public LoginWindow()
         {
             InitializeComponent();
+
+            
+        }
+
+        private void RandomTimer_Tick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void StopTimer_Tick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtLoginPassword_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-
+            //string password = txtLoginPassword.GetActualText();
         }
 
         private void txtblLoginRegister_PreviewMouseDown(object sender, MouseButtonEventArgs e)

@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CharacterConfigurator.View"
         mc:Ignorable="d"
-        ResizeMode="NoResize"
+        ResizeMode="CanMinimize"
+        WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen"
-        Title="Skirym Register" Height="200" Width="400" Style="{StaticResource SkirymFont}" FontSize="18px">
+        Title="Skirym Register" Height="200" Width="400" Style="{StaticResource SkirymFont}" FontSize="18">
 
     <Grid Margin="20,0,20,0">
         <Grid.ColumnDefinitions>
