@@ -1,11 +1,6 @@
 ﻿using CharacterConfigurator.Controller;
-using CharacterConfigurator.Model.CharacterEnum;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace CharacterConfigurator.Model
 {
@@ -28,11 +23,16 @@ namespace CharacterConfigurator.Model
         }
         private string _Name { get; set; }
 
-        public static string BasePathImage { get; } = AppContext.BaseDirectory + ImagePath.RootPath + "Consumable\\";
+        public static string BasePathImage { get; } = ImagePath.FullRootPath + "Consumable\\";
 
-        public string GetFullPathImage()
+        public string GetFullPathImageStr()
         {
-            return BasePathImage;
+            return BasePathImage + Name + ImagePath.FileExtension;
+        }
+
+        public BitmapImage GetFullPathImage()
+        {
+            return new BitmapImage(new Uri(GetFullPathImageStr(), UriKind.Absolute));
         }
 
         public string GetAttributs()
@@ -48,7 +48,7 @@ namespace CharacterConfigurator.Model
         public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
-            Name = sqlResult.GetString(1);
+            _Name = sqlResult.GetString(1);
         }
 
         public Consumable()

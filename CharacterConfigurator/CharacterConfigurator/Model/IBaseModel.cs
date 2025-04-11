@@ -1,11 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using CharacterConfigurator.Model.DbEnum;
+﻿using CharacterConfigurator.Model.DbEnum;
+using MySql.Data.MySqlClient;
 
 namespace CharacterConfigurator.Model
 {

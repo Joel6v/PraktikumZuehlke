@@ -1,17 +1,9 @@
 ﻿using CharacterConfigurator.Model;
-using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Asn1.X509;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CharacterConfigurator.Repository;
-using CharacterConfigurator.Model.DbEnum;
 
 namespace CharacterConfigurator.Controller
 {
-    public class Controller<TBaseModel> where TBaseModel : IBaseModel<TBaseModel>
+    public class Controller<TBaseModel> where TBaseModel : IBaseModel<TBaseModel>, new()
     {
         private List<TBaseModel> BaseModelsList { get; set; }
 
@@ -19,13 +11,28 @@ namespace CharacterConfigurator.Controller
 
         public Controller() 
         {
-            Repository = new Repository<TBaseModel> ();
+            Repository = new Repository<TBaseModel>();
             Load();
         }
 
         public TBaseModel Get(int index)
         {
             return BaseModelsList[index];
+        }
+
+        public List<TBaseModel> GetAll()
+        {
+            return BaseModelsList;
+        }
+
+        public List<string> GetAllNames()
+        {
+            List<string> names = new List<string> ();
+            for(int i = 0; i < BaseModelsList.Count; i++)
+            {
+                names.Add (BaseModelsList[i].Name);
+            }
+            return names;
         }
 
         public void Add(TBaseModel baseModel)
@@ -70,11 +77,7 @@ namespace CharacterConfigurator.Controller
 
         private void Load()
         {
-            MySqlDataReader result = Repository.Load();
-            while (result.Read())
-            {
-
-            }
+            BaseModelsList = Repository.Load();
         }
     }
 }

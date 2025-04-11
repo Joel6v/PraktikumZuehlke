@@ -1,10 +1,4 @@
-﻿using CharacterConfigurator.Model.DbEnum;
-using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Media.Imaging;
 
 namespace CharacterConfigurator.Model
 {
@@ -12,11 +6,17 @@ namespace CharacterConfigurator.Model
     {
         abstract static string BasePathImage { get;  }
 
-        string GetFullPathImage();
+        string GetFullPathImageStr();
+
+        BitmapImage GetFullPathImage();
     }
 
     public class ImagePath
     {
-        public const string RootPath = @"\Resources\Image\";
+        private const string RootPath = @"\Resources\Image\";
+
+        public readonly static string FullRootPath = AppContext.BaseDirectory + RootPath;
+
+        public const string FileExtension = ".png";
     }
 }
