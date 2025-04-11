@@ -11,7 +11,7 @@ namespace CharacterConfigurator.Model
 {
     public class Race : IBaseModel<Race>, IItem
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         public static DbEnum.ModelTypeDb DbModel { get; private set; } = DbEnum.ModelTypeDb.RACE;
 

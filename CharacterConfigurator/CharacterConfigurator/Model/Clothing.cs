@@ -12,7 +12,7 @@ namespace CharacterConfigurator.Model
 {
     public class Clothing : IBaseModel<Clothing>, IItem
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         public static ModelTypeDb DbModel { get; private set; } = ModelTypeDb.CLOTHING;
 

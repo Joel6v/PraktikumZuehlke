@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    public class Consumable : IBaseModel<Clothing>, IItem
+    public class Consumable : IBaseModel<Consumable>, IItem
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         public static DbEnum.ModelTypeDb DbModel { get; private set; } = DbEnum.ModelTypeDb.CONSUMABLE;
 
@@ -54,12 +54,6 @@ namespace CharacterConfigurator.Model
         public Consumable()
         {
 
-        }
-
-        public Consumable(int id, string name)
-        {
-            Id = id;
-            Name = name;
         }
     }
 }

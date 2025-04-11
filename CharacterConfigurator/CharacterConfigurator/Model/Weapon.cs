@@ -12,9 +12,9 @@ namespace CharacterConfigurator.Model
 {
     public class Weapon : IBaseModel<Weapon>, IItem
     {
+        public int Id { get; set; }
 
-        public int Id { get; private set; }
-        public DbEnum.ModelTypeDb DbModel { get; private set; } = DbEnum.ModelTypeDb.WEAPON;
+        public static DbEnum.ModelTypeDb DbModel { get; private set; } = DbEnum.ModelTypeDb.WEAPON;
 
         public string Name
         {
@@ -63,11 +63,10 @@ namespace CharacterConfigurator.Model
 
         }
 
-        public Weapon(int id, string name, string pathImage, int damagePerHit, AttackSpeed attackSpeed) 
+        public Weapon(int id, string name, int damagePerHit, AttackSpeed attackSpeed) 
         { 
             Id = id;
             Name = name;
-            PathImage = pathImage;
             DamagePerHit = damagePerHit;
             AttackSpeed = attackSpeed;
         }
