@@ -11,13 +11,14 @@ using CharacterConfigurator.Controller;
 
 namespace CharacterConfigurator.Model
 {
-    public class User : IBaseModel
+    public class User : IBaseModel<User>
     {
-        public override DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.USER;
+        public int Id { get; set; }
+        public static DbEnum.ModelTypeDb DbModel { get; } = DbEnum.ModelTypeDb.USER;
 
         public const int MinUsernameLength = 3;
         public const int MaxUsernameLength = 30;
-        public override string Name { get { return _Name; } set 
+        public string Name { get { return _Name; } set 
             {
                 if (MainController.UserController.CheckIfNameExists(value))
                 {
@@ -51,17 +52,17 @@ namespace CharacterConfigurator.Model
         }
         private string _Name { get; set; }
 
-        public override string GetAttributs()
+        public string GetAttributs()
         {
             return $"'{Name}', {Convert.ToInt64(Password)}";
         }
 
-        public override List<string> GetListAttributes()
+        public List<string> GetListAttributes()
         {
             return new List<string>() { $"'{Name}'", $"{Convert.ToInt64(Password)}"};
         }
 
-        public override void SetAttributes(MySqlDataReader sqlResult)
+        public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
             Name = sqlResult.GetString(1);
@@ -75,17 +76,17 @@ namespace CharacterConfigurator.Model
 
         }
 
-        public User(int id, string username, byte[] password) 
+        public User(int id, string username, string password) 
         {
             Id = id;
             Name = username;
-            Password = password;
+            SetPasswordStr(password);
         }
 
         public void SetPasswordStr(string password)
         {
             byte[] bytesToBytes = Encoding.Unicode.GetBytes(password);
-            using (SHA256 s = SHA256.Create()) 
+            using (SHA256 s = SHA256.Create()) //8 bytes 
             {
                 Password = s.ComputeHash(bytesToBytes);
             }

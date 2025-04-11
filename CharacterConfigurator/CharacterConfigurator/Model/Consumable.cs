@@ -1,4 +1,5 @@
 ﻿using CharacterConfigurator.Controller;
+using CharacterConfigurator.Model.CharacterEnum;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -8,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model
 {
-    public class Consumable : Item
+    public class Consumable : IBaseModel<Clothing>, IItem
     {
         public int Id { get; private set; }
 
-        public static DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.CONSUMABLE;
+        public static DbEnum.ModelTypeDb DbModel { get; private set; } = DbEnum.ModelTypeDb.CONSUMABLE;
 
         public string Name
         {
@@ -26,6 +27,13 @@ namespace CharacterConfigurator.Model
             }
         }
         private string _Name { get; set; }
+
+        public static string BasePathImage { get; } = AppContext.BaseDirectory + ImagePath.RootPath + "Consumable\\";
+
+        public string GetFullPathImage()
+        {
+            return BasePathImage;
+        }
 
         public string GetAttributs()
         {
@@ -52,7 +60,7 @@ namespace CharacterConfigurator.Model
         {
             Id = id;
             Name = name;
-            PathImage = pathImage;
+            BasePathImage = pathImage;
         }
     }
 }

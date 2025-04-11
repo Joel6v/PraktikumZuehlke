@@ -9,9 +9,9 @@ using MySql.Data.MySqlClient;
 
 namespace CharacterConfigurator.Model
 {
-    public class Race : Item
+    public class Race : IBaseModel<Clothing>, IItem
     {
-        public override DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.RACE;
+        public static DbEnum.ModelTypeDb DbModel { get; } = DbEnum.ModelTypeDb.RACE;
 
         public override string Name
         {

@@ -11,16 +11,16 @@ namespace CharacterConfigurator.Model
 {
     public interface IBaseModel<T> where T : IBaseModel<T>
     {
-        public int Id { get; protected set; }
+        int Id { get; }
 
-        public static ModelTypeDb DbModel { get; }
+        static abstract ModelTypeDb DbModel { get; }
 
-        public string Name { get; set; }
+        string Name { get; set; }
 
-        public string GetAttributs();
+        string GetAttributs();
 
-        public List<string> GetListAttributes();
+        List<string> GetListAttributes();
 
-        public void SetAttributes(MySqlDataReader sqlResult);
+        void SetAttributes(MySqlDataReader sqlResult);
     }
 }

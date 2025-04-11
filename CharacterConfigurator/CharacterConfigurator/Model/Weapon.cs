@@ -10,7 +10,7 @@ using MySql.Data.MySqlClient;
 
 namespace CharacterConfigurator.Model
 {
-    public class Weapon : Item
+    public class Weapon : IItem
     {
         public override DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.WEAPON;
 

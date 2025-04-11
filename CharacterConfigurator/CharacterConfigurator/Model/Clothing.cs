@@ -10,7 +10,7 @@ using MySql.Data.MySqlClient;
 
 namespace CharacterConfigurator.Model
 {
-    public class Clothing : Item
+    public class Clothing : IBaseModel<Clothing>, IItem
     {
         public int Id { get; private set; }
 
@@ -29,7 +29,12 @@ namespace CharacterConfigurator.Model
         }
         private string _Name { get; set; }
 
-        public override string PathImage { get; protected set; }
+        public static string BasePathImage { get; } = AppContext.BaseDirectory + ImagePath.RootPath + "Clothing\\";
+
+        public string GetFullPathImage()
+        {
+            return BasePathImage + ClothingType.GetStringPathImage();
+        }
 
         public string GetAttributs()
         {
@@ -56,15 +61,6 @@ namespace CharacterConfigurator.Model
         public Clothing()
         {
 
-        }
-
-        public Clothing(int id, string name, string pathImage, ClothingType clothingType, int defense) 
-        {
-            Id = id;
-            Name = name;
-            PathImage = pathImage;
-            ClothingType = clothingType;
-            Defense = defense;
         }
     }
 }

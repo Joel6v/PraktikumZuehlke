@@ -7,20 +7,19 @@ using System.Threading.Tasks;
 
 namespace CharacterConfigurator.Model.CharacterEnum
 {
-    public class StringValue : Attribute
+    public class StringPathImage : Attribute
     {
-        public string FullName { get; set; }
+        public string PathImage { get; set; }
 
-        public StringValue(string fullName) 
+        public StringPathImage(string pathImage) 
         {
-            FullName = fullName;
+            PathImage = pathImage;
         }
     }
 
-
-    public static class EnumExtensionsCharacter
+    public static class EnumExtensionsPathImage
     {
-        public static string GetStringValue(this Enum value)
+        public static string GetStringPathImage(this Enum value)
         {
             Type type = value.GetType();
 
@@ -39,5 +38,4 @@ namespace CharacterConfigurator.Model.CharacterEnum
             return value.ToString();
         }
     }
-
 }

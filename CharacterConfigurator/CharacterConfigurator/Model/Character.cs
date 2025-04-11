@@ -56,7 +56,7 @@ namespace CharacterConfigurator.Model
 
         public User User { get; private set; }
 
-        public Race Race { get; set; }
+        public Race Race { get; private set; }
 
         public Clothing ClothingHeadgear 
         {
