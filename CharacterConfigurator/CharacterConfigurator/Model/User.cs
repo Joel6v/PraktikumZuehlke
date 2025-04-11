@@ -13,8 +13,8 @@ namespace CharacterConfigurator.Model
 {
     public class User : IBaseModel<User>
     {
-        public int Id { get; set; }
-        public static DbEnum.ModelTypeDb DbModel { get; } = DbEnum.ModelTypeDb.USER;
+        public int Id { get; private set; }
+        public static DbEnum.ModelTypeDb DbModel { get; private set; } = DbEnum.ModelTypeDb.USER;
 
         public const int MinUsernameLength = 3;
         public const int MaxUsernameLength = 30;

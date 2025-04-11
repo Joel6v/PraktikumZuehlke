@@ -56,11 +56,10 @@ namespace CharacterConfigurator.Model
 
         }
 
-        public Consumable(int id, string name, string pathImage)
+        public Consumable(int id, string name)
         {
             Id = id;
             Name = name;
-            BasePathImage = pathImage;
         }
     }
 }
