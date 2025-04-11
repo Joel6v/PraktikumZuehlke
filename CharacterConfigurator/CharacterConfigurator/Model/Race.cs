@@ -9,11 +9,13 @@ using MySql.Data.MySqlClient;
 
 namespace CharacterConfigurator.Model
 {
-    public class Race : IBaseModel<Clothing>, IItem
+    public class Race : IBaseModel<Race>, IItem
     {
-        public static DbEnum.ModelTypeDb DbModel { get; } = DbEnum.ModelTypeDb.RACE;
+        public int Id { get; private set; }
 
-        public override string Name
+        public static DbEnum.ModelTypeDb DbModel { get; private set; } = DbEnum.ModelTypeDb.RACE;
+
+        public string Name
         {
             get { return _Name; }
             set
@@ -26,17 +28,24 @@ namespace CharacterConfigurator.Model
         }
         private string _Name { get; set; }
 
-        public override string GetAttributs()
+        public static string BasePathImage { get; } = AppContext.BaseDirectory + ImagePath.RootPath + "Race\\";
+
+        public string GetFullPathImage()
+        {
+            return BasePathImage;
+        }
+
+        public string GetAttributs()
         {
             return $"'{Name}', {Health}, {Magicka}, {Stamina}, {(int)Skill}";
         }
 
-        public override List<string> GetListAttributes()
+        public List<string> GetListAttributes()
         {
             return new List<string>() { $"'{Name}'", $"{Health}", $"{Magicka}", $"{Stamina}", $"{(int)Skill}"};
         }
 
-        public override void SetAttributes(MySqlDataReader sqlResult)
+        public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
             Name = sqlResult.GetString(1);

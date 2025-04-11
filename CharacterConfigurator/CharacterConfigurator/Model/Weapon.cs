@@ -10,11 +10,13 @@ using MySql.Data.MySqlClient;
 
 namespace CharacterConfigurator.Model
 {
-    public class Weapon : IItem
+    public class Weapon : IBaseModel<Weapon>, IItem
     {
-        public override DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.WEAPON;
 
-        public override string Name
+        public int Id { get; private set; }
+        public DbEnum.ModelTypeDb DbModel { get; private set; } = DbEnum.ModelTypeDb.WEAPON;
+
+        public string Name
         {
             get { return _Name; }
             set
@@ -27,17 +29,24 @@ namespace CharacterConfigurator.Model
         }
         private string _Name { get; set; }
 
-        public override string GetAttributs()
+        public static string BasePathImage { get; } = AppContext.BaseDirectory + ImagePath.RootPath + "Weapon\\";
+
+        public string GetFullPathImage()
+        {
+            return BasePathImage;
+        }
+
+        public string GetAttributs()
         {
             return $"'{Name}', {DamagePerHit}, {(int)AttackSpeed}";
         }
 
-        public override List<string> GetListAttributes()
+        public List<string> GetListAttributes()
         {
             return new List<string>() { $"'{Name}'", $"{DamagePerHit}", $"{(int)AttackSpeed}"};
         }
 
-        public override void SetAttributes(MySqlDataReader sqlResult)
+        public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
             Name = sqlResult.GetString(1);
