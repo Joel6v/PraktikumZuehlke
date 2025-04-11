@@ -19,9 +19,12 @@ namespace CharacterConfigurator;
 /// </summary>
 public partial class MainWindow : Window
 {
+    
     public MainWindow()
     {
         InitializeComponent();
+
+
 
         //LoginWindow loginWindow = new LoginWindow();
         //loginWindow.Show();
@@ -117,5 +120,11 @@ public partial class MainWindow : Window
 
         btnCancel.Visibility = Visibility.Hidden;
         btnSave.Visibility = Visibility.Hidden;
+    }
+
+    private void cmbConsumable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        
+        //imgConsumable.Source = MainController.ConsumableController.Get(cmbConsumable.SelectedIndex).GetFullPathImage();
     }
 }

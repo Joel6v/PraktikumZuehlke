@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Image\robin.png" />
     <None Remove="View\Font\Balgruf-JRye7.ttf" />
   </ItemGroup>
 
@@ -28,13 +29,15 @@
     <Folder Include="Resources\Image\Clothing\Chest\" />
     <Folder Include="Resources\Image\Clothing\Gloves\" />
     <Folder Include="Resources\Image\Clothing\Legs\" />
-    <Folder Include="Resources\Image\Consumable\" />
     <Folder Include="Resources\Image\Race\Male\" />
     <Folder Include="Resources\Image\Race\Female\" />
     <Folder Include="Resources\Image\Weapon\" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Image\Consumable\robin.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="View\Font\Balgruf-JRye7.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
