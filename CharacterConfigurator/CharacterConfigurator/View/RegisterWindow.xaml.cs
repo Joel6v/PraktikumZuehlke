@@ -35,5 +35,10 @@ namespace CharacterConfigurator.View
             objLoginWindow.Show();
             this.Close();
         }
+
+        private void txtRegisterPassword_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

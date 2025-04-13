@@ -46,7 +46,8 @@ namespace CharacterConfigurator.View
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            //string password = txtLoginPassword.GetActualText();
+            string password = txtLoginPassword.GetActualText();
+            MessageBox.Show(password);
         }
 
         private void txtblLoginRegister_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -54,6 +55,16 @@ namespace CharacterConfigurator.View
             RegisterWindow objRegisterWindow = new RegisterWindow();
             objRegisterWindow.Show();
             this.Close();
+        }
+
+        private void chkToggle_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void chkToggle_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

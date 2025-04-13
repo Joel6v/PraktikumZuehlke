@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CharacterConfigurator.View"
+        xmlns:controls="clr-namespace:CharacterConfigurator.View.Controls"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
         WindowStyle="SingleBorderWindow"
@@ -22,11 +23,19 @@
         </Grid.RowDefinitions>
 
         <Label Content="Username" Grid.Column="0" Grid.Row="0" Margin="0,25,0,-5"/>
+        
         <Label Content="Password" Grid.Column="0" Grid.Row="1" Margin="0,15,0,-5"/>
-        <TextBox Name="txtRegisterUsername" Grid.Column="1" Grid.Row="0" Margin="0,25,30,-5"/>
-        <TextBox Name="txtRegisterPassword" Grid.Column="1" Grid.Row="1" Margin="0,15,30,5"/>
+
+        <TextBox Name="txtRegisterUsername" Grid.Column="1" Grid.Row="0" Margin="0,25,30,-5" Padding="5,6,5,6"/>
+        
+        <controls:RandomizedTextBox x:Name="txtRegisterPassword" Grid.Column="1" Grid.Row="1" Margin="0,15,30,5"
+                 VerticalContentAlignment="Center" TextChanged="txtRegisterPassword_TextChanged" Panel.ZIndex="1"
+                 Background="Transparent" Foreground="Black" Style="{StaticResource EnchantingTableFont}" Padding="5,0,5,0"/>
+        
         <Button Content="Register" Name="btnRegister" Click="btnRegister_Click" Grid.Column="1" Grid.Row="2" Margin="145,7.5,30,7.5"/>
+        
         <!--<Label Content="Login" Grid.Column="1" Grid.Row="2" Margin="95,-2.5,115,15"/>-->
+        
         <TextBlock Name="txtblRegisterLogin" Text="Login" Grid.Column="1" Grid.Row="2" Margin="90,11.5,115,7.5" PreviewMouseDown="txtblRegisterLogin_PreviewMouseDown"
                    Style="{StaticResource HoverOverText}"/>
     </Grid>
