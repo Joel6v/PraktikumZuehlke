@@ -16,7 +16,7 @@ namespace CharacterConfigurator.Model
             get { return _Name; }
             set
             {
-                if (!MainController.WeaponController.CheckIfNameExists(value))
+                if (!MainController.Weapon.CheckIfNameExists(value))
                 {
                     _Name = value;
                 }

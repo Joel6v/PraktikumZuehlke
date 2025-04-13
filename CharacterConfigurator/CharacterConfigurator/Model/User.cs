@@ -15,7 +15,7 @@ namespace CharacterConfigurator.Model
         public const int MaxUsernameLength = 30;
         public string Name { get { return _Name; } set 
             {
-                if (MainController.UserController.CheckIfNameExists(value))
+                if (MainController.User.CheckIfNameExists(value))
                 {
                     throw new ExceptionAlreadyExistingName();
                 }

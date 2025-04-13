@@ -10,7 +10,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CharacterConfigurator.Controller;
-using CharacterConfigurator.Repository;
+using CharacterConfigurator.Model;
+using CharacterConfigurator.Model.CharacterEnum;
 using CharacterConfigurator.View;
 
 namespace CharacterConfigurator;
@@ -20,12 +21,14 @@ namespace CharacterConfigurator;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private int CurrentCharaterIndex = -1;
     
     public MainWindow()
     {
         InitializeComponent();
-
-
+        LoadUiStatic();
+        CheckAmountCharacter();
+        LoadUiCharacter();
 
         //LoginWindow loginWindow = new LoginWindow();
         //loginWindow.Show();
@@ -35,9 +38,46 @@ public partial class MainWindow : Window
         //this.Close();
     }
 
+    private void LoadUiStatic() //For ComboBoxes and so
+    {
+        for (int i = 0; i < MainController.Consumable.Count(); i++)
+        {
+            cmbConsumable.Items.Add(MainController.Consumable.Get(i).Name);
+        }
+        for (int i = 0; i < MainController.Weapon.Count(); i++)
+        {
+            cmbWeapon.Items.Add(MainController.Weapon.Get(i).Name);
+        }
+        for (int i = 0; i < MainController.Clothing.GetAllFromType(ClothingType.HEADGEAR).Count; i++)
+        {
+            
+        }
+    }
+
+    private void CheckAmountCharacter()
+    {
+        if (MainController.Character.Count() > 0)
+        {
+            btnPageRight.Focus();
+            CurrentCharaterIndex = 0;
+        }
+        else
+        {
+            btnNew.Focus();
+        }
+    }
+
+    private void LoadUiCharacter()
+    {
+        if (CurrentCharaterIndex != -1)
+        {
+
+        }
+    }
+
     private void btnLogOut_Click(object sender, RoutedEventArgs e)
     {
-        //MainController.CurrentUser = null;
+        MainController.User.Logout();
         LoginWindow loginWindow = new LoginWindow();
         loginWindow.Show();
         this.Close();
@@ -87,7 +127,9 @@ public partial class MainWindow : Window
 
     private void btnDelete_Click(object sender, RoutedEventArgs e)
     {
-
+        MainController.Character.Delete(CurrentCharaterIndex);
+        CheckAmountCharacter();
+        LoadUiCharacter();
     }
 
     private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -125,6 +167,6 @@ public partial class MainWindow : Window
 
     private void cmbConsumable_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        imgConsumable.Source = MainController.ConsumableController.Get(cmbConsumable.SelectedIndex).GetFullPathImage();
+        imgConsumable.Source = MainController.Consumable.Get(cmbConsumable.SelectedIndex).GetFullPathImage();
     }
 }

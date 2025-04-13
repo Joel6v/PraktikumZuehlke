@@ -25,6 +25,11 @@ namespace CharacterConfigurator.Controller
             return BaseModelsList;
         }
 
+        public int Count()
+        {
+            return BaseModelsList.Count;
+        }
+
         public List<string> GetAllNames()
         {
             List<string> names = new List<string> ();
