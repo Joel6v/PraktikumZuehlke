@@ -167,6 +167,19 @@ public partial class MainWindow : Window
 
     private void cmbConsumable_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        if (cmbConsumable.SelectedIndex >= 0)
+        {
+            txtblConsumable.Visibility = Visibility.Hidden;
+        }
+
         imgConsumable.Source = MainController.Consumable.Get(cmbConsumable.SelectedIndex).GetFullPathImage();
+    }
+
+    private void cmbWeapon_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (cmbWeapon.SelectedIndex >= 0)
+        {
+            txtblWeapon.Visibility = Visibility.Hidden;
+        }
     }
 }

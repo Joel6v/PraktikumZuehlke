@@ -40,7 +40,7 @@
                     <ColumnDefinition Width="162.5"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Content="username" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                       FontSize="28"/>
+                       FontSize="28" Name="lblUsername"/>
                 <Button Grid.Row="0" Grid.Column="1" Content="log out" Margin="12.5,12.5,12.5,12.5" Style="{StaticResource StandardButton}"
                         Name="btnLogOut" Click="btnLogOut_Click"/>
             </Grid>
@@ -121,16 +121,15 @@
                             <TextBlock Grid.Row="7" Grid.Column="1" Text="None" Style="{StaticResource StatsTextBlockRight}" Name="txtblSkill"/>
                         </Grid>
 
-                        <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource GridBorderOutLine}" Margin="12.5,0,12.5,25">
+                        <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource GridBorderOutLine}" Margin="12.5,0,12.5,25"/>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="12.5,50,12.5,12.5">
+                        <!--<TextBlock Grid.Row="1" Grid.Column="0" Margin="12.5,50,12.5,12.5">-->
 
-                            </TextBlock>
-                        </Border>
-                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,12.5,25,205" Name="cmbConsumable" SelectionChanged="cmbConsumable_SelectionChanged"  IsEnabled="False">
-
+                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,12.5,25,205" Name="cmbConsumable" SelectionChanged="cmbConsumable_SelectionChanged"
+                                  IsEnabled="False">
                         </ComboBox>
-                        <TextBlock Text="Consumable" IsHitTestVisible="False" Grid.Row="1" Margin="37.5,15,175,207.5"/>
+                        
+                        <TextBlock Text="Consumable" IsHitTestVisible="False" Grid.Row="1" Margin="37.5,15,175,207.5" Name="txtblConsumable"/>
 
                         <Border Grid.Row="1" Grid.Column="0" Margin="25,50,25,37.5" BorderBrush="Black" BorderThickness="1">
                             <Image Grid.Row="1" Grid.Column="0" Margin="0" Width="275" Height="162.5" Name="imgConsumable"/>
@@ -153,23 +152,28 @@
 
                             </TextBlock>
                         </Border>
-                        <ComboBox Grid.Row="0" Grid.Column="0" Margin="25,37.5,25,280" Name="cmbWeapon" IsEnabled="False">
+                        
+                        <ComboBox Grid.Row="0" Grid.Column="0" Margin="25,37.5,25,280" Name="cmbWeapon" IsEnabled="False" SelectionChanged="cmbWeapon_SelectionChanged">
 
                         </ComboBox>
-                        <TextBlock Text="Weapon" IsHitTestVisible="False" Grid.Row="0" Margin="37.5,40,200,280"/>
+                        
+                        <TextBlock Text="Weapon" IsHitTestVisible="False" Grid.Row="0" Margin="37.5,40,200,280" Name="txtblWeapon"/>
 
+                        <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource GridBorderOutLine}" Margin="25,75,25,25"/>
 
-                        <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource GridBorderOutLine}" Margin="12.5,0,12.5,25">
-                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="12.5,50,12.5,12.5">
-
-                            </TextBlock>
-                        </Border>
+                        <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource GridBorderOutLine}" Margin="12.5,0,12.5,25"/>
 
                         <Border Grid.Row="1" Grid.Column="0" Margin="25,12.5,25,205" BorderBrush="DarkGray" BorderThickness="1" Background="WhiteSmoke">
                             <TextBlock Text="Clothing" Margin="12.5,1,175,0">
 
                             </TextBlock>
                         </Border>
+
+                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,50,175,125"/>
+                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="175,50,25,125"/>
+                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="175,137.5,25,37.5"/>
+                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,137.5,175,37.5"/>
+                        
 
                     </Grid>
                 </StackPanel>

@@ -26,8 +26,6 @@ namespace CharacterConfigurator.View
         public LoginWindow()
         {
             InitializeComponent();
-
-            
         }
 
         private void RandomTimer_Tick(object sender, EventArgs e)
