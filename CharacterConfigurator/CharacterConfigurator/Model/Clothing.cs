@@ -25,6 +25,8 @@ namespace CharacterConfigurator.Model
         }
         private string _Name { get; set; }
 
+        public BitmapImage Image { get; set; }
+
         public static string BasePathImage { get; } = ImagePath.FullRootPath + "Clothing\\";
 
         public string GetFullPathImageStr()
@@ -54,6 +56,7 @@ namespace CharacterConfigurator.Model
             _Name = sqlResult.GetString(1);
             Defense = sqlResult.GetInt32(2);
             ClothingType = (ClothingType)sqlResult.GetInt32(3);
+            Image = sqlResult.Get
         }
 
         public ClothingType ClothingType { get; private set; }

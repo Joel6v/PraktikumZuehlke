@@ -11,16 +11,19 @@ namespace CharacterConfigurator.Model
 
         public static DbEnum.ModelTypeDb DbModel { get; private set; } = DbEnum.ModelTypeDb.USER;
 
-        public const int MinUsernameLength = 3;
-        public const int MaxUsernameLength = 30;
-        public string Name { get { return _Name; } set 
+        public const int MinNameLength = 3;
+        public const int MaxNameLength = 30;
+        public string Name
+        {
+            get { return _Name; }
+            set
             {
                 if (MainController.User.CheckIfNameExists(value))
                 {
                     throw new ExceptionAlreadyExistingName();
                 }
                 bool usernameValid = true;
-                if (value.Length >= MinUsernameLength && value.Length < MaxUsernameLength)
+                if (value.Length >= MinNameLength && value.Length <= MaxNameLength)
                 {
                     foreach (char c in value)
                     {
@@ -41,7 +44,7 @@ namespace CharacterConfigurator.Model
                 }
                 else
                 {
-                    throw new Exception($"The Username is too short or too long. The minimum length is {MinUsernameLength} and the maximum length is {MaxUsernameLength}");
+                    throw new ExceptionNameLenght();
                 }
             }
         }
@@ -80,7 +83,14 @@ namespace CharacterConfigurator.Model
 
         public void SetPasswordStr(string password)
         {
-            Password = DataConverter.GenerateHex(password);
+            if (password.Length >= MinNameLength) 
+            {
+                Password = DataConverter.GenerateHex(password);
+            }
+            else
+            {
+                throw new Exception($"The Password is too short. The minimum length is {MinNameLength}.");
+            }
         }
     }
 }

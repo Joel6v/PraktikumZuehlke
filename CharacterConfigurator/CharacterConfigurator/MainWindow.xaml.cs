@@ -1,18 +1,9 @@
-﻿using System.Drawing;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using CharacterConfigurator.Controller;
+﻿using CharacterConfigurator.Controller;
 using CharacterConfigurator.Model;
 using CharacterConfigurator.Model.CharacterEnum;
 using CharacterConfigurator.View;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace CharacterConfigurator;
 
@@ -26,6 +17,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        MainController.Load();
         LoadUiStatic();
         CheckAmountCharacter();
         LoadUiCharacter();
@@ -49,9 +41,35 @@ public partial class MainWindow : Window
         {
             cmbWeapon.Items.Add(MainController.Weapon.Get(i).Name);
         }
-        for (int i = 0; i < MainController.Clothing.GetAllFromType(ClothingType.HEADGEAR).Count; i++)
+        //Start Clothing
+        List<Clothing> clothingHeadgear = MainController.Clothing.GetAllFromType(ClothingType.HEADGEAR);
+        for (int i = 0; i < clothingHeadgear.Count; i++)
         {
-            
+            cmbHeadgear.Items.Add(clothingHeadgear[i].Name);
+        }
+        List<Clothing> clothingChest = MainController.Clothing.GetAllFromType(ClothingType.CHEST);
+        for (int i = 0; i < clothingChest.Count; i++)
+        {
+            cmbChest.Items.Add(clothingChest[i].Name);
+        }
+        List<Clothing> clothingGloves = MainController.Clothing.GetAllFromType(ClothingType.GLOVES);
+        for (int i = 0; i < clothingGloves.Count; i++)
+        {
+            cmbGloves.Items.Add(clothingGloves[i].Name);
+        }
+        List<Clothing> clothingLegs = MainController.Clothing.GetAllFromType(ClothingType.LEGS);
+        for (int i = 0; i < clothingLegs.Count; i++)
+        {
+            cmbLegs.Items.Add(clothingLegs[i].Name);
+        }
+        //End Clothing
+        for(int i = 0; i < MainController.Race.Count(); i++)
+        {
+            cmbRace.Items.Add(MainController.Race.Get(i).Name);
+        }
+        for(int i = 0; i < Enum.GetNames(typeof(Sex)).Length; i++)
+        {
+            cmbSex.Items.Add(((Sex)i).GetStringValue());
         }
     }
 
@@ -89,6 +107,12 @@ public partial class MainWindow : Window
             //ComboBoxes
             cmbConsumable.SelectedIndex = MainController.Consumable.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Consumable);
             cmbWeapon.SelectedIndex = MainController.Weapon.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Weapon);
+            cmbRace.SelectedIndex = MainController.Race.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Race);
+            cmbSex.SelectedIndex = (int)MainController.Character.Get(CurrentCharaterIndex).Race.Sex;
+            cmbHeadgear.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingHeadgear);
+            cmbChest.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingChest);
+            cmbGloves.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingGloves);
+            cmbLegs.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingLegs);
 
             //StatsField
             prgHealth.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Health;
@@ -99,6 +123,56 @@ public partial class MainWindow : Window
             txtblAtkSpeed.Text = MainController.Character.Get(CurrentCharaterIndex).Weapon.AttackSpeed.GetStringValue();
             txtblSkill.Text = MainController.Character.Get(CurrentCharaterIndex).Race.Skill.GetStringValue();
         }
+        else
+        {
+            LoadUiDefaultCharacter();
+        }
+    }
+
+    private void LoadUiDefaultCharacter()
+    {
+        //ComboBoxes
+        cmbConsumable.SelectedIndex = 0;
+        cmbWeapon.SelectedIndex = 0;
+        cmbRace.SelectedIndex = 0;
+        cmbSex.SelectedIndex = 0;
+        cmbHeadgear.SelectedIndex = 0;
+        cmbChest.SelectedIndex = 0;
+        cmbGloves.SelectedIndex = 0;
+        cmbLegs.SelectedIndex = 0;
+
+        //StatsField
+        prgHealth.Value = 100;
+        prgMagicka.Value = 100;
+        prgStamina.Value = 100;
+        txtblDefense.Text = "0";
+        txtblDamage.Text = "0";
+        txtblAtkSpeed.Text = AttackSpeed.MEDIUM.GetStringValue();
+        txtblSkill.Text = Skill.NONE.GetStringValue();
+    }
+
+    private Character ReadCharacter()
+    {
+        Character character = new Character();
+        //ComboBoxes
+        character.Consumable = MainController.Consumable.Get(cmbConsumable.SelectedIndex);
+        character.Weapon = MainController.Weapon.Get(cmbWeapon.SelectedIndex);
+        character.Race = MainController.Race.Get(cmbRace.SelectedIndex);
+
+        cmbSex.SelectedIndex = (int)MainController.Character.Get(CurrentCharaterIndex).Race.Sex;
+        cmbHeadgear.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingHeadgear);
+        cmbChest.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingChest);
+        cmbGloves.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingGloves);
+        cmbLegs.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingLegs);
+
+        //StatsField
+        prgHealth.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Health;
+        prgMagicka.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Magicka;
+        prgStamina.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Stamina;
+        txtblDefense.Text = MainController.Character.Get(CurrentCharaterIndex).GetWholeAmountDefense().ToString();
+        txtblDamage.Text = MainController.Character.Get(CurrentCharaterIndex).Weapon.DamagePerHit.ToString();
+        txtblAtkSpeed.Text = MainController.Character.Get(CurrentCharaterIndex).Weapon.AttackSpeed.GetStringValue();
+        txtblSkill.Text = MainController.Character.Get(CurrentCharaterIndex).Race.Skill.GetStringValue();
     }
 
     private void btnLogOut_Click(object sender, RoutedEventArgs e)
@@ -132,7 +206,9 @@ public partial class MainWindow : Window
 
     private void btnNew_Click(object sender, RoutedEventArgs e)
     {
+        CurrentCharaterIndex = MainController.Character.Count();
         SetEnabledElements();
+        LoadUiDefaultCharacter();
     }
 
     private void btnEdit_Click(object sender, RoutedEventArgs e)

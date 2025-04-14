@@ -15,6 +15,7 @@ namespace CharacterConfigurator.Controller
                 if (loginName == user.Name && loginPasswordHash == user.Password)
                 {
                     CurrentUser = user;
+                    MainController.Character.CurrentUserChanged();
                     return true;
                 }
             }
@@ -24,6 +25,7 @@ namespace CharacterConfigurator.Controller
         public static void Logout(this Controller<User> controller)
         {
             CurrentUser = null;
+            MainController.Character.CurrentUserChanged();
         }
 
         public static User GetCurrentUser(this Controller<User> controller)
@@ -45,6 +47,18 @@ namespace CharacterConfigurator.Controller
                 }
             }
             return clothings;
+        }
+
+        public static int GetIndex(this Controller<Clothing> controller, Clothing clothing, ClothingType clothingType)
+        {
+            for (int i = 0; i < GetAllFromType(controller, clothingType).Count; i++)
+            {
+                if (clothing.Id == GetAllFromType(controller, clothingType)[i].Id)
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
     }
 }

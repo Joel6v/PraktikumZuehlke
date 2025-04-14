@@ -78,7 +78,7 @@ namespace CharacterConfigurator.Repository
 
         public void Delete(TBaseModel baseModel)
         {
-            string sqlDelete = $"DELETE FROM {TBaseModel.DbModel.GetStringTable} WHERE id = {baseModel.Id};";
+            string sqlDelete = $"DELETE FROM {TBaseModel.DbModel.GetStringTable()} WHERE id = {baseModel.Id};";
             using (DbConnection dbConnection = new())
             {
                 MySqlCommand command = new MySqlCommand(sqlDelete, dbConnection.Connection);

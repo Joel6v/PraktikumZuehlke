@@ -6,16 +6,26 @@ namespace CharacterConfigurator.Controller
 {
     public static class MainController
     {
-        public static Controller<User> User { get; set; } = new Controller<User>();
+        public static void Load()
+        {
+            User = new Controller<User>();
+            Consumable = new Controller<Consumable>();
+            Weapon = new Controller<Weapon>();
+            Clothing = new Controller<Clothing>();
+            Race = new Controller<Race>();
+            Character = new ControllerCharacter();
+        }
 
-        public static Controller<Consumable> Consumable { get; set; } = new Controller<Consumable>();
+        public static Controller<User> User { get; set; }
 
-        public static Controller<Weapon> Weapon { get; set; } = new Controller<Weapon> ();
+        public static Controller<Consumable> Consumable { get; set; }
 
-        public static Controller<Clothing> Clothing { get; set; } = new Controller<Clothing> ();
+        public static Controller<Weapon> Weapon { get; set; }
 
-        public static Controller<Race> Race { get; set; } = new Controller<Race> ();
+        public static Controller<Clothing> Clothing { get; set; }
 
-        public static Controller<Character> Character { get; set; } = new Controller<Character> ();
+        public static Controller<Race> Race { get; set; }
+
+        public static ControllerCharacter Character { get; set; }
     }
 }
