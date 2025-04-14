@@ -125,10 +125,8 @@
 
                         <!--<TextBlock Grid.Row="1" Grid.Column="0" Margin="12.5,50,12.5,12.5">-->
 
-                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,12.5,25,205" Name="cmbConsumable" SelectionChanged="cmbConsumable_SelectionChanged"
-                                  IsEnabled="False">
-                        </ComboBox>
-                        
+                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,12.5,25,205" Name="cmbConsumable" SelectionChanged="cmbConsumable_SelectionChanged"/>
+
                         <TextBlock Text="Consumable" IsHitTestVisible="False" Grid.Row="1" Margin="37.5,15,175,207.5" Name="txtblConsumable"/>
 
                         <Border Grid.Row="1" Grid.Column="0" Margin="25,55,25,37.5" BorderBrush="Black" BorderThickness="1">
@@ -153,7 +151,7 @@
                             </TextBlock>
                         </Border>
                         
-                        <ComboBox Grid.Row="0" Grid.Column="0" Margin="25,37.5,25,280" Name="cmbWeapon" IsEnabled="False" SelectionChanged="cmbWeapon_SelectionChanged">
+                        <ComboBox Grid.Row="0" Grid.Column="0" Margin="25,37.5,25,280" Name="cmbWeapon" SelectionChanged="cmbWeapon_SelectionChanged">
 
                         </ComboBox>
                         
@@ -194,12 +192,12 @@
                         
                         <Border Style="{StaticResource GridBorderOutLine}" Margin="12.5,25,12.5,25"/>
 
-                        <TextBox Text="character name" Name="txtCharacterName" Margin="25,37.5,325,530" VerticalContentAlignment="Center" Padding="5,0,5,0" IsEnabled="False"/>
+                        <TextBox Text="character name" Name="txtCharacterName" Margin="25,37.5,325,530" VerticalContentAlignment="Center" Padding="5,0,5,0"/>
                         
-                        <ComboBox Name="cmbRace" Margin="375,37.5,25,530" SelectionChanged="cmbRace_SelectionChanged" IsEnabled="False"/>
+                        <ComboBox Name="cmbRace" Margin="375,37.5,25,530" SelectionChanged="cmbRace_SelectionChanged"/>
                         <TextBlock Text="Race" Name="txtblRace" Margin="387.5,40,100,535"/>
 
-                        <ComboBox Name="cmbSex" Margin="375,80,25,487.5" SelectionChanged="cmbSex_SelectionChanged" IsEnabled="False"/>
+                        <ComboBox Name="cmbSex" Margin="375,80,25,487.5" SelectionChanged="cmbSex_SelectionChanged"/>
                         <TextBlock Text="Sex" Name="txtblSex" Margin="387.5,82.5,100,492.5"/>
 
                     </Grid>
@@ -225,7 +223,7 @@
                     <ColumnDefinition Width="225"/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Style="{StaticResource StandardButton}" Content="&lt;" Margin="12.5,12.5,12.5,12.5"
-                        Name="btnPageLeft" IsEnabled="False" Click="btnPageLeft_Click"/>
+                        Name="btnPageLeft" Click="btnPageLeft_Click"/>
                 <Button Grid.Column="1" Style="{StaticResource StandardButton}" Margin="0,12.5,25,12.5" Content="&gt;"
                         Name="btnPageRight" Click="btnPageRight_Click"/>
             </Grid>
