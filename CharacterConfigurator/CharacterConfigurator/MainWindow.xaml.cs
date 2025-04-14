@@ -29,6 +29,7 @@ public partial class MainWindow : Window
         LoadUiStatic();
         CheckAmountCharacter();
         LoadUiCharacter();
+        SetDisabledElements();
 
         //LoginWindow loginWindow = new LoginWindow();
         //loginWindow.Show();
@@ -95,34 +96,12 @@ public partial class MainWindow : Window
 
     private void btnNew_Click(object sender, RoutedEventArgs e)
     {
-        cmbConsumable.IsEnabled = true;
-        cmbWeapon.IsEnabled = true;
-
-        btnPageLeft.Visibility = Visibility.Hidden;
-        btnPageRight.Visibility = Visibility.Hidden;
-
-        btnNew.Visibility = Visibility.Hidden;
-        btnEdit.Visibility = Visibility.Hidden;
-        btnDelete.Visibility = Visibility.Hidden;
-
-        btnCancel.Visibility = Visibility.Visible;
-        btnSave.Visibility = Visibility.Visible;
+        SetEnabledElements();
     }
 
     private void btnEdit_Click(object sender, RoutedEventArgs e)
     {
-        cmbConsumable.IsEnabled = true;
-        cmbWeapon.IsEnabled = true;
-
-        btnPageLeft.Visibility = Visibility.Hidden;
-        btnPageRight.Visibility = Visibility.Hidden;
-
-        btnNew.Visibility = Visibility.Hidden;
-        btnEdit.Visibility = Visibility.Hidden;
-        btnDelete.Visibility = Visibility.Hidden;
-
-        btnCancel.Visibility = Visibility.Visible;
-        btnSave.Visibility = Visibility.Visible;
+        SetEnabledElements();
     }
 
     private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -134,35 +113,12 @@ public partial class MainWindow : Window
 
     private void btnCancel_Click(object sender, RoutedEventArgs e)
     {
-        cmbConsumable.IsEnabled = false;
-        cmbWeapon.IsEnabled = false;
-
-        btnPageLeft.Visibility = Visibility.Visible;
-        btnPageRight.Visibility = Visibility.Visible;
-
-        btnNew.Visibility = Visibility.Visible;
-        btnEdit.Visibility = Visibility.Visible;
-        btnDelete.Visibility = Visibility.Visible;
-
-        btnCancel.Visibility = Visibility.Hidden;
-        btnSave.Visibility = Visibility.Hidden;
-
+        SetDisabledElements();
     }
 
     private void btnSave_Click(object sender, RoutedEventArgs e)
     {
-        cmbConsumable.IsEnabled = false;
-        cmbWeapon.IsEnabled = false;
-
-        btnPageLeft.Visibility = Visibility.Visible;
-        btnPageRight.Visibility = Visibility.Visible;
-
-        btnNew.Visibility = Visibility.Visible;
-        btnEdit.Visibility = Visibility.Visible;
-        btnDelete.Visibility = Visibility.Visible;
-
-        btnCancel.Visibility = Visibility.Hidden;
-        btnSave.Visibility = Visibility.Hidden;
+       SetDisabledElements();
     }
 
     private void cmbConsumable_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -181,5 +137,99 @@ public partial class MainWindow : Window
         {
             txtblWeapon.Visibility = Visibility.Hidden;
         }
+    }
+
+    private void cmbHeadgear_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (cmbHeadgear.SelectedIndex >= 0)
+        {
+            txtblHeadgear.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void cmbChest_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (cmbChest.SelectedIndex >= 0)
+        {
+            txtblChest.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void cmbGloves_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if ( cmbGloves.SelectedIndex >= 0)
+        {
+            txtblGloves.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void cmbLegs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (cmbLegs.SelectedIndex >= 0)
+        {
+            txtblLegs.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void cmbRace_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (cmbRace.SelectedIndex >= 0)
+        {
+            txtblRace.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void cmbSex_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (cmbSex.SelectedIndex >= 0)
+        {
+            txtblSex.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void SetEnabledElements()
+    {
+        cmbConsumable.IsEnabled = true;
+        cmbWeapon.IsEnabled = true;
+        cmbHeadgear.IsEnabled = true;
+        cmbChest.IsEnabled = true;
+        cmbGloves.IsEnabled = true;
+        cmbLegs.IsEnabled = true;
+        cmbRace.IsEnabled = true;
+        cmbSex.IsEnabled = true;
+        txtCharacterName.IsEnabled = true;
+
+        btnPageLeft.Visibility = Visibility.Hidden;
+        btnPageRight.Visibility = Visibility.Hidden;
+
+        btnNew.Visibility = Visibility.Hidden;
+        btnEdit.Visibility = Visibility.Hidden;
+        btnDelete.Visibility = Visibility.Hidden;
+
+        btnCancel.Visibility = Visibility.Visible;
+        btnSave.Visibility = Visibility.Visible;
+    }
+
+    private void SetDisabledElements()
+    {
+        cmbConsumable.IsEnabled = false;
+        cmbWeapon.IsEnabled = false;
+        cmbHeadgear.IsEnabled = false;
+        cmbChest.IsEnabled = false;
+        cmbGloves.IsEnabled = false;
+        cmbLegs.IsEnabled = false;
+        cmbRace.IsEnabled = false;
+        cmbSex.IsEnabled = false;
+        txtCharacterName.IsEnabled = false;
+
+        btnPageLeft.Visibility = Visibility.Visible;
+        btnPageRight.Visibility = Visibility.Visible;
+
+        btnNew.Visibility = Visibility.Visible;
+        btnEdit.Visibility = Visibility.Visible;
+        btnDelete.Visibility = Visibility.Visible;
+
+        btnCancel.Visibility = Visibility.Hidden;
+        btnSave.Visibility = Visibility.Hidden;
     }
 }

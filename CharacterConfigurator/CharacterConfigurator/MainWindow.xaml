@@ -39,8 +39,8 @@
                     <ColumnDefinition Width="162.5"/>
                     <ColumnDefinition Width="162.5"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="username" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                       FontSize="28" Name="lblUsername"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="username" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       FontSize="28" Name="txtblUsername" />
                 <Button Grid.Row="0" Grid.Column="1" Content="log out" Margin="12.5,12.5,12.5,12.5" Style="{StaticResource StandardButton}"
                         Name="btnLogOut" Click="btnLogOut_Click"/>
             </Grid>
@@ -131,7 +131,7 @@
                         
                         <TextBlock Text="Consumable" IsHitTestVisible="False" Grid.Row="1" Margin="37.5,15,175,207.5" Name="txtblConsumable"/>
 
-                        <Border Grid.Row="1" Grid.Column="0" Margin="25,50,25,37.5" BorderBrush="Black" BorderThickness="1">
+                        <Border Grid.Row="1" Grid.Column="0" Margin="25,55,25,37.5" BorderBrush="Black" BorderThickness="1">
                             <Image Grid.Row="1" Grid.Column="0" Margin="0" Width="275" Height="162.5" Name="imgConsumable"/>
                         </Border>
                         
@@ -159,7 +159,7 @@
                         
                         <TextBlock Text="Weapon" IsHitTestVisible="False" Grid.Row="0" Margin="37.5,40,200,280" Name="txtblWeapon"/>
 
-                        <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource GridBorderOutLine}" Margin="25,75,25,25"/>
+                        <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource GridBorderOutLine}" Margin="25,80,25,25"/>
 
                         <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource GridBorderOutLine}" Margin="12.5,0,12.5,25"/>
 
@@ -169,12 +169,18 @@
                             </TextBlock>
                         </Border>
 
-                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,50,175,125"/>
-                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="175,50,25,125"/>
-                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="175,137.5,25,37.5"/>
-                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,137.5,175,37.5"/>
+                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,55,167.5,120" Name="cmbHeadgear" SelectionChanged="cmbHeadgear_SelectionChanged"/>
+                        <TextBlock Text="Headgear" Grid.Row="1" Grid.Column="0" Margin="37.5,80,200,137.5" IsHitTestVisible="False" Name="txtblHeadgear"/>
                         
-
+                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,137.5,167.5,37.5" Name="cmbChest" SelectionChanged="cmbChest_SelectionChanged"/>
+                        <TextBlock Text="Chest" Grid.Row="1" Grid.Column="0" Margin="37.5,165,200,50" IsHitTestVisible="False" Name="txtblChest"/>
+                        
+                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="167.5,55,25,120" Name="cmbGloves" SelectionChanged="cmbGloves_SelectionChanged"/>
+                        <TextBlock Text="Gloves" Grid.Row="1" Grid.Column="0" Margin="180,80,75,137.5" IsHitTestVisible="False" Name="txtblGloves"/>
+                        
+                        <ComboBox Grid.Row="1" Grid.Column="0" Margin="167.5,137.5,25,37.5" Name="cmbLegs" SelectionChanged="cmbLegs_SelectionChanged"/>
+                        <TextBlock Text="Legs" Grid.Row="1" Grid.Column="0" Margin="180,165,75,50" IsHitTestVisible="False" Name="txtblLegs"/>
+                        
                     </Grid>
                 </StackPanel>
 
@@ -185,11 +191,17 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="550"/>
                         </Grid.ColumnDefinitions>
-                        <Border Style="{StaticResource GridBorderOutLine}" Margin="12.5,25,12.5,25">
-                            <TextBlock Grid.Column="0" Margin="12.5">
+                        
+                        <Border Style="{StaticResource GridBorderOutLine}" Margin="12.5,25,12.5,25"/>
 
-                            </TextBlock>
-                        </Border>
+                        <TextBox Text="character name" Name="txtCharacterName" Margin="25,37.5,325,530" VerticalContentAlignment="Center" Padding="5,0,5,0" IsEnabled="False"/>
+                        
+                        <ComboBox Name="cmbRace" Margin="375,37.5,25,530" SelectionChanged="cmbRace_SelectionChanged" IsEnabled="False"/>
+                        <TextBlock Text="Race" Name="txtblRace" Margin="387.5,40,100,535"/>
+
+                        <ComboBox Name="cmbSex" Margin="375,80,25,487.5" SelectionChanged="cmbSex_SelectionChanged" IsEnabled="False"/>
+                        <TextBlock Text="Sex" Name="txtblSex" Margin="387.5,82.5,100,492.5"/>
+
                     </Grid>
 
                 </StackPanel>
