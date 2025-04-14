@@ -15,7 +15,7 @@
                     Value="pack://application:,,,View/Font/#minecraft enchantment"/>
         </Style>
 
-        <Style x:Key="HoverOverText" TargetType="TextBlock">
+        <Style x:Key="HoverOverText" TargetType="Label">
             <Setter Property="Foreground">
                 <Setter.Value>
                     <SolidColorBrush Color="Black"/>
@@ -26,7 +26,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <ColorAnimation To="CornflowerBlue"
-                                        Duration="0:0:0.3"
+                                        Duration="0:0:0.2"
                                         Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"/>
                         </Storyboard>
                     </BeginStoryboard>
@@ -36,7 +36,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <ColorAnimation To="Black"
-                                        Duration="0:0:0.3"
+                                        Duration="0:0:0.2"
                                         Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"/>
                         </Storyboard>
                     </BeginStoryboard>

@@ -26,17 +26,34 @@
         
         <Label Content="Password" Grid.Column="0" Grid.Row="1" Margin="0,15,0,-5"/>
 
-        <TextBox Name="txtRegisterUsername" Grid.Column="1" Grid.Row="0" Margin="0,25,30,-5" Padding="5,6,5,6"/>
+        <Label Content="Username is not between 3-30 character long" Grid.Column="1" Grid.Row="0" Name="lblUsernameInvalid" Visibility="Hidden"
+               Foreground="Red"/>
+
+        <Label Content="Username is already taken." Grid.Column="1" Grid.Row="0" Name="lblUsernameTaken" Visibility="Hidden"
+               Foreground="Red"/>
+
+        <Label Content="Username cannot have any special characters" Grid.Column="1" Grid.Row="0" Name="lblUsernameSpecialCharacters" Visibility="Hidden"
+               Foreground="Red"/>
+
+        <Label Content="Password is less than 3 characters long" Grid.Column="1" Grid.Row="0" Name="lblPasswordInvalid" Visibility="Hidden"
+               Foreground="Red"/>
+
+        <TextBox Name="txtRegisterUsername" Grid.Column="1" Grid.Row="0" Margin="0,25,30,-5" Padding="5,6,5,6" TabIndex="0"/>
         
         <controls:RandomizedTextBox x:Name="txtRegisterPassword" Grid.Column="1" Grid.Row="1" Margin="0,15,30,5"
-                 VerticalContentAlignment="Center" TextChanged="txtRegisterPassword_TextChanged" Panel.ZIndex="1"
+                 VerticalContentAlignment="Center" TextChanged="txtRegisterPassword_TextChanged" Panel.ZIndex="1" TabIndex="1"
                  Background="Transparent" Foreground="Black" Style="{StaticResource EnchantingTableFont}" Padding="5,0,5,0"/>
         
-        <Button Content="Register" Name="btnRegister" Click="btnRegister_Click" Grid.Column="1" Grid.Row="2" Margin="145,7.5,30,7.5"/>
+        <Button Content="Register" Name="btnRegister" Click="btnRegister_Click" Grid.Column="1" Grid.Row="2" Margin="145,7.5,30,7.5"
+                TabIndex="2"/>
         
         <!--<Label Content="Login" Grid.Column="1" Grid.Row="2" Margin="95,-2.5,115,15"/>-->
-        
-        <TextBlock Name="txtblRegisterLogin" Text="Login" Grid.Column="1" Grid.Row="2" Margin="90,11.5,115,7.5" PreviewMouseDown="txtblRegisterLogin_PreviewMouseDown"
-                   Style="{StaticResource HoverOverText}"/>
+
+        <CheckBox Content="Toggle" Grid.Column="0" Grid.Row="2" Margin="5,14,0,0" Name="chkToggle" TabIndex="4"
+                  IsChecked="{Binding ElementName=txtLoginPassword, Path=IsRandomizationEnabled, Mode=TwoWay}"/>
+
+        <Label Name="lblRegisterLogin" Content="Login" Grid.Column="1" Grid.Row="2" Margin="80,7,115,0"
+               PreviewMouseDown="lblRegisterLogin_PreviewMouseDown" TabIndex="3" IsTabStop="True"
+               Style="{StaticResource HoverOverText}"/>
     </Grid>
 </Window>

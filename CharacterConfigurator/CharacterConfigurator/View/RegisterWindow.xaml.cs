@@ -26,19 +26,21 @@ namespace CharacterConfigurator.View
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void txtblRegisterLogin_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            LoginWindow objLoginWindow = new LoginWindow();
-            objLoginWindow.Show();
-            this.Close();
+            string password = txtRegisterPassword.GetActualText();
+            string username = txtRegisterUsername.Text;
+            MessageBox.Show(password + " " + username);
         }
 
         private void txtRegisterPassword_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void lblRegisterLogin_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            LoginWindow objLoginWindow = new LoginWindow();
+            objLoginWindow.Show();
+            this.Close();
         }
     }
 }
