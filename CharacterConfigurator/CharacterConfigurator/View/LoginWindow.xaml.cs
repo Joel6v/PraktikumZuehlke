@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using CharacterConfigurator.Controller;
 
 namespace CharacterConfigurator.View
 {
@@ -39,13 +40,22 @@ namespace CharacterConfigurator.View
 
         private void txtLoginPassword_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            lblInvalidLogin.Visibility = Visibility.Hidden;
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             string password = txtLoginPassword.GetActualText();
             MessageBox.Show(password);
+            if(MainController.User.Validate(txtLoginUsername.Text, password))
+            {
+                new MainWindow().Show();
+                Close();
+            }
+            else
+            {
+                lblInvalidLogin.Visibility = Visibility.Visible;
+            }
         }
 
         private void txtblLoginRegister_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -63,6 +73,11 @@ namespace CharacterConfigurator.View
         private void chkToggle_Checked(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void txtLoginUsername_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lblInvalidLogin.Visibility = Visibility.Hidden;
         }
     }
 }
