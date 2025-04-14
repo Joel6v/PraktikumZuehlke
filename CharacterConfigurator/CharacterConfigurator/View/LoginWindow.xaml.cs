@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using CharacterConfigurator.Controller;
 
 namespace CharacterConfigurator.View
 {
@@ -48,6 +49,15 @@ namespace CharacterConfigurator.View
         {
             string password = txtLoginPassword.GetActualText();
             MessageBox.Show(password);
+            if(MainController.User.Validate(txtLoginUsername.Text, password))
+            {
+                new MainWindow().Show();
+                Close();
+            }
+            else
+            {
+                
+            }
         }
 
         private void txtblLoginRegister_PreviewMouseDown(object sender, MouseButtonEventArgs e)
