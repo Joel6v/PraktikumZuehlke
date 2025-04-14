@@ -30,6 +30,18 @@ namespace CharacterConfigurator.Controller
             return BaseModelsList.Count;
         }
 
+        public int GetIndex(TBaseModel baseModel)
+        {
+            for(int i = 0; i < BaseModelsList.Count; i++)
+            {
+                if(baseModel.Id == BaseModelsList[i].Id)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         public List<string> GetAllNames()
         {
             List<string> names = new List<string> ();

@@ -128,5 +128,15 @@ namespace CharacterConfigurator.Model
             Consumable = consumable;
             Weapon = weapon;
         }
+
+        public int GetWholeAmountDefense()
+        {
+            int wholeAmountDefense = 0;
+            wholeAmountDefense += ClothingHeadgear.Defense;
+            wholeAmountDefense += ClothingChest.Defense;
+            wholeAmountDefense += ClothingGloves.Defense;
+            wholeAmountDefense += ClothingLegs.Defense;
+            return wholeAmountDefense;
+        }
     }
 }
