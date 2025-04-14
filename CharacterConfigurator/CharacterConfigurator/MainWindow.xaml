@@ -39,6 +39,7 @@
                     <ColumnDefinition Width="162.5"/>
                     <ColumnDefinition Width="162.5"/>
                 </Grid.ColumnDefinitions>
+                
                 <Label Grid.Row="0" Grid.Column="0" Content="username" HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontSize="28" Name="lblUsername" Style="{StaticResource HoverOverText}"/>
                 <Button Grid.Row="0" Grid.Column="1" Content="log out" Margin="12.5,12.5,12.5,12.5" Style="{StaticResource StandardButton}"
