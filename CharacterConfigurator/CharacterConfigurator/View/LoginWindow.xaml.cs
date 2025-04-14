@@ -40,7 +40,7 @@ namespace CharacterConfigurator.View
 
         private void txtLoginPassword_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            lblInvalidLogin.Visibility = Visibility.Hidden;
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -54,7 +54,7 @@ namespace CharacterConfigurator.View
             }
             else
             {
-                
+                lblInvalidLogin.Visibility = Visibility.Visible;
             }
         }
 
@@ -73,6 +73,11 @@ namespace CharacterConfigurator.View
         private void chkToggle_Checked(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void txtLoginUsername_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lblInvalidLogin.Visibility = Visibility.Hidden;
         }
     }
 }
