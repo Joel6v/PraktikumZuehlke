@@ -99,7 +99,10 @@ Lockpick
 Lockpicking
 
 
-
+Hex: 1F2A60
+R:31
+G:42
+B:96
 
 
 

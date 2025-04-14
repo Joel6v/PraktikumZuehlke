@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+	<ApplicationIcon>Resources\Image\Favicon\s_logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Image\Favicon\s_logo.ico" />
     <None Remove="Resources\Image\robin.png" />
     <None Remove="View\Font\Balgruf-JRye7.ttf" />
     <None Remove="View\Font\minecraft-enchantment.ttf" />
@@ -40,6 +42,12 @@
     <Resource Include="Resources\Image\Consumable\food.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Content Include="Resources\Image\Favicon\skirym_logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\Favicon\s_logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="View\Font\Balgruf-JRye7.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
