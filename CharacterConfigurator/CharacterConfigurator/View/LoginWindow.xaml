@@ -26,6 +26,8 @@
         
         <Label Content="Password" Grid.Column="0" Grid.Row="1" Margin="0,15,0,-5"/>
 
+        <Label Content="Invalid Login Information" Grid.Column="1" Grid.Row="0" Name="lblInvalidLogin" Visibility="Hidden" Foreground="Red"/>
+
         <TextBox Name="txtLoginUsername" Grid.Column="1" Grid.Row="0" Margin="0,25,30,-5" Padding="5,2.5,5,2.5"/>
 
         <controls:RandomizedTextBox x:Name="txtLoginPassword" Grid.Column="1" Grid.Row="1" Margin="0,15,30,5"
