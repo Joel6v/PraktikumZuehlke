@@ -56,14 +56,28 @@ public partial class MainWindow : Window
 
     private void CheckAmountCharacter()
     {
-        if (MainController.Character.Count() > 0)
+        if (MainController.Character.Count() == 1)
+        {
+            btnPageRight.IsEnabled = false;
+            btnPageLeft.IsEnabled = false;
+
+            CurrentCharaterIndex = 0;
+        }else if(MainController.Character.Count() > 1)
         {
             btnPageRight.Focus();
+            btnPageLeft.IsEnabled = false;
+
             CurrentCharaterIndex = 0;
         }
         else
         {
+            btnPageRight.IsEnabled = false;
+            btnPageLeft.IsEnabled = false;
+
             btnNew.Focus();
+            btnDelete.IsEnabled = false;
+            btnEdit.IsEnabled = false;
+            //CurrentCharaterIndex = -1; //is set in the top
         }
     }
 
@@ -71,26 +85,48 @@ public partial class MainWindow : Window
     {
         if (CurrentCharaterIndex != -1)
         {
+            //ComboBoxes
+            cmbConsumable.SelectedIndex = MainController.Consumable.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Consumable);
+            cmbWeapon.SelectedIndex = MainController.Weapon.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Weapon);
 
+            //StatsField
+            prgHealth.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Health;
+            prgMagicka.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Magicka;
+            prgStamina.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Stamina;
+            txtblDefense.Text = MainController.Character.Get(CurrentCharaterIndex).GetWholeAmountDefense().ToString();
+            txtblDamage.Text = MainController.Character.Get(CurrentCharaterIndex).Weapon.DamagePerHit.ToString();
+            txtblAtkSpeed.Text = MainController.Character.Get(CurrentCharaterIndex).Weapon.AttackSpeed.GetStringValue();
+            txtblSkill.Text = MainController.Character.Get(CurrentCharaterIndex).Race.Skill.GetStringValue();
         }
     }
 
     private void btnLogOut_Click(object sender, RoutedEventArgs e)
     {
         MainController.User.Logout();
-        LoginWindow loginWindow = new LoginWindow();
-        loginWindow.Show();
+        new LoginWindow().Show();
         this.Close();
     }
 
     private void btnPageLeft_Click(object sender, RoutedEventArgs e)
     {
+        CurrentCharaterIndex--;
+        if (CurrentCharaterIndex <= 0) 
+        {
+            btnPageLeft.IsEnabled = false;
+        }
 
+        btnPageLeft.IsEnabled = true;
     }
 
     private void btnPageRight_Click(object sender, RoutedEventArgs e)
     {
+        CurrentCharaterIndex++;
+        if(CurrentCharaterIndex >= MainController.Character.Count()-1) //Pay attention, index vs count
+        {
+            btnPageRight.IsEnabled = false;
+        }
 
+        btnPageLeft.IsEnabled = true;
     }
 
     private void btnNew_Click(object sender, RoutedEventArgs e)
@@ -127,9 +163,12 @@ public partial class MainWindow : Window
 
     private void btnDelete_Click(object sender, RoutedEventArgs e)
     {
-        MainController.Character.Delete(CurrentCharaterIndex);
-        CheckAmountCharacter();
-        LoadUiCharacter();
+        if (CurrentCharaterIndex != -1) 
+        {
+            MainController.Character.Delete(CurrentCharaterIndex);
+            CheckAmountCharacter();
+            LoadUiCharacter();
+        }
     }
 
     private void btnCancel_Click(object sender, RoutedEventArgs e)
