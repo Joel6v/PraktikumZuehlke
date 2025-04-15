@@ -1,11 +1,32 @@
 ﻿using CharacterConfigurator.Controller;
 using CharacterConfigurator.Model.CharacterEnum;
+using CharacterConfigurator.Model.Clothing;
+using CharacterConfigurator.Model.InheritedModel;
 using MySql.Data.MySqlClient;
 
 namespace CharacterConfigurator.Model
 {
-    public class Character : IBaseModel<Character>
+    public class Character : IBaseModel<Character>, IBaseModelVariable<Character>
     {
+        public Character()
+        {
+        }
+
+        public Character(int id, string name, Race race, Headgear headgear, Chest chest, Gloves gloves, Legs legs, Consumable consumable, Weapon weapon)
+        {
+            Id = id;
+            User = MainController.User.GetCurrentUser();
+            Name = name;
+            Race = race;
+            Headgear = headgear;
+            Chest = chest;
+            Gloves = gloves;
+            Legs = legs;
+            Consumable = consumable;
+            Weapon = weapon;
+            TimeStamp = DateTime.Now;
+        }
+
         public int Id {  get; set; }
 
         public static DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.CHARACTER;
@@ -45,121 +66,60 @@ namespace CharacterConfigurator.Model
 
         private string _Name {  get; set; }
 
-        public string GetAttributs()
+        public string GetAttributes()
         {
-            return $"'{Name}', {User.Id}, {Race.Id}, {ClothingHeadgear.Id}, {ClothingChest.Id}, {ClothingGloves.Id}, {ClothingLegs.Id}, {Weapon.Id}, {Consumable.Id}";
+            return string.Join(", ", GetListAttributes());           
         }
 
         public List<string> GetListAttributes()
         {
-            return new List<string>() { $"'{Name}'", $"{User.Id}", $"{Race.Id}", $"{ClothingHeadgear.Id}", $"{ClothingChest.Id}", $"{ClothingGloves.Id}", $"{ClothingLegs.Id}", $"{Weapon.Id}", $"{Consumable.Id}" };
+            return new List<string>() { $"'{Name}'", $"'{TimeStamp}'", $"{User.Id}", $"{Race.Id}", $"{Headgear.Id}", $"{Chest.Id}", $"{Gloves.Id}", $"{Legs.Id}", $"{Weapon.Id}", $"{Consumable.Id}", $"{(int)Sex}"};
         }
 
         public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
             _Name = sqlResult.GetString(1);
-            User = MainController.User.Get(sqlResult.GetInt32(2) - 1);
-            Race = MainController.Race.Get(sqlResult.GetInt32(3) - 1);
-            ClothingHeadgear = MainController.Clothing.Get(sqlResult.GetInt32(4) - 1);
-            ClothingChest = MainController.Clothing.Get(sqlResult.GetInt32(5) - 1);
-            ClothingGloves = MainController.Clothing.Get(sqlResult.GetInt32(6) - 1);
-            ClothingLegs = MainController.Clothing.Get(sqlResult.GetInt32(7) - 1);
-            Weapon = MainController.Weapon.Get(sqlResult.GetInt32(8) - 1);
-            Consumable = MainController.Consumable.Get(sqlResult.GetInt32(9) - 1);
+            TimeStamp = sqlResult.GetDateTime(2);
+            User = MainController.User.Get(sqlResult.GetInt32(3) - 1); //-1 because the Id's in the Db starts with 1
+            Race = MainController.Race.Get(sqlResult.GetInt32(4) - 1);
+            Headgear = MainController.Headgear.Get(sqlResult.GetInt32(5) - 1);
+            Chest = MainController.Chest.Get(sqlResult.GetInt32(6) - 1);
+            Gloves = MainController.Gloves.Get(sqlResult.GetInt32(7) - 1);
+            Legs = MainController.Legs.Get(sqlResult.GetInt32(8) - 1);
+            Weapon = MainController.Weapon.Get(sqlResult.GetInt32(9) - 1);
+            Consumable = MainController.Consumable.Get(sqlResult.GetInt32(10) - 1);
+            Sex = (Sex)sqlResult.GetInt32(11);
         }
+
+        public DateTime TimeStamp { get; set; }
 
         public User User { get; set; }
 
         public Race Race { get; set; }
 
-        public Clothing ClothingHeadgear 
-        {
-            get { return _ClothingHeadgears; } 
-            set 
-            { 
-                if (value.ClothingType == ClothingType.HEADGEAR) 
-                {
-                    _ClothingHeadgears = value;
-                }
-                else { throw new ExceptionWrongClothingType(ClothingType.HEADGEAR.GetStringValue()); }
-            } 
-        }
-        private Clothing _ClothingHeadgears { get; set;}
+        public Headgear Headgear { get; set; }
 
-        public Clothing ClothingChest
-        {
-            get { return _ClothingChest; }
-            set
-            {
-                if (value.ClothingType == ClothingType.CHEST)
-                {
-                    _ClothingChest = value;
-                }
-                else { throw new ExceptionWrongClothingType(ClothingType.CHEST.GetStringValue()); }
-            }
-        }
-        private Clothing _ClothingChest { get; set; }
+        public Chest Chest { get; set; }
 
+        public Gloves Gloves { get; set; }
 
-        public Clothing ClothingGloves
-        {
-            get { return _ClothingGloves; }
-            set
-            {
-                if (value.ClothingType == ClothingType.GLOVES)
-                {
-                    _ClothingGloves = value;
-                }
-                else { throw new ExceptionWrongClothingType(ClothingType.GLOVES.GetStringValue()); }
-            }
-        }
-        private Clothing _ClothingGloves { get; set; }
-
-        public Clothing ClothingLegs
-        {
-            get { return _ClothingLegs; }
-            set
-            {
-                if (value.ClothingType == ClothingType.LEGS)
-                {
-                    _ClothingLegs = value;
-                }
-                else { throw new ExceptionWrongClothingType(ClothingType.LEGS.GetStringValue()); }
-            }
-        }
-        private Clothing _ClothingLegs { get; set; }
+        public Legs Legs { get; set; } 
 
         public Consumable Consumable {  get; set; }
 
         public Weapon Weapon { get; set; }
 
-        public Character()
-        {
+        public Sex Sex { get; private set; }
 
-        }
-
-        public Character(int id, string name, Race race, Clothing clothingHeadgear, Clothing clothingChest, Clothing clothingGloves, Clothing clothingLegs, Consumable consumable, Weapon weapon)
-        {
-            Id = id;
-            User = MainController.User.GetCurrentUser();
-            Name = name;
-            Race = race;
-            ClothingHeadgear = clothingHeadgear;
-            ClothingChest = clothingChest;
-            ClothingGloves = clothingGloves;
-            ClothingLegs = clothingLegs;
-            Consumable = consumable;
-            Weapon = weapon;
-        }
 
         public int GetWholeAmountDefense()
         {
             int wholeAmountDefense = 0;
-            wholeAmountDefense += ClothingHeadgear.Defense;
-            wholeAmountDefense += ClothingChest.Defense;
-            wholeAmountDefense += ClothingGloves.Defense;
-            wholeAmountDefense += ClothingLegs.Defense;
+            wholeAmountDefense += Headgear.Defense;
+            wholeAmountDefense += Chest.Defense;
+            wholeAmountDefense += Gloves.Defense;
+            wholeAmountDefense += Legs.Defense;
             return wholeAmountDefense;
         }
     }

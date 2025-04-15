@@ -7,55 +7,34 @@ namespace CharacterConfigurator.Model
 {
     public class Race : IBaseModel<Race>, IItem
     {
+        public Race()
+        {
+
+        }
+
         public int Id { get; set; }
 
         public static DbEnum.ModelTypeDb DbModel { get; private set; } = DbEnum.ModelTypeDb.RACE;
 
-        public string Name
+        public string Name { get; set; }
+
+        public BitmapImage Image { get { return null; } set { } }
+
+        public BitmapImage GetImage(Sex sex)
         {
-            get { return _Name; }
-            set
+            if (sex == Sex.MALE)
             {
-                if (!MainController.Race.CheckIfNameExists(value))
-                {
-                    _Name = value;
-                }
+                return _ImageMale;
+            }
+            else
+            {
+                return _ImageFemale;
             }
         }
-        private string _Name { get; set; }
 
-        public static string BasePathImage { get; } = ImagePath.FullRootPath + "Race\\";
+        private BitmapImage _ImageMale { get; set; }
+        private BitmapImage _ImageFemale { get; set; }
 
-        public string GetFullPathImageStr()
-        {
-            return BasePathImage + Sex.GetStringPathImage() + "\\" + Name + ImagePath.FileExtension;
-        }
-
-        public BitmapImage GetFullPathImage()
-        {
-            return new BitmapImage(new Uri(GetFullPathImageStr(), UriKind.Absolute));
-        }
-
-        public string GetAttributs()
-        {
-            return $"'{Name}', {Health}, {Magicka}, {Stamina}, {(int)Skill}, {(int)Sex}";
-        }
-
-        public List<string> GetListAttributes()
-        {
-            return new List<string>() { $"'{Name}'", $"{Health}", $"{Magicka}", $"{Stamina}", $"{(int)Skill}", $"{Sex}"};
-        }
-
-        public void SetAttributes(MySqlDataReader sqlResult)
-        {
-            Id = sqlResult.GetInt32(0);
-            _Name = sqlResult.GetString(1);
-            Health = sqlResult.GetInt32(2);
-            Magicka = sqlResult.GetInt32(3);
-            Stamina = sqlResult.GetInt32(4);
-            Skill = (Skill)sqlResult.GetInt32(5);
-            Sex = (Sex)sqlResult.GetInt32(6);
-        }
 
         public int Health { get; private set; }
 
@@ -65,11 +44,16 @@ namespace CharacterConfigurator.Model
 
         public Skill Skill { get; private set; }
 
-        public Sex Sex { get; private set; }
-
-        public Race()
+        public void SetAttributes(MySqlDataReader sqlResult)
         {
-
+            Id = sqlResult.GetInt32(0);
+            Name = sqlResult.GetString(1);
+            Health = sqlResult.GetInt32(2);
+            Magicka = sqlResult.GetInt32(3);
+            Stamina = sqlResult.GetInt32(4);
+            Skill = (Skill)sqlResult.GetInt32(5);
+            _ImageMale = DataConverter.LoadImage((byte[])sqlResult.GetValue(6));
+            _ImageFemale = DataConverter.LoadImage((byte[])sqlResult.GetValue(7));
         }
     }
 }

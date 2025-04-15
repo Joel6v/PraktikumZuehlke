@@ -11,13 +11,13 @@ namespace CharacterConfigurator.Controller
     public class ControllerCharacter
     {
         private List<Character> CharacterList {  get; set; }
-        private List<Character> CharacterListCurrentUser { get; set; } = new List<Character>(); //For test in must be set
+        private List<Character> CharacterListCurrentUser { get; set; } = new List<Character>(); //For testing resons in must be set
 
-        private Repository<Character> Repository;
+        private RepositoryVariable<Character, Character> Repository;
 
         public ControllerCharacter()
         {
-            Repository = new Repository<Character>();
+            Repository = new RepositoryVariable<Character, Character>();
             Load();
         }
 

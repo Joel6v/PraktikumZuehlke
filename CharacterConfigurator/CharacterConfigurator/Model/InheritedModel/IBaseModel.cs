@@ -11,10 +11,6 @@ namespace CharacterConfigurator.Model
 
         string Name { get; set; }
 
-        string GetAttributs();
-
-        List<string> GetListAttributes();
-
         void SetAttributes(MySqlDataReader sqlResult);
     }
 }

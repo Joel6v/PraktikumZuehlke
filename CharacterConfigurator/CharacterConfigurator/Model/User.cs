@@ -1,12 +1,26 @@
 ﻿using CharacterConfigurator.Controller;
+using CharacterConfigurator.Model.InheritedModel;
 using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace CharacterConfigurator.Model
 {
-    public class User : IBaseModel<User>
+    public class User : IBaseModel<User>, IBaseModelVariable<User>
     {
+        public User()
+        {
+
+        }
+
+        public User(int id, string username, string password)
+        {
+            Id = id;
+            Name = username;
+            SetPasswordStr(password);
+            TimeStamp = DateTime.Now;
+        }
+
         public int Id { get; set; }
 
         public static DbEnum.ModelTypeDb DbModel { get; private set; } = DbEnum.ModelTypeDb.USER;
@@ -50,14 +64,16 @@ namespace CharacterConfigurator.Model
         }
         private string _Name { get; set; }
 
-        public string GetAttributs()
+        public DateTime TimeStamp { get; set; }
+
+        public string GetAttributes()
         {
-            return $"'{Name}', '{BitConverter.ToString(Password).Replace("-", "")}'";
+            return string.Join(", ", GetListAttributes());
         }
 
         public List<string> GetListAttributes()
         {
-            return new List<string>() { $"'{Name}'", $"'{BitConverter.ToString(Password).Replace("-", "")})'" };
+            return new List<string>() { $"'{Name}'", $"'{BitConverter.ToString(Password).Replace("-", "")})'", $"'{TimeStamp}'"};
         }
 
         public void SetAttributes(MySqlDataReader sqlResult)
@@ -65,21 +81,10 @@ namespace CharacterConfigurator.Model
             Id = sqlResult.GetInt32(0);
             _Name = sqlResult.GetString(1);
             Password = Convert.FromHexString(sqlResult.GetString(2));
+            TimeStamp = sqlResult.GetDateTime(3);
         }
 
         public byte[] Password { get; set; }
-
-        public User()
-        {
-
-        }
-
-        public User(int id, string username, string password) 
-        {
-            Id = id;
-            Name = username;
-            SetPasswordStr(password);
-        }
 
         public void SetPasswordStr(string password)
         {

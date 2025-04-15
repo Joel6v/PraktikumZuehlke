@@ -3,28 +3,31 @@
     public enum ModelTypeDb
     {
         [StringDbTable("characterConfiguration")] //New name in the DB, because character is a syntax name
-        [StringDbColumns(["name", "user_userId", "race_raceId", "clothing_headgearId", "clothing_chestId", "clothing_glovesId", "clothing_legsId", "weapon_weaponId", "consumable_consumableId"])]
-        [ColumnAmountImage(0)]
+        [StringDbColumns(["name", "timestamp", "userId", "raceId", "headgearId", "chestId", "glovesId", "legsId", "weaponId", "consumableId", "sex"])]
         CHARACTER,
-        [StringDbTable("clothing")]
-        [StringDbColumns(["name", "defense", "clothingType", "image"])]
-        [ColumnAmountImage(1)]
-        CLOTHING, 
+        [StringDbTable("headgear")]
+        [StringDbColumns(["name", "defense", "image"])]
+        HEADGEAR,
+        [StringDbTable("chest")]
+        [StringDbColumns(["name", "defense", "image"])]
+        CHEST,
+        [StringDbTable("gloves")]
+        [StringDbColumns(["name", "defense", "image"])]
+        GLOVES,
+        [StringDbTable("legs")]
+        [StringDbColumns(["name", "defense", "image"])]
+        LEGS,
         [StringDbTable("consumable")]
         [StringDbColumns(["name", "image"])]
-        [ColumnAmountImage(1)]
         CONSUMABLE,
         [StringDbTable("race")]
         [StringDbColumns(["name", "health", "magicka", "stamina", "skill", "sex", "imageMale", "imageFemale"])]
-        [ColumnAmountImage(2)]
         RACE,
         [StringDbTable("user")]
-        [StringDbColumns(["name", "password"])]
-        [ColumnAmountImage(0)]
+        [StringDbColumns(["name", "password", "timestamp"])]
         USER,
         [StringDbTable("weapon")]
         [StringDbColumns(["name", "damagePerHit", "attackSpeed", "image"])]
-        [ColumnAmountImage(1)]
         WEAPON
     }
 }

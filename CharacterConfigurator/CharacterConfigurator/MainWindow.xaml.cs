@@ -243,7 +243,7 @@ public partial class MainWindow : Window
             txtblConsumable.Visibility = Visibility.Hidden;
         }
 
-        imgConsumable.Source = MainController.Consumable.Get(cmbConsumable.SelectedIndex).GetFullPathImage();
+        imgConsumable.Source = MainController.Consumable.Get(cmbConsumable.SelectedIndex).Image();
     }
 
     private void cmbWeapon_SelectionChanged(object sender, SelectionChangedEventArgs e)
