@@ -2,6 +2,9 @@
 using CharacterConfigurator.Model.DbEnum;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
+using MySqlX.XDevAPI.Relational;
+using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace CharacterConfigurator.Repository
 {
@@ -21,69 +24,12 @@ namespace CharacterConfigurator.Repository
                 MySqlDataReader result = selectCommand.ExecuteReader();
                 while (result.Read())
                 {
-                    TBaseModel baseModel = new TBaseModel();
+                    TBaseModel baseModel = new();
                     baseModel.SetAttributes(result);
                     baseModelList.Add(baseModel);
                 }
             }
             return baseModelList;
-        }
-
-        public void SaveAll(List<TBaseModel> baseModelList) 
-        {
-            string sqlInsert = $"INSERT INTO {TBaseModel.DbModel.GetStringTable()} ({TBaseModel.DbModel.GetStringColumns()}) VALUES ";
-            foreach (TBaseModel baseModel in baseModelList)
-            {
-                sqlInsert += "(" + baseModel.GetAttributs() + "),";
-            }
-            sqlInsert.Remove(sqlInsert.Length -1);
-            sqlInsert += ";";
-
-            using (DbConnection dbConnection = new())
-            {
-                MySqlCommand command = new MySqlCommand(sqlInsert, dbConnection.Connection);
-                command.ExecuteNonQuery();
-            }
-        }
-
-        public void Save(TBaseModel baseModel)
-        {
-            string sqlInsert = $"INSERT INTO {TBaseModel.DbModel.GetStringTable()} ({TBaseModel.DbModel.GetStringColumns()}) VALUE ";
-            sqlInsert += "(" + baseModel.GetAttributs() + ");";
-            using (DbConnection dbConnection = new())
-            {
-                MySqlCommand command = new MySqlCommand(sqlInsert, dbConnection.Connection);
-                command.ExecuteNonQuery();
-            }
-        }
-
-        public void Update(TBaseModel baseModel)
-        {
-            string sqlUpdate = $"UPDATE {TBaseModel.DbModel.GetStringTable()} SET ";
-            for(int i = 0; i < TBaseModel.DbModel.GetListColumns().Count; i++)
-            {
-                sqlUpdate += TBaseModel.DbModel.GetListColumns()[i] + " = " + baseModel.GetListAttributes()[i] + ",";
-            }
-            sqlUpdate.Remove(sqlUpdate.Length - 1);
-
-            sqlUpdate += "WHERE id = " + baseModel.Id;
-            sqlUpdate += ";";
-
-            using (DbConnection dbConnection = new())
-            {
-                MySqlCommand command = new MySqlCommand(sqlUpdate, dbConnection.Connection);
-                command.ExecuteNonQuery();
-            }
-        }
-
-        public void Delete(TBaseModel baseModel)
-        {
-            string sqlDelete = $"DELETE FROM {TBaseModel.DbModel.GetStringTable} WHERE id = {baseModel.Id};";
-            using (DbConnection dbConnection = new())
-            {
-                MySqlCommand command = new MySqlCommand(sqlDelete, dbConnection.Connection);
-                command.ExecuteNonQuery();
-            }
         }
     }
 }

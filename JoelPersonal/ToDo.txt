@@ -6,4 +6,9 @@ set Id & DbModel to private --
 change sex --
 load in controller --
 add user login validation backend --
-add abstract class for checking if the image exists
+add abstract class to checking if the image exists
+save the images in the db
+the character name only check in the names from the current user --
+controller for variable and non variable classes, also change the accessors
+login and register auth
+user and character timestamp

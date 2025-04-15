@@ -1,26 +1,42 @@
 ﻿using CharacterConfigurator.Controller;
+using CharacterConfigurator.Model.InheritedModel;
 using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace CharacterConfigurator.Model
 {
-    public class User : IBaseModel<User>
+    public class User : IBaseModel<User>, IBaseModelVariable<User>
     {
+        public User()
+        {
+
+        }
+
+        public User(string username, string password)
+        {
+            Name = username;
+            SetPasswordStr(password);
+            TimeStamp = DateTime.Now;
+        }
+
         public int Id { get; set; }
 
         public static DbEnum.ModelTypeDb DbModel { get; private set; } = DbEnum.ModelTypeDb.USER;
 
-        public const int MinUsernameLength = 3;
-        public const int MaxUsernameLength = 30;
-        public string Name { get { return _Name; } set 
+        public const int MinNameLength = 3;
+        public const int MaxNameLength = 30;
+        public string Name
+        {
+            get { return _Name; }
+            set
             {
                 if (MainController.User.CheckIfNameExists(value))
                 {
                     throw new ExceptionAlreadyExistingName();
                 }
                 bool usernameValid = true;
-                if (value.Length >= MinUsernameLength && value.Length < MaxUsernameLength)
+                if (value.Length >= MinNameLength && value.Length <= MaxNameLength)
                 {
                     foreach (char c in value)
                     {
@@ -41,20 +57,22 @@ namespace CharacterConfigurator.Model
                 }
                 else
                 {
-                    throw new Exception($"The Username is too short or too long. The minimum length is {MinUsernameLength} and the maximum length is {MaxUsernameLength}");
+                    throw new ExceptionNameLenght();
                 }
             }
         }
         private string _Name { get; set; }
 
-        public string GetAttributs()
+        public DateTime TimeStamp { get; set; }
+
+        public string GetAttributes()
         {
-            return $"'{Name}', '{BitConverter.ToString(Password).Replace("-", "")}'";
+            return string.Join(", ", GetListAttributes());
         }
 
         public List<string> GetListAttributes()
         {
-            return new List<string>() { $"'{Name}'", $"'{BitConverter.ToString(Password).Replace("-", "")})'" };
+            return new List<string>() { $"'{Name}'", $"'{BitConverter.ToString(Password).Replace("-", "")})'", $"'{TimeStamp}'"};
         }
 
         public void SetAttributes(MySqlDataReader sqlResult)
@@ -62,25 +80,21 @@ namespace CharacterConfigurator.Model
             Id = sqlResult.GetInt32(0);
             _Name = sqlResult.GetString(1);
             Password = Convert.FromHexString(sqlResult.GetString(2));
+            TimeStamp = sqlResult.GetDateTime(3);
         }
 
         public byte[] Password { get; set; }
 
-        public User()
-        {
-
-        }
-
-        public User(int id, string username, string password) 
-        {
-            Id = id;
-            Name = username;
-            SetPasswordStr(password);
-        }
-
         public void SetPasswordStr(string password)
         {
-            Password = DataConverter.GenerateHex(password);
+            if (password.Length >= MinNameLength) 
+            {
+                Password = DataConverter.GenerateHex(password);
+            }
+            else
+            {
+                throw new Exception($"The Password is too short. The minimum length is {MinNameLength}.");
+            }
         }
     }
 }

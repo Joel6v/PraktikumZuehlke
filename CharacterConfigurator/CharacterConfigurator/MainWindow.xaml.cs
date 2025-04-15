@@ -1,18 +1,10 @@
-﻿using System.Drawing;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using CharacterConfigurator.Controller;
+﻿using CharacterConfigurator.Controller;
 using CharacterConfigurator.Model;
 using CharacterConfigurator.Model.CharacterEnum;
+using CharacterConfigurator.Model.Clothing;
 using CharacterConfigurator.View;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace CharacterConfigurator;
 
@@ -26,6 +18,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        MainController.Load();
         LoadUiStatic();
         CheckAmountCharacter();
         LoadUiCharacter();
@@ -49,9 +42,31 @@ public partial class MainWindow : Window
         {
             cmbWeapon.Items.Add(MainController.Weapon.Get(i).Name);
         }
-        for (int i = 0; i < MainController.Clothing.GetAllFromType(ClothingType.HEADGEAR).Count; i++)
+        //Start Clothing
+        for (int i = 0; i < MainController.Headgear.Count(); i++)
         {
-            
+            cmbHeadgear.Items.Add(MainController.Headgear.Get(i).Name);
+        }
+        for (int i = 0; i < MainController.Chest.Count(); i++)
+        {
+            cmbChest.Items.Add(MainController.Chest.Get(i).Name);
+        }
+        for (int i = 0; i < MainController.Gloves.Count(); i++)
+        {
+            cmbGloves.Items.Add(MainController.Gloves.Get(i).Name);
+        }
+        for (int i = 0; i < MainController.Legs.Count(); i++)
+        {
+            cmbLegs.Items.Add(MainController.Legs.Get(i).Name);
+        }
+        //End Clothing
+        for(int i = 0; i < MainController.Race.Count(); i++)
+        {
+            cmbRace.Items.Add(MainController.Race.Get(i).Name);
+        }
+        for(int i = 0; i < Enum.GetNames(typeof(Sex)).Length; i++)
+        {
+            cmbSex.Items.Add(((Sex)i).GetStringValue());
         }
     }
 
@@ -89,6 +104,12 @@ public partial class MainWindow : Window
             //ComboBoxes
             cmbConsumable.SelectedIndex = MainController.Consumable.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Consumable);
             cmbWeapon.SelectedIndex = MainController.Weapon.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Weapon);
+            cmbRace.SelectedIndex = MainController.Race.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Race);
+            cmbSex.SelectedIndex = (int)MainController.Character.Get(CurrentCharaterIndex).Sex;
+            cmbHeadgear.SelectedIndex = MainController.Headgear.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Headgear);
+            cmbChest.SelectedIndex = MainController.Chest.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Chest);
+            cmbGloves.SelectedIndex = MainController.Gloves.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Gloves);
+            cmbLegs.SelectedIndex = MainController.Legs.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Legs);
 
             //StatsField
             prgHealth.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Health;
@@ -99,6 +120,47 @@ public partial class MainWindow : Window
             txtblAtkSpeed.Text = MainController.Character.Get(CurrentCharaterIndex).Weapon.AttackSpeed.GetStringValue();
             txtblSkill.Text = MainController.Character.Get(CurrentCharaterIndex).Race.Skill.GetStringValue();
         }
+        else
+        {
+            LoadUiDefaultCharacter();
+        }
+    }
+
+    private void LoadUiDefaultCharacter()
+    {
+        //ComboBoxes
+        cmbConsumable.SelectedIndex = 0;
+        cmbWeapon.SelectedIndex = 0;
+        cmbRace.SelectedIndex = 0;
+        cmbSex.SelectedIndex = 0;
+        cmbHeadgear.SelectedIndex = 0;
+        cmbChest.SelectedIndex = 0;
+        cmbGloves.SelectedIndex = 0;
+        cmbLegs.SelectedIndex = 0;
+
+        //StatsField
+        prgHealth.Value = 100;
+        prgMagicka.Value = 100;
+        prgStamina.Value = 100;
+        txtblDefense.Text = "0";
+        txtblDamage.Text = "0";
+        txtblAtkSpeed.Text = AttackSpeed.MEDIUM.GetStringValue();
+        txtblSkill.Text = Skill.NONE.GetStringValue();
+    }
+
+    private Character ReadCharacter()
+    {
+        string name = txtCharacterName.Text;
+        Race race = MainController.Race.Get(cmbRace.SelectedIndex);
+        Headgear headgear = MainController.Headgear.Get(cmbHeadgear.SelectedIndex);
+        Chest chest = MainController.Chest.Get(cmbChest.SelectedIndex);
+        Gloves gloves = MainController.Gloves.Get(cmbGloves.SelectedIndex);
+        Legs legs = MainController.Legs.Get(cmbLegs.SelectedIndex);
+        Weapon weapon = MainController.Weapon.Get(cmbWeapon.SelectedIndex);
+        Consumable consumable = MainController.Consumable.Get(cmbConsumable.SelectedIndex);
+        Sex sex = (Sex)cmbSex.SelectedIndex;
+        Character newCharacter = new Character(name, race, headgear, chest, gloves, legs, consumable, weapon);
+        return newCharacter;
     }
 
     private void btnLogOut_Click(object sender, RoutedEventArgs e)
@@ -132,7 +194,9 @@ public partial class MainWindow : Window
 
     private void btnNew_Click(object sender, RoutedEventArgs e)
     {
+        CurrentCharaterIndex = MainController.Character.Count();
         SetEnabledElements();
+        LoadUiDefaultCharacter();
     }
 
     private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -167,7 +231,7 @@ public partial class MainWindow : Window
             txtblConsumable.Visibility = Visibility.Hidden;
         }
 
-        imgConsumable.Source = MainController.Consumable.Get(cmbConsumable.SelectedIndex).GetFullPathImage();
+        imgConsumable.Source = MainController.Consumable.Get(cmbConsumable.SelectedIndex).Image;
     }
 
     private void cmbWeapon_SelectionChanged(object sender, SelectionChangedEventArgs e)
