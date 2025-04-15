@@ -13,9 +13,8 @@ namespace CharacterConfigurator.Model
 
         }
 
-        public User(int id, string username, string password)
+        public User(string username, string password)
         {
-            Id = id;
             Name = username;
             SetPasswordStr(password);
             TimeStamp = DateTime.Now;

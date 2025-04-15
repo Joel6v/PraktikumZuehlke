@@ -78,7 +78,8 @@ namespace CharacterConfigurator.Controller
 
         public void Add(Character character)
         {
-            Repository.Save(character);
+            int newId = Repository.Save(character);
+            character.Id = newId;
             CharacterListCurrentUser.Add(character);
             CharacterList.Add(character);
         }

@@ -1,6 +1,7 @@
 ﻿using CharacterConfigurator.Controller;
 using CharacterConfigurator.Model;
 using CharacterConfigurator.Model.CharacterEnum;
+using CharacterConfigurator.Model.Clothing;
 using CharacterConfigurator.View;
 using System.Windows;
 using System.Windows.Controls;
@@ -42,25 +43,21 @@ public partial class MainWindow : Window
             cmbWeapon.Items.Add(MainController.Weapon.Get(i).Name);
         }
         //Start Clothing
-        List<Clothing> clothingHeadgear = MainController.Clothing.GetAllFromType(ClothingType.HEADGEAR);
-        for (int i = 0; i < clothingHeadgear.Count; i++)
+        for (int i = 0; i < MainController.Headgear.Count(); i++)
         {
-            cmbHeadgear.Items.Add(clothingHeadgear[i].Name);
+            cmbHeadgear.Items.Add(MainController.Headgear.Get(i).Name);
         }
-        List<Clothing> clothingChest = MainController.Clothing.GetAllFromType(ClothingType.CHEST);
-        for (int i = 0; i < clothingChest.Count; i++)
+        for (int i = 0; i < MainController.Chest.Count(); i++)
         {
-            cmbChest.Items.Add(clothingChest[i].Name);
+            cmbChest.Items.Add(MainController.Chest.Get(i).Name);
         }
-        List<Clothing> clothingGloves = MainController.Clothing.GetAllFromType(ClothingType.GLOVES);
-        for (int i = 0; i < clothingGloves.Count; i++)
+        for (int i = 0; i < MainController.Gloves.Count(); i++)
         {
-            cmbGloves.Items.Add(clothingGloves[i].Name);
+            cmbGloves.Items.Add(MainController.Gloves.Get(i).Name);
         }
-        List<Clothing> clothingLegs = MainController.Clothing.GetAllFromType(ClothingType.LEGS);
-        for (int i = 0; i < clothingLegs.Count; i++)
+        for (int i = 0; i < MainController.Legs.Count(); i++)
         {
-            cmbLegs.Items.Add(clothingLegs[i].Name);
+            cmbLegs.Items.Add(MainController.Legs.Get(i).Name);
         }
         //End Clothing
         for(int i = 0; i < MainController.Race.Count(); i++)
@@ -108,11 +105,11 @@ public partial class MainWindow : Window
             cmbConsumable.SelectedIndex = MainController.Consumable.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Consumable);
             cmbWeapon.SelectedIndex = MainController.Weapon.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Weapon);
             cmbRace.SelectedIndex = MainController.Race.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Race);
-            cmbSex.SelectedIndex = (int)MainController.Character.Get(CurrentCharaterIndex).Race.Sex;
-            cmbHeadgear.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingHeadgear);
-            cmbChest.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingChest);
-            cmbGloves.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingGloves);
-            cmbLegs.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingLegs);
+            cmbSex.SelectedIndex = (int)MainController.Character.Get(CurrentCharaterIndex).Sex;
+            cmbHeadgear.SelectedIndex = MainController.Headgear.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Headgear);
+            cmbChest.SelectedIndex = MainController.Chest.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Chest);
+            cmbGloves.SelectedIndex = MainController.Gloves.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Gloves);
+            cmbLegs.SelectedIndex = MainController.Legs.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Legs);
 
             //StatsField
             prgHealth.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Health;
@@ -153,26 +150,17 @@ public partial class MainWindow : Window
 
     private Character ReadCharacter()
     {
-        Character character = new Character();
-        //ComboBoxes
-        character.Consumable = MainController.Consumable.Get(cmbConsumable.SelectedIndex);
-        character.Weapon = MainController.Weapon.Get(cmbWeapon.SelectedIndex);
-        character.Race = MainController.Race.Get(cmbRace.SelectedIndex);
-
-        cmbSex.SelectedIndex = (int)MainController.Character.Get(CurrentCharaterIndex).Race.Sex;
-        cmbHeadgear.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingHeadgear);
-        cmbChest.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingChest);
-        cmbGloves.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingGloves);
-        cmbLegs.SelectedIndex = MainController.Clothing.GetIndex(MainController.Character.Get(CurrentCharaterIndex).ClothingLegs);
-
-        //StatsField
-        prgHealth.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Health;
-        prgMagicka.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Magicka;
-        prgStamina.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Stamina;
-        txtblDefense.Text = MainController.Character.Get(CurrentCharaterIndex).GetWholeAmountDefense().ToString();
-        txtblDamage.Text = MainController.Character.Get(CurrentCharaterIndex).Weapon.DamagePerHit.ToString();
-        txtblAtkSpeed.Text = MainController.Character.Get(CurrentCharaterIndex).Weapon.AttackSpeed.GetStringValue();
-        txtblSkill.Text = MainController.Character.Get(CurrentCharaterIndex).Race.Skill.GetStringValue();
+        string name = txtCharacterName.Text;
+        Race race = MainController.Race.Get(cmbRace.SelectedIndex);
+        Headgear headgear = MainController.Headgear.Get(cmbHeadgear.SelectedIndex);
+        Chest chest = MainController.Chest.Get(cmbChest.SelectedIndex);
+        Gloves gloves = MainController.Gloves.Get(cmbGloves.SelectedIndex);
+        Legs legs = MainController.Legs.Get(cmbLegs.SelectedIndex);
+        Weapon weapon = MainController.Weapon.Get(cmbWeapon.SelectedIndex);
+        Consumable consumable = MainController.Consumable.Get(cmbConsumable.SelectedIndex);
+        Sex sex = (Sex)cmbSex.SelectedIndex;
+        Character newCharacter = new Character(name, race, headgear, chest, gloves, legs, consumable, weapon);
+        return newCharacter;
     }
 
     private void btnLogOut_Click(object sender, RoutedEventArgs e)
@@ -243,7 +231,7 @@ public partial class MainWindow : Window
             txtblConsumable.Visibility = Visibility.Hidden;
         }
 
-        imgConsumable.Source = MainController.Consumable.Get(cmbConsumable.SelectedIndex).Image();
+        imgConsumable.Source = MainController.Consumable.Get(cmbConsumable.SelectedIndex).Image;
     }
 
     private void cmbWeapon_SelectionChanged(object sender, SelectionChangedEventArgs e)

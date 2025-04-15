@@ -12,9 +12,8 @@ namespace CharacterConfigurator.Model
         {
         }
 
-        public Character(int id, string name, Race race, Headgear headgear, Chest chest, Gloves gloves, Legs legs, Consumable consumable, Weapon weapon)
+        public Character(string name, Race race, Headgear headgear, Chest chest, Gloves gloves, Legs legs, Consumable consumable, Weapon weapon)
         {
-            Id = id;
             User = MainController.User.GetCurrentUser();
             Name = name;
             Race = race;

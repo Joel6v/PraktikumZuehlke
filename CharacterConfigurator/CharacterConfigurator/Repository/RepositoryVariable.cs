@@ -53,15 +53,18 @@ namespace CharacterConfigurator.Repository
             }
         }
 
-        public void Save(TBaseModelVariable baseModel)
+        public int Save(TBaseModelVariable baseModel)
         {
             string sqlInsert = $"INSERT INTO {TBaseModel.DbModel.GetStringTable()} ({TBaseModel.DbModel.GetStringColumns()}) VALUE ";
             sqlInsert += "(" + baseModel.GetAttributes() + ");";
+            int newId;
             using (DbConnection dbConnection = new())
             {
                 MySqlCommand command = new MySqlCommand(sqlInsert, dbConnection.Connection);
                 command.ExecuteNonQuery();
+                newId = (int)command.LastInsertedId;
             }
+            return newId;
         }
 
         public void Update(TBaseModelVariable baseModel)
