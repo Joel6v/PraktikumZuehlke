@@ -47,7 +47,13 @@
         <Style x:Key="GridBorderOutLine" TargetType="Border">
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="2.5"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+
+        <Style x:Key="ClothingBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="Transparent"/>
         </Style>
 
         <Style x:Key="StandardButton" TargetType="Button">

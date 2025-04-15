@@ -247,6 +247,7 @@ public partial class MainWindow : Window
         if (cmbHeadgear.SelectedIndex >= 0)
         {
             txtblHeadgear.Visibility = Visibility.Hidden;
+            brdHeadwear.Visibility = Visibility.Visible;
         }
     }
 
@@ -255,6 +256,7 @@ public partial class MainWindow : Window
         if (cmbChest.SelectedIndex >= 0)
         {
             txtblChest.Visibility = Visibility.Hidden;
+            brdBody.Visibility = Visibility.Visible;
         }
     }
 
@@ -263,6 +265,7 @@ public partial class MainWindow : Window
         if ( cmbGloves.SelectedIndex >= 0)
         {
             txtblGloves.Visibility = Visibility.Hidden;
+            brdGloves.Visibility = Visibility.Visible;
         }
     }
 
@@ -271,6 +274,7 @@ public partial class MainWindow : Window
         if (cmbLegs.SelectedIndex >= 0)
         {
             txtblLegs.Visibility = Visibility.Hidden;
+            brdShoes.Visibility = Visibility.Visible;
         }
     }
 
@@ -324,6 +328,11 @@ public partial class MainWindow : Window
         cmbRace.IsEnabled = false;
         cmbSex.IsEnabled = false;
         txtCharacterName.IsEnabled = false;
+
+        brdHeadwear.Visibility = Visibility.Hidden;
+        brdBody.Visibility = Visibility.Hidden;
+        brdGloves.Visibility = Visibility.Hidden;
+        brdShoes.Visibility = Visibility.Hidden;
 
         btnPageLeft.Visibility = Visibility.Visible;
         btnPageRight.Visibility = Visibility.Visible;

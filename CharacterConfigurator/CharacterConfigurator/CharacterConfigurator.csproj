@@ -6,17 +6,47 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-	<ApplicationIcon>Resources\Image\Favicon\s_logo.ico</ApplicationIcon>
+	<ApplicationIcon>Resources\Image\Favicon\skirym_dragon_logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Font\**" />
+    <Compile Remove="Resources\Image\Clothing\Chest\**" />
+    <Compile Remove="Resources\Image\Clothing\Headgear\**" />
+    <Compile Remove="Resources\Image\Clothing\Legs\**" />
     <EmbeddedResource Remove="Font\**" />
+    <EmbeddedResource Remove="Resources\Image\Clothing\Chest\**" />
+    <EmbeddedResource Remove="Resources\Image\Clothing\Headgear\**" />
+    <EmbeddedResource Remove="Resources\Image\Clothing\Legs\**" />
     <None Remove="Font\**" />
+    <None Remove="Resources\Image\Clothing\Chest\**" />
+    <None Remove="Resources\Image\Clothing\Headgear\**" />
+    <None Remove="Resources\Image\Clothing\Legs\**" />
     <Page Remove="Font\**" />
+    <Page Remove="Resources\Image\Clothing\Chest\**" />
+    <Page Remove="Resources\Image\Clothing\Headgear\**" />
+    <Page Remove="Resources\Image\Clothing\Legs\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Image\Clothing\Body\body_none.png" />
+    <None Remove="Resources\Image\Clothing\Body\ragged_robes.png" />
+    <None Remove="Resources\Image\Clothing\Body\ragged_trousers.png" />
+    <None Remove="Resources\Image\Clothing\Gloves\gloves_none.png" />
+    <None Remove="Resources\Image\Clothing\Gloves\vampire_gloves.png" />
+    <None Remove="Resources\Image\Clothing\Headwear\cowl.png" />
+    <None Remove="Resources\Image\Clothing\Headwear\fine_hat.png" />
+    <None Remove="Resources\Image\Clothing\Headwear\hat.png" />
+    <None Remove="Resources\Image\Clothing\Headwear\headwear_none.png" />
+    <None Remove="Resources\Image\Clothing\Shoes\shoes_none.png" />
+    <None Remove="Resources\Image\Clothing\Shoes\vampire_boots.png" />
+    <None Remove="Resources\Image\Consumable\consumable_none.png" />
+    <None Remove="Resources\Image\Consumable\ingredient.png" />
+    <None Remove="Resources\Image\Consumable\lockpick.png" />
+    <None Remove="Resources\Image\Consumable\poison.png" />
+    <None Remove="Resources\Image\Consumable\potion.png" />
+    <None Remove="Resources\Image\Consumable\scroll.png" />
+    <None Remove="Resources\Image\Favicon\skirym_dragon_Logo.ico" />
     <None Remove="Resources\Image\Favicon\s_logo.ico" />
     <None Remove="Resources\Image\robin.png" />
     <None Remove="View\Font\Balgruf-JRye7.ttf" />
@@ -29,25 +59,75 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Image\Clothing\Headgear\" />
-    <Folder Include="Resources\Image\Clothing\Chest\" />
-    <Folder Include="Resources\Image\Clothing\Gloves\" />
-    <Folder Include="Resources\Image\Clothing\Legs\" />
     <Folder Include="Resources\Image\Race\Male\" />
     <Folder Include="Resources\Image\Race\Female\" />
     <Folder Include="Resources\Image\Weapon\" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Image\Clothing\Body\body_none.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Clothing\Body\ragged_robes.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Clothing\Body\ragged_trousers.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Clothing\Gloves\gloves_none.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Clothing\Gloves\vampire_gloves.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Clothing\Headwear\cowl.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Clothing\Headwear\fine_hat.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Clothing\Headwear\hat.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Clothing\Headwear\headwear_none.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Clothing\Shoes\shoes_none.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Clothing\Shoes\vampire_boots.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Consumable\consumable_none.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Image\Consumable\food.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Content Include="Resources\Image\Favicon\skirym_dragon_Logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Image\Favicon\skirym_logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Image\Favicon\s_logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Image\Consumable\ingredient.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Consumable\lockpick.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Consumable\poison.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Consumable\potion.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Consumable\scroll.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="View\Font\Balgruf-JRye7.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
