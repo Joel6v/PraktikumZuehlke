@@ -36,6 +36,24 @@ namespace CharacterConfigurator.Repository
             return baseModelList;
         }
 
+        public List<TBaseModel> Load(string idName, int id)
+        {
+            List<TBaseModel> baseModelList = new List<TBaseModel>();
+            using (DbConnection dbConnection = new())
+            {
+                string selectCommandStr = $"SELECT * FROM {TBaseModel.DbModel.GetStringTable()} WHERE {idName} = {id};";
+                MySqlCommand selectCommand = new MySqlCommand(selectCommandStr, dbConnection.Connection);
+                MySqlDataReader result = selectCommand.ExecuteReader();
+                while (result.Read())
+                {
+                    TBaseModel baseModel = new();
+                    baseModel.SetAttributes(result);
+                    baseModelList.Add(baseModel);
+                }
+            }
+            return baseModelList;
+        }
+
         public void SaveAll(List<TBaseModelVariable> baseModelList)
         {
             string sqlInsert = $"INSERT INTO {TBaseModel.DbModel.GetStringTable()} ({TBaseModel.DbModel.GetStringColumns()}) VALUES ";

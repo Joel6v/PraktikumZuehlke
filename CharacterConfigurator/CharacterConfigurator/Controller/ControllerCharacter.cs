@@ -10,7 +10,6 @@ namespace CharacterConfigurator.Controller
 {
     public class ControllerCharacter
     {
-        private List<Character> CharacterList {  get; set; }
         private List<Character> CharacterListCurrentUser { get; set; } = new List<Character>(); //For testing resons in must be set
 
         private RepositoryVariable<Character, Character> Repository;
@@ -25,13 +24,7 @@ namespace CharacterConfigurator.Controller
         {
             if (MainController.User.GetCurrentUser() != null)
             {
-                for (int i = 0; i < CharacterList.Count; i++)
-                {
-                    if (CharacterList[i].User == MainController.User.GetCurrentUser()) //Compare with Id would be possible but this is also going to work
-                    {
-                        CharacterListCurrentUser.Add(CharacterList[i]);
-                    }
-                }
+                Load();
             }
             else
             {
@@ -81,14 +74,23 @@ namespace CharacterConfigurator.Controller
             int newId = Repository.Save(character);
             character.Id = newId;
             CharacterListCurrentUser.Add(character);
-            CharacterList.Add(character);
         }
 
         public void Delete(int index)
         {
             Repository.Delete(CharacterListCurrentUser[index]);
             CharacterListCurrentUser.RemoveAt(index);
-            CharacterList = CharacterListCurrentUser;
+        }
+
+        /// <summary>
+        /// Deletes all Character from the current User
+        /// </summary>
+        public void DeleteAll()
+        {
+            for(int i = 0; i < CharacterListCurrentUser.Count; i++)
+            {
+                Repository.Delete(CharacterListCurrentUser[i]);
+            }
         }
 
         public void Update(Character character)
@@ -104,7 +106,6 @@ namespace CharacterConfigurator.Controller
             }
             Repository.Update(character);
             CharacterListCurrentUser[index] = character;
-            CharacterList = CharacterListCurrentUser;
         }
 
         public bool CheckIfNameExists(string newName)
@@ -122,7 +123,7 @@ namespace CharacterConfigurator.Controller
 
         private void Load()
         {
-            CharacterList = Repository.Load();
+            CharacterListCurrentUser = Repository.Load("userId", MainController.User.GetCurrentUser().Id);
         }
     }
 }

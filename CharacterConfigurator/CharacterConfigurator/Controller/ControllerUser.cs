@@ -68,6 +68,7 @@ namespace CharacterConfigurator.Controller
 
         public void Delete(int index)
         {
+            MainController.Character.DeleteAll();
             Repository.Delete(UserList[index]);
             UserList.RemoveAt(index);
         }
