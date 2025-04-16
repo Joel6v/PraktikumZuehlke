@@ -37,7 +37,7 @@ namespace CharacterConfigurator.View.Controls
             _randomTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(50) };
             _randomTimer.Tick += RandomTimer_Tick;
 
-            _stopTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            _stopTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(0.5) };
             _stopTimer.Tick += StopTimer_Tick;
 
             this.TextChanged += OnTextChanged;

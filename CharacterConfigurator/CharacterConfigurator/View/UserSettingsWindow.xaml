@@ -7,11 +7,12 @@
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
-        Title="User Settings" Height="625" Width="755" Style="{StaticResource SkirymFont}" FontSize="18">
+        Title="User Settings" Height="675" Width="630" Style="{StaticResource SkirymFont}" FontSize="18">
+    <!--Height=625 Width=755-->
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="72.5"/>
-            <RowDefinition Height="400"/>
+            <RowDefinition Height="450"/>
             <RowDefinition Height="72.5"/>
         </Grid.RowDefinitions>
 
@@ -23,7 +24,7 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="325"/>
-                <ColumnDefinition Width="375"/>
+                <ColumnDefinition Width="275"/>
             </Grid.ColumnDefinitions>
             
             <Border Style="{StaticResource GridBorderOutLine}" Margin="12.5,12.5,125,12.5">
@@ -34,7 +35,7 @@
             <!--Top Right Grid-->
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="212.5"/>
+                    <ColumnDefinition Width="87.5"/>
                     <ColumnDefinition Width="162.5"/>
                 </Grid.ColumnDefinitions>
 
@@ -43,34 +44,80 @@
                 
             </Grid>
         </Grid>
-
-        <Grid Grid.Row="2">
+        
+        <!--Middle Grid-->
+        <Grid Grid.Row="1" Margin="12.5,25">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="162.5"/>
-                <ColumnDefinition Width="550"/>
+                <ColumnDefinition Width="133"/>
+                <ColumnDefinition Width="417"/>
             </Grid.ColumnDefinitions>
 
-            <!--Bottom Left Grid-->
-            <Grid Grid.Row="2" Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="162.5"/>
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Style="{StaticResource StandardButton}" Content="Delete Account" Margin="12.5,12.5,12.5,12.5"
-                        Name="btnDeleteAccount" Click="btnDeleteAccount_Click"/>
-            </Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="66.5"/>
+                <RowDefinition Height="66.5"/>
+                <RowDefinition Height="42.5"/>
+                <RowDefinition Height="42.5"/>
+                <RowDefinition Height="42.5"/>
+                <RowDefinition Height="42.5"/>
+                <RowDefinition Height="59.5"/>
+                <RowDefinition Height="37.5"/>
+            </Grid.RowDefinitions>
 
-            <!--Bottom Middle Grid-->
-            <Grid Grid.Row="2" Grid.Column="1" Margin="5,0,5,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="225"/>
-                    <ColumnDefinition Width="162.5"/>
-                    <ColumnDefinition Width="162.5"/>
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" Style="{StaticResource StandardButton}" Margin="12.5" Content="Discard Changes"
-                Name="btnDiscardChange" Click="btnDiscardChange_Click"/>
-                <Button Grid.Column="2" Style="{StaticResource StandardButton}" Margin="12.5" Content="Save Changes"
-                Name="btnSaveChange" Click="btnSaveChange_Click"/>
-            </Grid>
+            <!--Left Column-->
+            <Border Style="{StaticResource GridBorderOutLine}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+                <Image Name="imgProfilePicture"/>
+            </Border>
+            <Button Grid.Column="1" Grid.Row="0" Content="Change Profile Picture" Name="btnChangeProfilePicture"
+                    Click="btnChangeProfilePicture_Click"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="Delete Profile Picture" Name="btnDeleteProfilePicture"
+                    Click="btnDeleteProfilePicture_Click"/>
+            
+            
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Username"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Name="txtChangeUsername" IsEnabled="False"/>
+            <Button Grid.Column="1" Grid.Row="3" Content="Change Username" Name="btnChangeUsername"
+                    Click="btnChangeUsername_Click"/>
+            
+            
+            <TextBlock Grid.Column="0" Grid.Row="4" Text="Password"/>
+            <TextBox Grid.Column="1" Grid.Row="4" Name="txtChangePassword" IsEnabled="False"/>
+            <Button Grid.Column="1" Grid.Row="5" Content="Change Password" Name="btnChangePassword"
+                    Click="btnChangePassword_Click"/>
+            
+            
+            <GroupBox Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Header="Appearance" Name="grpAppearance">
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton Content="Light Mode" Name="radLightMode" IsChecked="True"/>
+                    <RadioButton Content="Dark Mode" Name="radDarkMode" IsChecked="False"/>
+                </StackPanel>
+            </GroupBox>
+            
+            
+            <TextBlock Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Text="Account Creation Date"/>
+            <TextBlock Grid.Column="1" Grid.Row="8" HorizontalAlignment="Right" Text="Date" Name="txtblAccountCreationDate"/>
+
+
+        </Grid>
+
+        <!--Bottom Grid-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="230"/>
+                <ColumnDefinition Width="0"/>
+                <ColumnDefinition Width="162.5"/>
+                <ColumnDefinition Width="162.5"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Style="{StaticResource StandardButton}" Content="Delete Account" Margin="12.5"
+                    Name="btnDeleteAccount" Click="btnDeleteAccount_Click"/>
+
+            <Button Grid.Column="2" Style="{StaticResource StandardButton}" Content="Cancel" Margin="12.5"
+                    Name="btnSettingsCancel" Click="btnSettingsCancel_Click"/>
+
+            <Button Grid.Column="3" Style="{StaticResource StandardButton}" Content="Save" Margin="12.5"
+                    Name="btnSettingsSave" Click="btnSettingsSave_Click"/>
+
+
         </Grid>
 
     </Grid>
