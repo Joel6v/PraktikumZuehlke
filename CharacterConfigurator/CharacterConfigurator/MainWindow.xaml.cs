@@ -19,9 +19,9 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         MainController.Load();
-        bool closed = !new LoginWindow().ShowDialog();
-        if(closed) Environment.Exit(0);
-        LoadUiStatic();
+        LoginWindow login = new LoginWindow();
+        if (login.ShowDialog() == null) Close();
+            LoadUiStatic();
         CheckAmountCharacter();
         LoadUiCharacter();
         SetDisabledElements();
@@ -100,7 +100,7 @@ public partial class MainWindow : Window
         if (CurrentCharaterIndex != -1)
         {
             txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).Name;
-            txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.
+            txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.ToString();
             //ComboBoxes
             cmbConsumable.SelectedIndex = MainController.Consumable.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Consumable);
             cmbWeapon.SelectedIndex = MainController.Weapon.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Weapon);
@@ -168,8 +168,9 @@ public partial class MainWindow : Window
     private void btnLogOut_Click(object sender, RoutedEventArgs e)
     {
         MainController.User.Logout();
-        new LoginWindow().Show();
-        this.Close();
+        Hide();
+        LoginWindow login = new LoginWindow();
+        if (login.ShowDialog() == null) Close(); else Show();
     }
 
     private void btnPageLeft_Click(object sender, RoutedEventArgs e)

@@ -40,6 +40,7 @@ namespace CharacterConfigurator.View
             if(MainController.User.Validate(txtLoginUsername.Text, password))
             {
                 //new MainWindow().Show();
+                this.DialogResult = true;
                 Close();
             }
             else
