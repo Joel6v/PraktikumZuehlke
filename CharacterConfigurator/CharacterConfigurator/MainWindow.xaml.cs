@@ -25,7 +25,7 @@ public partial class MainWindow : Window
             CheckAmountCharacter();
             LoadUiCharacter();
             SetDisabledElements();
-            //cmbConsumable.SelectedValue = 0;
+
         }
         else
         {
@@ -103,10 +103,12 @@ public partial class MainWindow : Window
         }
     }
 
+    private bool settingAllCmb = false;
     private void LoadUiCharacter()
     {
         if (CurrentCharaterIndex != -1)
         {
+            settingAllCmb = true;
             txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).Name;
             txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.ToString();
             //ComboBoxes
@@ -118,15 +120,17 @@ public partial class MainWindow : Window
             cmbChest.SelectedIndex = MainController.Chest.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Chest);
             cmbGloves.SelectedIndex = MainController.Gloves.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Gloves);
             cmbLegs.SelectedIndex = MainController.Legs.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Legs);
+            settingAllCmb = false;
+            CalcStatsField();
 
             //StatsField
-            prgHealth.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Health;
-            prgMagicka.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Magicka;
-            prgStamina.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Stamina;
-            txtblDefense.Text = MainController.Character.Get(CurrentCharaterIndex).GetWholeAmountDefense().ToString();
-            txtblDamage.Text = MainController.Character.Get(CurrentCharaterIndex).Weapon.DamagePerHit.ToString();
-            txtblAtkSpeed.Text = MainController.Character.Get(CurrentCharaterIndex).Weapon.AttackSpeed.GetStringValue();
-            txtblSkill.Text = MainController.Character.Get(CurrentCharaterIndex).Race.Skill.GetStringValue();
+            //prgHealth.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Health;
+            //prgMagicka.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Magicka;
+            //prgStamina.Value = MainController.Character.Get(CurrentCharaterIndex).Race.Stamina;
+            //txtblDefense.Text = MainController.Character.Get(CurrentCharaterIndex).GetWholeAmountDefense().ToString();
+            //txtblDamage.Text = MainController.Character.Get(CurrentCharaterIndex).Weapon.DamagePerHit.ToString();
+            //txtblAtkSpeed.Text = MainController.Character.Get(CurrentCharaterIndex).Weapon.AttackSpeed.GetStringValue();
+            //txtblSkill.Text = MainController.Character.Get(CurrentCharaterIndex).Race.Skill.GetStringValue();
         }
         else
         {
@@ -139,6 +143,7 @@ public partial class MainWindow : Window
         txtCharacterName.Text = "character name";
         txtCharacterCreationDate.Text = "creation date";
         //ComboBoxes
+        settingAllCmb = true;
         cmbConsumable.SelectedIndex = 0;
         cmbWeapon.SelectedIndex = 0;
         cmbRace.SelectedIndex = 0;
@@ -147,15 +152,17 @@ public partial class MainWindow : Window
         cmbChest.SelectedIndex = 0;
         cmbGloves.SelectedIndex = 0;
         cmbLegs.SelectedIndex = 0;
+        settingAllCmb = false;
+        CalcStatsField();
 
         //StatsField
-        prgHealth.Value = 100;
-        prgMagicka.Value = 100;
-        prgStamina.Value = 100;
-        txtblDefense.Text = "0";
-        txtblDamage.Text = "0";
-        txtblAtkSpeed.Text = AttackSpeed.MEDIUM.GetStringValue();
-        txtblSkill.Text = Skill.NONE.GetStringValue();
+        //prgHealth.Value = 80;
+        //prgMagicka.Value = 80;
+        //prgStamina.Value = 80;
+        //txtblDefense.Text = "0";
+        //txtblDamage.Text = "0";
+        //txtblAtkSpeed.Text = AttackSpeed.MEDIUM.GetStringValue();
+        //txtblSkill.Text = Skill.NONE.GetStringValue();
     }
 
     private Character ReadCharacter()
@@ -189,6 +196,7 @@ public partial class MainWindow : Window
         }
 
         btnPageLeft.IsEnabled = true;
+        LoadUiCharacter();
     }
 
     private void btnPageRight_Click(object sender, RoutedEventArgs e)
@@ -200,10 +208,13 @@ public partial class MainWindow : Window
         }
 
         btnPageLeft.IsEnabled = true;
+        LoadUiCharacter();
     }
 
+    private int beforeCharacter;
     private void btnNew_Click(object sender, RoutedEventArgs e)
     {
+        beforeCharacter = CurrentCharaterIndex;
         CurrentCharaterIndex = MainController.Character.Count();
         SetEnabledElements();
         LoadUiDefaultCharacter();
@@ -230,6 +241,7 @@ public partial class MainWindow : Window
     private void btnCancel_Click(object sender, RoutedEventArgs e)
     {
         SetDisabledElements();
+        CurrentCharaterIndex = beforeCharacter;
         LoadUiCharacter();
     }
 
@@ -248,14 +260,34 @@ public partial class MainWindow : Window
         }
     }
 
+    private void CalcStatsField()
+    {
+        if (!settingAllCmb)
+        {
+            prgHealth.Value = MainController.Race.Get(cmbRace.SelectedIndex).Health;
+            prgMagicka.Value = MainController.Race.Get(cmbRace.SelectedIndex).Magicka;
+            prgStamina.Value = MainController.Race.Get(cmbRace.SelectedIndex).Stamina;
+            txtblSkill.Text = MainController.Race.Get(cmbRace.SelectedIndex).Skill.GetStringValue();
+            txtblDamage.Text = MainController.Weapon.Get(cmbWeapon.SelectedIndex).DamagePerHit.ToString();
+            txtblAtkSpeed.Text = MainController.Weapon.Get(cmbWeapon.SelectedIndex).AttackSpeed.GetStringValue();
+
+            int defense = 0;
+            defense += MainController.Headgear.Get(cmbHeadgear.SelectedIndex).Defense;
+            defense += MainController.Chest.Get(cmbChest.SelectedIndex).Defense;
+            defense += MainController.Gloves.Get(cmbGloves.SelectedIndex).Defense;
+            defense += MainController.Legs.Get(cmbLegs.SelectedIndex).Defense;
+            txtblDefense.Text = defense.ToString();
+        }
+
+    }
+
     private void cmbConsumable_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (cmbConsumable.SelectedIndex >= 0)
         {
             txtblConsumable.Visibility = Visibility.Hidden;
+            imgConsumable.Source = MainController.Consumable.Get(cmbConsumable.SelectedIndex).Image;
         }
-
-        imgConsumable.Source = MainController.Consumable.Get(cmbConsumable.SelectedIndex).Image;
     }
 
     private void cmbWeapon_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -263,8 +295,9 @@ public partial class MainWindow : Window
         if (cmbWeapon.SelectedIndex >= 0)
         {
             txtblWeapon.Visibility = Visibility.Hidden;
+
+            CalcStatsField();
         }
-        imgWeapon.Source = MainController.Weapon.Get(cmbWeapon.SelectedIndex).Image;
     }
 
     private void cmbHeadgear_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -273,6 +306,8 @@ public partial class MainWindow : Window
         {
             txtblHeadgear.Visibility = Visibility.Hidden;
             brdHeadwear.Visibility = Visibility.Visible;
+
+            CalcStatsField();
         }
     }
 
@@ -282,6 +317,8 @@ public partial class MainWindow : Window
         {
             txtblChest.Visibility = Visibility.Hidden;
             brdBody.Visibility = Visibility.Visible;
+
+            CalcStatsField();
         }
     }
 
@@ -291,6 +328,8 @@ public partial class MainWindow : Window
         {
             txtblGloves.Visibility = Visibility.Hidden;
             brdGloves.Visibility = Visibility.Visible;
+
+            CalcStatsField();
         }
     }
 
@@ -300,6 +339,8 @@ public partial class MainWindow : Window
         {
             txtblLegs.Visibility = Visibility.Hidden;
             brdShoes.Visibility = Visibility.Visible;
+
+            CalcStatsField();
         }
     }
 
@@ -308,6 +349,7 @@ public partial class MainWindow : Window
         if (cmbRace.SelectedIndex >= 0)
         {
             txtblRace.Visibility = Visibility.Hidden;
+            CalcStatsField();
         }
     }
 

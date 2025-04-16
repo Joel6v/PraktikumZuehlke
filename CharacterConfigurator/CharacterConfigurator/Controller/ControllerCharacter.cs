@@ -1,10 +1,12 @@
 ﻿using CharacterConfigurator.Model;
 using CharacterConfigurator.Repository;
+using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace CharacterConfigurator.Controller
 {
@@ -70,6 +72,9 @@ namespace CharacterConfigurator.Controller
 
         public void Add(Character character)
         {
+            if(CheckIfNameExists(character.Name)) { throw new ExceptionAlreadyExistingName(); }
+            if(CheckIfNameExists(character.Name)) { throw new ExceptionAlreadyExistingName(); }
+            if (CheckIfNameLenght(character.Name)) { throw new ExceptionNameLenght(); }
             int newId = Repository.Save(character);
             character.Id = newId;
             CharacterListCurrentUser.Add(character);
@@ -118,6 +123,29 @@ namespace CharacterConfigurator.Controller
             }
 
             return false;
+        }
+
+        public bool CheckIfNameLenght(string newName)
+        {
+
+            if (newName.Length < DataConverter.MinNameLength || newName.Length > DataConverter.MaxNameLength)
+            {
+                return false;
+            }
+            return true;
+        }
+
+
+        public bool CheckIfNameValid(string newName)
+        {
+            foreach (char c in newName)
+            {
+                if (!(char.IsLetterOrDigit(c) || c == ' '))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void Load()

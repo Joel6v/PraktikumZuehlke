@@ -7,6 +7,9 @@ namespace CharacterConfigurator.Model
 {
     public static class DataConverter
     {
+        public const int MinNameLength = 3;
+        public const int MaxNameLength = 30;
+
         public static byte[] GenerateHex(string text)
         {
             byte[] bytesToBytes = Encoding.Unicode.GetBytes(text);

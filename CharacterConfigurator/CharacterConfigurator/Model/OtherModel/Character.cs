@@ -30,40 +30,7 @@ namespace CharacterConfigurator.Model
 
         public static DbEnum.ModelTypeDb DbModel { get; protected set; } = DbEnum.ModelTypeDb.CHARACTER;
 
-        public string Name { get { return _Name; } set 
-            {
-                if (MainController.Character.CheckIfNameExists(value)) //The name should only be checked in the names from the current user
-                {
-                    throw new ExceptionAlreadyExistingName();
-                }
-                bool nameValid = true;
-                if (value.Length >= User.MinNameLength && value.Length <= User.MaxNameLength)
-                {
-                    foreach (char c in value)
-                    {
-                        if (!(char.IsLetterOrDigit(c) || c == ' '))
-                        {
-                            nameValid = false;
-                            break;
-                        }
-                    }
-                    if (nameValid)
-                    {
-                        _Name = value;
-                    }
-                    else
-                    {
-                        throw new ExceptionInvalidLetters();
-                    }
-                }
-                else
-                {
-                    throw new ExceptionNameLenght();
-                }
-            } 
-        }
-
-        private string _Name {  get; set; }
+        public string Name { get; set; }
 
         public string GetAttributes()
         {
@@ -78,7 +45,7 @@ namespace CharacterConfigurator.Model
         public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
-            _Name = sqlResult.GetString(1);
+            Name = sqlResult.GetString(1);
             TimeStamp = sqlResult.GetDateTime(2);
             User = MainController.User.Get(sqlResult.GetInt32(3) - 1); //-1 because the Id's in the Db starts with 1
             Race = MainController.Race.Get(sqlResult.GetInt32(4) - 1);
