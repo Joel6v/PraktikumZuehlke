@@ -64,6 +64,8 @@ namespace CharacterConfigurator.Controller
             int newId = Repository.Save(user);
             user.Id = newId;
             UserList.Add(user);
+            CurrentUser = user;
+            MainController.Character.CurrentUserChanged();
         }
 
         public void Delete(int index)
@@ -71,6 +73,7 @@ namespace CharacterConfigurator.Controller
             MainController.Character.DeleteAll();
             Repository.Delete(UserList[index]);
             UserList.RemoveAt(index);
+            Logout();
         }
 
         public void Update(User user)
@@ -111,7 +114,7 @@ namespace CharacterConfigurator.Controller
             byte[] loginPasswordHash = DataConverter.GenerateHex(loginPassword);
             foreach (User user in UserList)
             {
-                if (loginName == user.Name && loginPasswordHash.Equals(user.Password))
+                if (loginName == user.Name && loginPasswordHash.SequenceEqual(user.Password))
                 {
                     CurrentUser = user;
                     MainController.Character.CurrentUserChanged();

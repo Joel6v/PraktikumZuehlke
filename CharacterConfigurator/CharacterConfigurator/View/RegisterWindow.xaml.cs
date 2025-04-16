@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CharacterConfigurator.Controller;
+using CharacterConfigurator.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,19 +30,48 @@ namespace CharacterConfigurator.View
         {
             string password = txtRegisterPassword.GetActualText();
             string username = txtRegisterUsername.Text;
-            MessageBox.Show(password + " " + username);
-        }
-
-        private void txtRegisterPassword_TextChanged(object sender, TextChangedEventArgs e)
-        {
+            try
+            {
+                MainController.User.Add(new Model.User(username, password));
+                //new MainWindow().Show();
+                Close();
+            }
+            catch (ExceptionAlreadyExistingName ex)
+            {
+                lblUsernameTaken.Visibility = Visibility.Visible;
+            }
+            catch (ExceptionInvalidLetters ex)
+            {
+                lblUsernameSpecialCharacters.Visibility = Visibility.Visible;
+            }
+            catch (ExceptionNameLenght ex)
+            {
+                lblUsernameInvalid.Visibility = Visibility.Visible;
+            }
 
         }
 
         private void lblRegisterLogin_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            LoginWindow objLoginWindow = new LoginWindow();
-            objLoginWindow.Show();
-            this.Close();
+            new LoginWindow().Show();
+            Close();
+        }
+
+        private void txtRegisterPassword_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            HiddenLblErrors();
+        }
+
+        private void txtRegisterUsername_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            HiddenLblErrors();
+        }
+
+        private void HiddenLblErrors()
+        {
+            lblUsernameTaken.Visibility = Visibility.Hidden;
+            lblUsernameSpecialCharacters.Visibility = Visibility.Hidden;
+            lblUsernameInvalid.Visibility = Visibility.Hidden;
         }
     }
 }

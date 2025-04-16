@@ -41,7 +41,7 @@ namespace CharacterConfigurator.Model
                 {
                     foreach (char c in value)
                     {
-                        if (!char.IsLetterOrDigit(c))
+                        if (!char.IsLetterOrDigit(c) || c == ' ')
                         {
                             nameValid = false;
                             break;

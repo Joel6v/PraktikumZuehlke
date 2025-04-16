@@ -45,6 +45,7 @@ INSERT INTO legs (name, defense, image) VALUES
 -- -----------------------------------------------------
 DELETE FROM weapon;
 INSERT INTO weapon (name, damagePerHit, attackSpeed, image) VALUES
+('None', 3, 2, LOAD_FILE(CONCAT(@folder, 'Weapon\\weapon_none.png'))),
 ('Dagger', 14, 3, LOAD_FILE(CONCAT(@folder, 'Weapon\\dagger.png'))),
 ('Sword', 31, 1, LOAD_FILE(CONCAT(@folder, 'Weapon\\sword.png'))),
 ('War Axe', 34, 0, LOAD_FILE(CONCAT(@folder, 'Weapon\\war_axe.png'))),

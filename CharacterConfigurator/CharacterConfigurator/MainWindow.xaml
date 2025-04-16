@@ -10,17 +10,18 @@
         WindowStartupLocation="CenterScreen"
         Title="Skirym Character Configuration" Height="825" Width="1255" Style="{StaticResource SkirymFont}" FontSize="18">
 
-    
+
     <!--Outer Grid-->
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="72.5"/>
-            <RowDefinition Height="600"/>
+            <RowDefinition Height="187.165"/>
+            <RowDefinition Height="412.835"/>
             <RowDefinition Height="72.5"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Style="{StaticResource GridBorderOutLine}"/>
-        <Border Grid.Row="1" Style="{StaticResource GridBorderOutLine}" Margin="0,12.5,0,12.5"/>
-        <Border Grid.Row="2" Style="{StaticResource GridBorderOutLine}"/>
+        <Border Grid.Row="1" Style="{StaticResource GridBorderOutLine}" Margin="0,12,0,12" Grid.RowSpan="2"/>
+        <Border Grid.Row="2" Style="{StaticResource GridBorderOutLine}" Margin="0,412,0,0" Grid.RowSpan="2"/>
 
         <!--Top Middle Grid-->
         <Grid Grid.Row="0">
@@ -40,7 +41,7 @@
                     <ColumnDefinition Width="162.5"/>
                     <ColumnDefinition Width="162.5"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <Label Grid.Row="0" Grid.Column="0" Content="username" HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontSize="28" Name="lblUsername" Style="{StaticResource HoverOverText}"/>
                 <Button Grid.Row="0" Grid.Column="1" Content="log out" Margin="12.5,12.5,12.5,12.5" Style="{StaticResource StandardButton}"
@@ -50,7 +51,7 @@
 
 
         <!--Middle Grid-->
-        <Grid Grid.Row="1">
+        <Grid Margin="0,72,0,0" Grid.RowSpan="3">
             <DockPanel>
                 <!-- Left Column -->
                 <StackPanel DockPanel.Dock="Left" Width="325">
@@ -122,8 +123,8 @@
                             <TextBlock Grid.Row="6" Grid.Column="1" Text="medium" Style="{StaticResource StatsTextBlockRight}" Name="txtblAtkSpeed"/>
                             <TextBlock Grid.Row="7" Grid.Column="1" Text="None" Style="{StaticResource StatsTextBlockRight}" Name="txtblSkill"/>
                         </Grid>
-                        
-                        
+
+
                         <!--Consumable-->
                         <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource GridBorderOutLine}" Margin="12.5,0,12.5,25"/>
 
@@ -136,7 +137,7 @@
                         <Border Grid.Row="1" Grid.Column="0" Margin="25,55,25,37.5" Style="{StaticResource GridBorderOutLine}">
                             <Image Grid.Row="1" Grid.Column="0" Name="imgConsumable"/>
                         </Border>
-                        
+
 
                     </Grid>
                 </StackPanel>
@@ -161,7 +162,7 @@
                         </Border>
 
 
-                    <!--Clothing-->
+                        <!--Clothing-->
                         <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource GridBorderOutLine}" Margin="12.5,0,12.5,25"/>
 
                         <Border Grid.Row="1" Grid.Column="0" Margin="25,12.5,25,205" BorderBrush="DarkGray" BorderThickness="1" Background="WhiteSmoke">
@@ -169,7 +170,7 @@
 
                             </TextBlock>
                         </Border>
-                        
+
 
                         <!--Headwear-->
                         <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,55,167.5,120" Name="cmbHeadgear" SelectionChanged="cmbHeadgear_SelectionChanged"
@@ -179,8 +180,8 @@
                                 Name="brdHeadwear" >
                             <Image Grid.Row="1" Grid.Column="0" IsHitTestVisible="False" Name="imgHeadwear"/>
                         </Border>
-                        
-                        
+
+
                         <!--Body-->
                         <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,137.5,167.5,37.5" Name="cmbChest" SelectionChanged="cmbChest_SelectionChanged"
                                   Foreground="Transparent"/>
@@ -189,8 +190,8 @@
                                 Name="brdBody">
                             <Image Grid.Row="1" Grid.Column="0" IsHitTestVisible="False" Name="imgBody"/>
                         </Border>
-                        
-                        
+
+
                         <!--Gloves-->
                         <ComboBox Grid.Row="1" Grid.Column="0" Margin="167.5,55,25,120" Name="cmbGloves" SelectionChanged="cmbGloves_SelectionChanged"
                                   Foreground="Transparent"/>
@@ -199,8 +200,8 @@
                                 Name="brdGloves">
                             <Image Grid.Row="1" Grid.Column="0" IsHitTestVisible="False" Name="imgGloves"/>
                         </Border>
-                        
-                        
+
+
                         <!--Shoes-->
                         <ComboBox Grid.Row="1" Grid.Column="0" Margin="167.5,137.5,25,37.5" Name="cmbLegs" SelectionChanged="cmbLegs_SelectionChanged"
                                   Foreground="Transparent"/>
@@ -209,8 +210,8 @@
                                 Name="brdShoes">
                             <Image Grid.Row="1" Grid.Column="0" IsHitTestVisible="False" Name="imgShoes"/>
                         </Border>
-                        
-                        
+
+
                     </Grid>
                 </StackPanel>
 
@@ -233,7 +234,7 @@
 
                         <ComboBox Name="cmbSex" Margin="375,80,25,487.5" SelectionChanged="cmbSex_SelectionChanged"/>
                         <TextBlock Text="Sex" Name="txtblSex" Margin="387.5,82.5,100,492.5"/>
-                        
+
                     </Grid>
 
                 </StackPanel>
@@ -241,7 +242,7 @@
         </Grid>
 
         <!--Bottom Grid-->
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Margin="0,412,0,0" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="325"/>
                 <ColumnDefinition Width="550"/>

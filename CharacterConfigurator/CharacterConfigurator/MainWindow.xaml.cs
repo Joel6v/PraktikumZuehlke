@@ -19,17 +19,12 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         MainController.Load();
+        bool closed = !new LoginWindow().ShowDialog();
+        if(closed) Environment.Exit(0);
         LoadUiStatic();
         CheckAmountCharacter();
         LoadUiCharacter();
         SetDisabledElements();
-
-        //LoginWindow loginWindow = new LoginWindow();
-        //loginWindow.Show();
-        //RegisterWindow registerWindow = new RegisterWindow();
-        //registerWindow.Show();
-        //DbConnection dBConnection = new DbConnection();
-        //this.Close();
     }
 
     private void LoadUiStatic() //For ComboBoxes and so
@@ -68,6 +63,9 @@ public partial class MainWindow : Window
         {
             cmbSex.Items.Add(((Sex)i).GetStringValue());
         }
+
+        //Username
+        lblUsername.Content = MainController.User.GetCurrentUser().Name;
     }
 
     private void CheckAmountCharacter()
@@ -101,6 +99,8 @@ public partial class MainWindow : Window
     {
         if (CurrentCharaterIndex != -1)
         {
+            txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).Name;
+            txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.
             //ComboBoxes
             cmbConsumable.SelectedIndex = MainController.Consumable.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Consumable);
             cmbWeapon.SelectedIndex = MainController.Weapon.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Weapon);
@@ -128,6 +128,8 @@ public partial class MainWindow : Window
 
     private void LoadUiDefaultCharacter()
     {
+        txtCharacterName.Text = "character name";
+        txtCharacterCreationDate.Text = "creation date";
         //ComboBoxes
         cmbConsumable.SelectedIndex = 0;
         cmbWeapon.SelectedIndex = 0;
@@ -201,7 +203,10 @@ public partial class MainWindow : Window
 
     private void btnEdit_Click(object sender, RoutedEventArgs e)
     {
-        SetEnabledElements();
+        if(CurrentCharaterIndex != 1)
+        {
+            SetEnabledElements();
+        }
     }
 
     private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -217,11 +222,22 @@ public partial class MainWindow : Window
     private void btnCancel_Click(object sender, RoutedEventArgs e)
     {
         SetDisabledElements();
+        LoadUiCharacter();
     }
 
     private void btnSave_Click(object sender, RoutedEventArgs e)
     {
-       SetDisabledElements();
+        SetDisabledElements();
+        if(CurrentCharaterIndex == MainController.Character.Count())
+        {
+            MainController.Character.Add(ReadCharacter());
+        }
+        else
+        {
+            Character editCharacter = ReadCharacter();
+            editCharacter.Id = MainController.Character.Get(CurrentCharaterIndex).Id;
+            MainController.Character.Update(editCharacter);
+        }
     }
 
     private void cmbConsumable_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -240,6 +256,7 @@ public partial class MainWindow : Window
         {
             txtblWeapon.Visibility = Visibility.Hidden;
         }
+        imgWeapon.Source = MainController.Weapon.Get(cmbWeapon.SelectedIndex).Image;
     }
 
     private void cmbHeadgear_SelectionChanged(object sender, SelectionChangedEventArgs e)

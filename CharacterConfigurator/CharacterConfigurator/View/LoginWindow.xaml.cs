@@ -37,10 +37,9 @@ namespace CharacterConfigurator.View
         {
             string password = txtLoginPassword.GetActualText();
             string username = txtLoginUsername.Text;
-            MessageBox.Show(password + " " + username);
             if(MainController.User.Validate(txtLoginUsername.Text, password))
             {
-                new MainWindow().Show();
+                //new MainWindow().Show();
                 Close();
             }
             else
