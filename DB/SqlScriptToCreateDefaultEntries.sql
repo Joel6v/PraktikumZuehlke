@@ -2,9 +2,10 @@ USE zuehlkepraktikum;
 -- To execute this with MySQL Workbench, you must change the prefernces from the editor
 -- Make sure the Ids matches with the foreign keys, Id's start at 1
 -- Move the folder 'Images' into the 'secure_file.priv' folder and may change the path from the variable '@folder'
+GRANT FILE ON *.* TO 'root'@'localhost';
 SHOW VARIABLES LIKE 'secure_file_priv';
-SET @folder = 'C:\\Program Files\\MySQL\\MySQL Server 8.4\\Uploads\\Image\\';
-SELECT LOAD_FILE(CONCAT(@folder, 'Weapon\\dagger.png')) IS NOT NULL AS 'Weapon Dagger exists?'; -- checks if the files are existing
+SET @folder = 'C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\Image\\';
+SELECT LOAD_FILE(CONCAT(@folder, 'Weapon\\dagger.png')) IS NOT NULL AS 'Weapon Dagger exists?'; -- checks if the files are existing and accessable
 -- -----------------------------------------------------
 -- Table 'race'
 -- -----------------------------------------------------
