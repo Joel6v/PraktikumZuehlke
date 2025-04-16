@@ -34,6 +34,7 @@ namespace CharacterConfigurator.View
             {
                 MainController.User.Add(new Model.User(username, password));
                 //new MainWindow().Show();
+                this.DialogResult = true;
                 Close();
             }
             catch (ExceptionAlreadyExistingName ex)
