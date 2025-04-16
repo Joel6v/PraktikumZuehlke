@@ -38,7 +38,7 @@
         <Label Content="Password is less than 3 characters long" Grid.Column="1" Grid.Row="0" Name="lblPasswordInvalid" Visibility="Hidden"
                Foreground="Red"/>
 
-        <TextBox Name="txtRegisterUsername" Grid.Column="1" Grid.Row="0" Margin="0,25,30,-5" Padding="5,6,5,6" TabIndex="0"/>
+        <TextBox Name="txtRegisterUsername" Grid.Column="1" Grid.Row="0" Margin="0,25,30,-5" Padding="5,0,5,0" TabIndex="0"/>
         
         <controls:RandomizedTextBox x:Name="txtRegisterPassword" Grid.Column="1" Grid.Row="1" Margin="0,15,30,5"
                  VerticalContentAlignment="Center" TextChanged="txtRegisterPassword_TextChanged" Panel.ZIndex="1" TabIndex="1"

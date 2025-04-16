@@ -344,4 +344,10 @@ public partial class MainWindow : Window
         btnCancel.Visibility = Visibility.Hidden;
         btnSave.Visibility = Visibility.Hidden;
     }
+
+    private void lblUsername_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        UserSettingsWindow objUserSettingsWindow = new UserSettingsWindow();
+        objUserSettingsWindow.Show();
+    }
 }

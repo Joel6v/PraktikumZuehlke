@@ -8,7 +8,7 @@
         ResizeMode="CanMinimize"
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen"
-        Title="Skirym Character Configuration" Height="825" Width="1255" Style="{StaticResource SkirymFont}" FontSize="18">
+        Title="Skirym Character Configurator" Height="825" Width="1255" Style="{StaticResource SkirymFont}" FontSize="18">
 
     
     <!--Outer Grid-->
@@ -18,6 +18,7 @@
             <RowDefinition Height="600"/>
             <RowDefinition Height="72.5"/>
         </Grid.RowDefinitions>
+        
         <Border Grid.Row="0" Style="{StaticResource GridBorderOutLine}"/>
         <Border Grid.Row="1" Style="{StaticResource GridBorderOutLine}" Margin="0,12.5,0,12.5"/>
         <Border Grid.Row="2" Style="{StaticResource GridBorderOutLine}"/>
@@ -42,7 +43,7 @@
                 </Grid.ColumnDefinitions>
                 
                 <Label Grid.Row="0" Grid.Column="0" Content="username" HorizontalAlignment="Center" VerticalAlignment="Center"
-                       FontSize="28" Name="lblUsername" Style="{StaticResource HoverOverText}"/>
+                       FontSize="28" Name="lblUsername" Style="{StaticResource HoverOverText}" PreviewMouseDown="lblUsername_PreviewMouseDown"/>
                 <Button Grid.Row="0" Grid.Column="1" Content="log out" Margin="12.5,12.5,12.5,12.5" Style="{StaticResource StandardButton}"
                         Name="btnLogOut" Click="btnLogOut_Click"/>
             </Grid>
@@ -135,6 +136,7 @@
 
                         <Border Grid.Row="1" Grid.Column="0" Margin="25,55,25,37.5" Style="{StaticResource GridBorderOutLine}">
                             <Image Grid.Row="1" Grid.Column="0" Name="imgConsumable"/>
+                            
                         </Border>
                         
 
@@ -165,50 +167,50 @@
                         <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource GridBorderOutLine}" Margin="12.5,0,12.5,25"/>
 
                         <Border Grid.Row="1" Grid.Column="0" Margin="25,12.5,25,205" BorderBrush="DarkGray" BorderThickness="1" Background="WhiteSmoke">
-                            <TextBlock Text="Clothing" Margin="12.5,1,175,0">
-
-                            </TextBlock>
+                            <TextBlock Text="Clothing" Margin="12.5,1,175,0"/>
                         </Border>
                         
 
                         <!--Headwear-->
                         <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,55,167.5,120" Name="cmbHeadgear" SelectionChanged="cmbHeadgear_SelectionChanged"
-                                  Foreground="Transparent"/>
-                        <TextBlock Text="Headwear" Grid.Row="1" Grid.Column="0" Margin="37.5,80,200,137.5" IsHitTestVisible="False" Name="txtblHeadgear"/>
+                                  Style="{StaticResource HiddenSelectedTextComboBox}"/>
                         <Border Grid.Row="1" Grid.Column="0" Margin="30,60,187.5,125" Style="{StaticResource ClothingBorder}" IsHitTestVisible="False"
-                                Name="brdHeadwear" >
+                                Name="brdHeadwear">
                             <Image Grid.Row="1" Grid.Column="0" IsHitTestVisible="False" Name="imgHeadwear"/>
                         </Border>
+                        <TextBlock Text="Headwear" Grid.Row="1" Grid.Column="0" Margin="37.5,80,200,137.5" IsHitTestVisible="False" Name="txtblHeadgear"/>
+                        
                         
                         
                         <!--Body-->
                         <ComboBox Grid.Row="1" Grid.Column="0" Margin="25,137.5,167.5,37.5" Name="cmbChest" SelectionChanged="cmbChest_SelectionChanged"
-                                  Foreground="Transparent"/>
-                        <TextBlock Text="Body" Grid.Row="1" Grid.Column="0" Margin="37.5,165,200,50" IsHitTestVisible="False" Name="txtblChest"/>
+                                  Style="{StaticResource HiddenSelectedTextComboBox}"/>
                         <Border Grid.Row="1" Grid.Column="0" Margin="30,142.5,187.5,42.5" Style="{StaticResource ClothingBorder}" IsHitTestVisible="False"
                                 Name="brdBody">
                             <Image Grid.Row="1" Grid.Column="0" IsHitTestVisible="False" Name="imgBody"/>
                         </Border>
+                        <TextBlock Text="Body" Grid.Row="1" Grid.Column="0" Margin="37.5,165,200,50" IsHitTestVisible="False" Name="txtblChest"/>
                         
                         
                         <!--Gloves-->
                         <ComboBox Grid.Row="1" Grid.Column="0" Margin="167.5,55,25,120" Name="cmbGloves" SelectionChanged="cmbGloves_SelectionChanged"
-                                  Foreground="Transparent"/>
-                        <TextBlock Text="Gloves" Grid.Row="1" Grid.Column="0" Margin="180,80,75,137.5" IsHitTestVisible="False" Name="txtblGloves"/>
+                                  Style="{StaticResource HiddenSelectedTextComboBox}"/>
                         <Border Grid.Row="1" Grid.Column="0" Margin="172.5,60,45,125" Style="{StaticResource ClothingBorder}" IsHitTestVisible="False"
                                 Name="brdGloves">
                             <Image Grid.Row="1" Grid.Column="0" IsHitTestVisible="False" Name="imgGloves"/>
                         </Border>
+                        <TextBlock Text="Gloves" Grid.Row="1" Grid.Column="0" Margin="180,80,75,137.5" IsHitTestVisible="False" Name="txtblGloves"/>
                         
                         
                         <!--Shoes-->
                         <ComboBox Grid.Row="1" Grid.Column="0" Margin="167.5,137.5,25,37.5" Name="cmbLegs" SelectionChanged="cmbLegs_SelectionChanged"
-                                  Foreground="Transparent"/>
-                        <TextBlock Text="Shoes" Grid.Row="1" Grid.Column="0" Margin="180,165,75,50" IsHitTestVisible="False" Name="txtblLegs"/>
+                                  Style="{StaticResource HiddenSelectedTextComboBox}"/>
                         <Border Grid.Row="1" Grid.Column="0" Margin="172.5,142.5,45,42.5" Style="{StaticResource ClothingBorder}" IsHitTestVisible="False"
                                 Name="brdShoes">
                             <Image Grid.Row="1" Grid.Column="0" IsHitTestVisible="False" Name="imgShoes"/>
                         </Border>
+                        <TextBlock Text="Shoes" Grid.Row="1" Grid.Column="0" Margin="180,165,75,50" IsHitTestVisible="False" Name="txtblLegs"/>
+                        
                         
                         
                     </Grid>
@@ -226,7 +228,7 @@
                         </Border>
 
                         <TextBox Text="character name" Name="txtCharacterName" Margin="25,37.5,325,530" VerticalContentAlignment="Center" Padding="5,0,5,0"/>
-                        <TextBlock Text="creation date" Name="txtCharacterCreationDate" Margin="30,82.5,100,492.5"/>
+                        <TextBlock Text="creation date" Name="txtCharacterCreationDate" Margin="32.5,82.5,100,492.5"/>
 
                         <ComboBox Name="cmbRace" Margin="375,37.5,25,530" SelectionChanged="cmbRace_SelectionChanged"/>
                         <TextBlock Text="Race" Name="txtblRace" Margin="387.5,40,100,535"/>
