@@ -4,7 +4,7 @@ USE zuehlkepraktikum;
 -- Move the folder 'Images' into the 'secure_file.priv' folder and may change the path from the variable '@folder'
 GRANT FILE ON *.* TO 'root'@'localhost';
 SHOW VARIABLES LIKE 'secure_file_priv';
-SET @folder = 'C:\\Program Files\\MySQL\\MySQL Server 8.0\\Uploads\\Image\\';
+SET @folder = 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Image\\';
 SELECT LOAD_FILE(CONCAT(@folder, 'Weapon\\dagger.png')) IS NOT NULL AS 'Weapon Dagger exists?'; -- checks if the files are existing and accessable
 -- -----------------------------------------------------
 -- Table 'race'
@@ -15,7 +15,7 @@ INSERT INTO race (name, health, magicka, stamina, skill, imageMale, imageFemale)
 ('Redguard', 85, 55, 70, 2, LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png'))),
 ('Altmer', 50, 100, 60, 3, LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png'))),
 ('Orc', 100, 55, 60, 0, LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png'))),
-('Khajit', 65, 45, 100, 4, LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png')));
+('Khajiit', 65, 45, 100, 4, LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png')));
 
 -- -----------------------------------------------------
 -- Tables from type 'clothing'
@@ -69,7 +69,7 @@ INSERT INTO consumable (name, image) VALUES
 -- -----------------------------------------------------
 DELETE FROM user;
 INSERT INTO user (name, password, timestamp) VALUES
-('TestUser1', '532eaabd9574880dbf76b9b8cc00832c20a6ec113d682299550d7a6e0f345e25', NOW()); -- Password: Test
+('User1', 'E6FA3CA87B1B641AB646D3B4933BBA8D0970763F030B6578A60ABDEAE7366247', NOW()); -- Password: Test
 
 -- -----------------------------------------------------
 -- Table 'character'

@@ -108,10 +108,10 @@ namespace CharacterConfigurator.Controller
 
         public bool Validate(string loginName, string loginPassword)
         {
-            byte[] loginPasswordHash = DataConverter.GenerateHex(loginName);
+            byte[] loginPasswordHash = DataConverter.GenerateHex(loginPassword);
             foreach (User user in UserList)
             {
-                if (loginName == user.Name && loginPasswordHash == user.Password)
+                if (loginName == user.Name && loginPasswordHash.Equals(user.Password))
                 {
                     CurrentUser = user;
                     MainController.Character.CurrentUserChanged();

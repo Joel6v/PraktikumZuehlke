@@ -17,7 +17,6 @@ namespace CharacterConfigurator.Controller
         public ControllerCharacter()
         {
             Repository = new RepositoryVariable<Character, Character>();
-            Load();
         }
 
         public void CurrentUserChanged()
