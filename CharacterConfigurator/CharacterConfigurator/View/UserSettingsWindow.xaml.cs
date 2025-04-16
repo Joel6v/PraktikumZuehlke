@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CharacterConfigurator.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,15 +27,44 @@ namespace CharacterConfigurator.View
 
         private void btnDeleteAccount_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult  accountDeletion = MessageBox.Show("Are you sure you want to delete your account?","Account deletion",MessageBoxButton.YesNo,MessageBoxImage.Error);
 
+            if (accountDeletion == MessageBoxResult.Yes) 
+            {
+                MainController.User.Delete();
+                this.DialogResult = false;
+                this.Close();                
+            }
         }
 
-        private void btnDiscardChange_Click(object sender, RoutedEventArgs e)
+        private void btnSettingsCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+            this.Close();
+        }
+
+        private void btnSettingsSave_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+            this.Close();
+        }
+
+        private void btnChangeProfilePicture_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnSaveChange_Click(object sender, RoutedEventArgs e)
+        private void btnDeleteProfilePicture_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnChangeUsername_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnChangePassword_Click(object sender, RoutedEventArgs e)
         {
 
         }

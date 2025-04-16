@@ -25,6 +25,7 @@ public partial class MainWindow : Window
             CheckAmountCharacter();
             LoadUiCharacter();
             SetDisabledElements();
+            //cmbConsumable.SelectedValue = 0;
         }
         else
         {
@@ -372,6 +373,10 @@ public partial class MainWindow : Window
     private void lblUsername_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         UserSettingsWindow objUserSettingsWindow = new UserSettingsWindow();
-        objUserSettingsWindow.ShowDialog();
+        if (!(bool)objUserSettingsWindow.ShowDialog())
+        {
+            new RegisterWindow().Show();
+            Close();
+        }
     }
 }
