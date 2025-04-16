@@ -3,6 +3,7 @@ using CharacterConfigurator.Model;
 using CharacterConfigurator.Model.CharacterEnum;
 using CharacterConfigurator.Model.Clothing;
 using CharacterConfigurator.View;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -56,6 +57,7 @@ public partial class MainWindow : Window
         for (int i = 0; i < MainController.Gloves.Count(); i++)
         {
             cmbGloves.Items.Add(MainController.Gloves.Get(i).Name);
+            string name = MainController.Gloves.Get(i).Name;
         }
         for (int i = 0; i < MainController.Legs.Count(); i++)
         {
@@ -79,15 +81,16 @@ public partial class MainWindow : Window
     {
         if (MainController.Character.Count() == 1)
         {
-            btnPageRight.IsEnabled = false;
-            btnPageLeft.IsEnabled = false;
+            btnEdit.IsEnabled = true;
+            btnDelete.IsEnabled = true;
 
             CurrentCharaterIndex = 0;
         }else if(MainController.Character.Count() > 1)
         {
+            btnEdit.IsEnabled = true;
+            btnDelete.IsEnabled = true;
+
             btnPageRight.Focus();
-            btnPageRight.IsEnabled = true;
-            btnPageLeft.IsEnabled = false;
 
             if(CurrentCharaterIndex == -1)
             {
@@ -104,6 +107,8 @@ public partial class MainWindow : Window
             btnEdit.IsEnabled = false;
             //CurrentCharaterIndex = -1; //is set in the top
         }
+
+        CheckPageButtons();
     }
 
     private bool settingAllCmb = false;
@@ -113,7 +118,7 @@ public partial class MainWindow : Window
         {
             settingAllCmb = true;
             txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).Name;
-            txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.ToString();
+            txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.ToString(DataConverter.Format);
             //ComboBoxes
             cmbConsumable.SelectedIndex = MainController.Consumable.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Consumable);
             cmbWeapon.SelectedIndex = MainController.Weapon.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Weapon);
@@ -144,7 +149,7 @@ public partial class MainWindow : Window
     private void LoadUiDefaultCharacter()
     {
         txtCharacterName.Text = "character name";
-        txtCharacterCreationDate.Text = "creation date";
+        txtCharacterCreationDate.Text = "dd.mm.yyyy hh:mm:ss";
         //ComboBoxes
         settingAllCmb = true;
         cmbConsumable.SelectedIndex = 0;
@@ -239,6 +244,7 @@ public partial class MainWindow : Window
         if(CurrentCharaterIndex != 1)
         {
             SetEnabledElements();
+            beforeCharacter = CurrentCharaterIndex;
         }
     }
 
@@ -267,6 +273,7 @@ public partial class MainWindow : Window
             if (CurrentCharaterIndex == MainController.Character.Count())
             {
                 MainController.Character.Add(ReadCharacter());
+                txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.ToString(DataConverter.Format);
             }
             else
             {
@@ -337,7 +344,7 @@ public partial class MainWindow : Window
         {
             txtblHeadgear.Visibility = Visibility.Hidden;
             brdHeadwear.Visibility = Visibility.Visible;
-
+            imgHeadwear.Source = MainController.Headgear.Get(cmbHeadgear.SelectedIndex).Image;
             CalcStatsField();
         }
     }
@@ -348,7 +355,7 @@ public partial class MainWindow : Window
         {
             txtblChest.Visibility = Visibility.Hidden;
             brdBody.Visibility = Visibility.Visible;
-
+            imgBody.Source = MainController.Chest.Get(cmbChest.SelectedIndex).Image;
             CalcStatsField();
         }
     }
@@ -359,7 +366,7 @@ public partial class MainWindow : Window
         {
             txtblGloves.Visibility = Visibility.Hidden;
             brdGloves.Visibility = Visibility.Visible;
-
+            imgGloves.Source = MainController.Gloves.Get(cmbGloves.SelectedIndex).Image;
             CalcStatsField();
         }
     }
@@ -368,9 +375,9 @@ public partial class MainWindow : Window
     {
         if (cmbLegs.SelectedIndex >= 0)
         {
-            txtblLegs.Visibility = Visibility.Hidden;
+            //txtblLegs.Visibility = Visibility.Hidden;
             brdShoes.Visibility = Visibility.Visible;
-
+            imgShoes.Source = MainController.Legs.Get(cmbLegs.SelectedIndex).Image;
             CalcStatsField();
         }
     }

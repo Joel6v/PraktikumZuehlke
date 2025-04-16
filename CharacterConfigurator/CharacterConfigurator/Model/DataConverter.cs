@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Globalization;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Media.Imaging;
@@ -9,6 +10,8 @@ namespace CharacterConfigurator.Model
     {
         public const int MinNameLength = 3;
         public const int MaxNameLength = 30;
+
+        public static CultureInfo Format = CultureInfo.GetCultureInfo("de-DE");
 
         public static byte[] GenerateHex(string text)
         {
