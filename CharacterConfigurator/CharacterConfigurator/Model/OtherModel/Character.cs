@@ -39,7 +39,7 @@ namespace CharacterConfigurator.Model
 
         public List<string> GetListAttributes()
         {
-            return new List<string>() { $"'{Name}'", $"'{TimeStamp}'", $"{User.Id}", $"{Race.Id}", $"{Headgear.Id}", $"{Chest.Id}", $"{Gloves.Id}", $"{Legs.Id}", $"{Weapon.Id}", $"{Consumable.Id}", $"{(int)Sex}"};
+            return new List<string>() { $"'{Name}'", $"'{TimeStamp.ToString()}'", $"{User.Id}", $"{Race.Id}", $"{Headgear.Id}", $"{Chest.Id}", $"{Gloves.Id}", $"{Legs.Id}", $"{Weapon.Id}", $"{Consumable.Id}", $"{(int)Sex}"};
         }
 
         public void SetAttributes(MySqlDataReader sqlResult)

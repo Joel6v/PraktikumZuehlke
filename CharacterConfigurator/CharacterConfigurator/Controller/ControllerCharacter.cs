@@ -1,12 +1,5 @@
 ﻿using CharacterConfigurator.Model;
 using CharacterConfigurator.Repository;
-using Google.Protobuf.WellKnownTypes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Documents;
 
 namespace CharacterConfigurator.Controller
 {
@@ -72,9 +65,9 @@ namespace CharacterConfigurator.Controller
 
         public void Add(Character character)
         {
-            if(CheckIfNameExists(character.Name)) { throw new ExceptionAlreadyExistingName(); }
-            if(CheckIfNameExists(character.Name)) { throw new ExceptionAlreadyExistingName(); }
-            if (CheckIfNameLenght(character.Name)) { throw new ExceptionNameLenght(); }
+            if(!CheckIfNameNotExists(character.Name)) { throw new ExceptionAlreadyExistingName(); }
+            if(!CheckIfNameValid(character.Name)) { throw new ExceptionInvalidLetters(); }
+            if (!CheckIfNameLength(character.Name)) { throw new ExceptionNameLength(); }
             int newId = Repository.Save(character);
             character.Id = newId;
             CharacterListCurrentUser.Add(character);
@@ -108,24 +101,40 @@ namespace CharacterConfigurator.Controller
                     break;
                 }
             }
+            if (!CheckIfNameNotExists(character.Name, index)) { throw new ExceptionAlreadyExistingName(); }
+            if (!CheckIfNameValid(character.Name)) { throw new ExceptionInvalidLetters(); }
+            if (!CheckIfNameLength(character.Name)) { throw new ExceptionNameLength(); }
             Repository.Update(character);
             CharacterListCurrentUser[index] = character;
         }
 
-        public bool CheckIfNameExists(string newName)
+        public bool CheckIfNameNotExists(string newName)
         {
             foreach (Character baseModel in CharacterListCurrentUser)
             {
                 if (baseModel.Name == newName)
                 {
-                    return true;
+                    return false;
                 }
             }
 
-            return false;
+            return true;
         }
 
-        public bool CheckIfNameLenght(string newName)
+        public bool CheckIfNameNotExists(string newName, int indexExlude)
+        {
+            for(int i = 0;i < CharacterListCurrentUser.Count; i++)
+            {
+                if(CharacterListCurrentUser[i].Name == newName && i != indexExlude)
+                { 
+                    return false; 
+                }
+            }
+
+            return true;
+        }
+
+        public bool CheckIfNameLength(string newName)
         {
 
             if (newName.Length < DataConverter.MinNameLength || newName.Length > DataConverter.MaxNameLength)

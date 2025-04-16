@@ -25,7 +25,6 @@ public partial class MainWindow : Window
             CheckAmountCharacter();
             LoadUiCharacter();
             SetDisabledElements();
-
         }
         else
         {
@@ -87,9 +86,13 @@ public partial class MainWindow : Window
         }else if(MainController.Character.Count() > 1)
         {
             btnPageRight.Focus();
+            btnPageRight.IsEnabled = true;
             btnPageLeft.IsEnabled = false;
 
-            CurrentCharaterIndex = 0;
+            if(CurrentCharaterIndex == -1)
+            {
+                CurrentCharaterIndex = 0;
+            }
         }
         else
         {
@@ -190,25 +193,36 @@ public partial class MainWindow : Window
     private void btnPageLeft_Click(object sender, RoutedEventArgs e)
     {
         CurrentCharaterIndex--;
-        if (CurrentCharaterIndex <= 0) 
-        {
-            btnPageLeft.IsEnabled = false;
-        }
-
-        btnPageLeft.IsEnabled = true;
+        CheckPageButtons();
         LoadUiCharacter();
     }
 
     private void btnPageRight_Click(object sender, RoutedEventArgs e)
     {
         CurrentCharaterIndex++;
+        CheckPageButtons();
+        LoadUiCharacter();
+    }
+
+    private void CheckPageButtons()
+    {
+        if(CurrentCharaterIndex <= 0)
+        {
+            btnPageLeft.IsEnabled = false;
+        }
+        else
+        {
+            btnPageLeft.IsEnabled = true;
+        }
+
         if(CurrentCharaterIndex >= MainController.Character.Count()-1) //Pay attention, index vs count
         {
             btnPageRight.IsEnabled = false;
         }
-
-        btnPageLeft.IsEnabled = true;
-        LoadUiCharacter();
+        else
+        {
+            btnPageRight.IsEnabled = true;
+        }
     }
 
     private int beforeCharacter;
@@ -233,6 +247,7 @@ public partial class MainWindow : Window
         if (CurrentCharaterIndex != -1) 
         {
             MainController.Character.Delete(CurrentCharaterIndex);
+            CurrentCharaterIndex--;
             CheckAmountCharacter();
             LoadUiCharacter();
         }
@@ -247,16 +262,32 @@ public partial class MainWindow : Window
 
     private void btnSave_Click(object sender, RoutedEventArgs e)
     {
-        SetDisabledElements();
-        if(CurrentCharaterIndex == MainController.Character.Count())
+        try
         {
-            MainController.Character.Add(ReadCharacter());
+            if (CurrentCharaterIndex == MainController.Character.Count())
+            {
+                MainController.Character.Add(ReadCharacter());
+            }
+            else
+            {
+                Character editCharacter = ReadCharacter();
+                editCharacter.Id = MainController.Character.Get(CurrentCharaterIndex).Id;
+                MainController.Character.Update(editCharacter);
+            }
+            SetDisabledElements();
+            CheckAmountCharacter();
         }
-        else
+        catch (ExceptionAlreadyExistingName ex)
         {
-            Character editCharacter = ReadCharacter();
-            editCharacter.Id = MainController.Character.Get(CurrentCharaterIndex).Id;
-            MainController.Character.Update(editCharacter);
+            MessageBox.Show(ex.Message);
+        }
+        catch (ExceptionInvalidLetters ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch (ExceptionNameLength ex)
+        {
+            MessageBox.Show(ex.Message);
         }
     }
 
@@ -295,7 +326,7 @@ public partial class MainWindow : Window
         if (cmbWeapon.SelectedIndex >= 0)
         {
             txtblWeapon.Visibility = Visibility.Hidden;
-
+            imgWeapon.Source = MainController.Weapon.Get(cmbWeapon.SelectedIndex).Image;
             CalcStatsField();
         }
     }
@@ -349,6 +380,7 @@ public partial class MainWindow : Window
         if (cmbRace.SelectedIndex >= 0)
         {
             txtblRace.Visibility = Visibility.Hidden;
+            imgCharacter.Source = MainController.Race.Get(cmbRace.SelectedIndex).GetImage((Sex)cmbSex.SelectedIndex);
             CalcStatsField();
         }
     }
@@ -410,6 +442,8 @@ public partial class MainWindow : Window
 
         btnCancel.Visibility = Visibility.Hidden;
         btnSave.Visibility = Visibility.Hidden;
+
+        CheckPageButtons();
     }
 
     private void lblUsername_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
