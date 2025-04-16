@@ -3,6 +3,7 @@ using CharacterConfigurator.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -68,11 +69,11 @@ namespace CharacterConfigurator.Controller
             MainController.Character.CurrentUserChanged();
         }
 
-        public void Delete(int index)
+        public void Delete() 
         {
             MainController.Character.DeleteAll();
-            Repository.Delete(UserList[index]);
-            UserList.RemoveAt(index);
+            Repository.Delete(CurrentUser);
+            UserList.Remove(CurrentUser);
             Logout();
         }
 
