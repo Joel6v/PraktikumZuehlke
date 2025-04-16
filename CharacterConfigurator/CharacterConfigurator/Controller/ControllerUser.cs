@@ -12,7 +12,7 @@ namespace CharacterConfigurator.Controller
     {
         private List<User> UserList { get; set; }
 
-        private User CurrentUser { get; set; } = null;
+        public User CurrentUser { get; private set; } = null;
 
         private RepositoryVariable<User, User> Repository;
 
@@ -130,9 +130,9 @@ namespace CharacterConfigurator.Controller
             MainController.Character.CurrentUserChanged();
         }
 
-        public User GetCurrentUser()
+        public bool CurrentUserNull()
         {
-            return CurrentUser;
+            return CurrentUser == null;
         }
     }
 }

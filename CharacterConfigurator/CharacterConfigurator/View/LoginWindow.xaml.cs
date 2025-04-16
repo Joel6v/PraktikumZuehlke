@@ -39,8 +39,7 @@ namespace CharacterConfigurator.View
             string username = txtLoginUsername.Text;
             if(MainController.User.Validate(txtLoginUsername.Text, password))
             {
-                //new MainWindow().Show();
-                this.DialogResult = true;
+                new MainWindow().Show();
                 Close();
             }
             else

@@ -14,7 +14,7 @@ namespace CharacterConfigurator.Model
 
         public Character(string name, Race race, Headgear headgear, Chest chest, Gloves gloves, Legs legs, Consumable consumable, Weapon weapon)
         {
-            User = MainController.User.GetCurrentUser();
+            User = MainController.User.CurrentUser;
             Name = name;
             Race = race;
             Headgear = headgear;
@@ -41,7 +41,7 @@ namespace CharacterConfigurator.Model
                 {
                     foreach (char c in value)
                     {
-                        if (!char.IsLetterOrDigit(c) || c == ' ')
+                        if (!(char.IsLetterOrDigit(c) || c == ' '))
                         {
                             nameValid = false;
                             break;

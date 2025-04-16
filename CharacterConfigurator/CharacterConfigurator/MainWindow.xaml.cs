@@ -16,15 +16,22 @@ public partial class MainWindow : Window
     private int CurrentCharaterIndex = -1;
     
     public MainWindow()
-    {
-        InitializeComponent();
-        MainController.Load();
-        LoginWindow login = new LoginWindow();
-        if (login.ShowDialog() == null) Close();
+    {      
+
+        if(MainController.User != null) 
+        {
+            InitializeComponent();
             LoadUiStatic();
-        CheckAmountCharacter();
-        LoadUiCharacter();
-        SetDisabledElements();
+            CheckAmountCharacter();
+            LoadUiCharacter();
+            SetDisabledElements();
+        }
+        else
+        {
+            MainController.Load();
+            new LoginWindow().Show();
+            this.Close();
+        }
     }
 
     private void LoadUiStatic() //For ComboBoxes and so
@@ -65,7 +72,7 @@ public partial class MainWindow : Window
         }
 
         //Username
-        lblUsername.Content = MainController.User.GetCurrentUser().Name;
+        lblUsername.Content = MainController.User.CurrentUser.Name;
     }
 
     private void CheckAmountCharacter()
@@ -168,9 +175,8 @@ public partial class MainWindow : Window
     private void btnLogOut_Click(object sender, RoutedEventArgs e)
     {
         MainController.User.Logout();
-        Hide();
-        LoginWindow login = new LoginWindow();
-        if (login.ShowDialog() == null) Close(); else Show();
+        new LoginWindow().Show();
+        Close();
     }
 
     private void btnPageLeft_Click(object sender, RoutedEventArgs e)

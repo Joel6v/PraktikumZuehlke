@@ -21,7 +21,7 @@ namespace CharacterConfigurator.Controller
 
         public void CurrentUserChanged()
         {
-            if (MainController.User.GetCurrentUser() != null)
+            if (MainController.User.CurrentUser != null)
             {
                 Load();
             }
@@ -122,7 +122,7 @@ namespace CharacterConfigurator.Controller
 
         private void Load()
         {
-            CharacterListCurrentUser = Repository.Load("userId", MainController.User.GetCurrentUser().Id);
+            CharacterListCurrentUser = Repository.Load("userId", MainController.User.CurrentUser.Id);
         }
     }
 }
