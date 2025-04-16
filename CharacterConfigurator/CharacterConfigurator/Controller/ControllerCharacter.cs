@@ -137,7 +137,7 @@ namespace CharacterConfigurator.Controller
         public bool CheckIfNameLength(string newName)
         {
 
-            if (newName.Length < DataConverter.MinNameLength || newName.Length > DataConverter.MaxNameLength)
+            if (newName.Length < DataHandler.MinNameLength || newName.Length > DataHandler.MaxNameLength)
             {
                 return false;
             }

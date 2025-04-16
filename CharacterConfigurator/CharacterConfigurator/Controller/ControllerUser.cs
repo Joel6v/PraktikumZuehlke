@@ -105,7 +105,7 @@ namespace CharacterConfigurator.Controller
 
         public bool Validate(string loginName, string loginPassword)
         {
-            byte[] loginPasswordHash = DataConverter.GenerateHex(loginPassword);
+            byte[] loginPasswordHash = DataHandler.GenerateHex(loginPassword);
             foreach (User user in UserList)
             {
                 if (loginName == user.Name && loginPasswordHash.SequenceEqual(user.Password))
@@ -153,7 +153,7 @@ namespace CharacterConfigurator.Controller
         public bool CheckIfNameLength(string newName)
         {
 
-            if (newName.Length < DataConverter.MinNameLength || newName.Length > DataConverter.MaxNameLength)
+            if (newName.Length < DataHandler.MinNameLength || newName.Length > DataHandler.MaxNameLength)
             {
                 return false;
             }

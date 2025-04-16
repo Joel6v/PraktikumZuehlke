@@ -6,7 +6,7 @@ using System.Windows.Media.Imaging;
 
 namespace CharacterConfigurator.Model
 {
-    public static class DataConverter
+    public static class DataHandler
     {
         public const int MinNameLength = 3;
         public const int MaxNameLength = 30;

@@ -23,7 +23,7 @@ namespace CharacterConfigurator.Model
         {
             Id = sqlResult.GetInt32(0);
             Name = sqlResult.GetString(1);
-            Image = DataConverter.LoadImage((byte[])sqlResult.GetValue(2));
+            Image = DataHandler.LoadImage((byte[])sqlResult.GetValue(2));
         }
     }
 }

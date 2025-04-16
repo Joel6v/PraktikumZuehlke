@@ -13,7 +13,7 @@ namespace CharacterConfigurator.Model
 
         public ExceptionNameLength()
         {
-            _Message = $"The Username is too short or too long. The minimum length is {DataConverter.MinNameLength} and the maximum length is {DataConverter.MaxNameLength}.";
+            _Message = $"The Username is too short or too long. The minimum length is {DataHandler.MinNameLength} and the maximum length is {DataHandler.MaxNameLength}.";
         }
     }
 }
