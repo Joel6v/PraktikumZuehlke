@@ -62,6 +62,9 @@ namespace CharacterConfigurator.Controller
 
         public void Add(User user)
         {
+            if (CheckIfNameExists(user.Name)) { throw new ExceptionAlreadyExistingName(); }
+            if (CheckIfNameExists(user.Name)) { throw new ExceptionAlreadyExistingName(); }
+            if (CheckIfNameLenght(user.Name)) { throw new ExceptionNameLenght(); }
             int newId = Repository.Save(user);
             user.Id = newId;
             UserList.Add(user);
@@ -92,19 +95,6 @@ namespace CharacterConfigurator.Controller
             UserList[index] = user;
         }
 
-        public bool CheckIfNameExists(string newName)
-        {
-            foreach (User user in UserList)
-            {
-                if (user.Name == newName)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         private void Load()
         {
             UserList = Repository.Load();
@@ -131,9 +121,40 @@ namespace CharacterConfigurator.Controller
             MainController.Character.CurrentUserChanged();
         }
 
-        public bool CurrentUserNull()
+        public bool CheckIfNameExists(string newName)
         {
-            return CurrentUser == null;
+            foreach (User baseModel in UserList)
+            {
+                if (baseModel.Name == newName)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool CheckIfNameLenght(string newName)
+        {
+
+            if (newName.Length < DataConverter.MinNameLength || newName.Length > DataConverter.MaxNameLength)
+            {
+                return false;
+            }
+            return true;
+        }
+
+
+        public bool CheckIfNameValid(string newName)
+        {
+            foreach (char c in newName)
+            {
+                if (!(char.IsLetterOrDigit(c) || c == ' '))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

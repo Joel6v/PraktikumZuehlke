@@ -25,6 +25,7 @@ public partial class MainWindow : Window
             CheckAmountCharacter();
             LoadUiCharacter();
             SetDisabledElements();
+
         }
         else
         {
@@ -40,6 +41,7 @@ public partial class MainWindow : Window
         {
             cmbConsumable.Items.Add(MainController.Consumable.Get(i).Name);
         }
+        //cmbConsumable.SelectedIndex = -1;
         for (int i = 0; i < MainController.Weapon.Count(); i++)
         {
             cmbWeapon.Items.Add(MainController.Weapon.Get(i).Name);
@@ -201,8 +203,10 @@ public partial class MainWindow : Window
         btnPageLeft.IsEnabled = true;
     }
 
+    private int beforeCharacter;
     private void btnNew_Click(object sender, RoutedEventArgs e)
     {
+        beforeCharacter = CurrentCharaterIndex;
         CurrentCharaterIndex = MainController.Character.Count();
         SetEnabledElements();
         LoadUiDefaultCharacter();
@@ -229,6 +233,7 @@ public partial class MainWindow : Window
     private void btnCancel_Click(object sender, RoutedEventArgs e)
     {
         SetDisabledElements();
+        CurrentCharaterIndex = beforeCharacter;
         LoadUiCharacter();
     }
 
