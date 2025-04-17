@@ -48,6 +48,7 @@
     <None Remove="Resources\Image\Consumable\scroll.png" />
     <None Remove="Resources\Image\Favicon\skirym_dragon_Logo.ico" />
     <None Remove="Resources\Image\Favicon\s_logo.ico" />
+    <None Remove="Resources\Image\Logo\skirym_dragon_logo.png" />
     <None Remove="Resources\Image\Race\Female\altmer.png" />
     <None Remove="Resources\Image\robin.png" />
     <None Remove="View\Font\Balgruf-JRye7.ttf" />
@@ -125,6 +126,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Image\Consumable\scroll.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Logo\skirym_dragon_logo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Image\Race\Female\altmer.png">

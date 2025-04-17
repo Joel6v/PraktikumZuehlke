@@ -9,51 +9,83 @@
         ResizeMode="CanMinimize"
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen"
-        Title="Skirym Register" Height="200" Width="400" Style="{StaticResource SkirymFont}" FontSize="18">
+        PreviewKeyDown="Window_PreviewKeyDown"
+        Title="Skirym Register" Height="406.25" Width="675" Style="{StaticResource SkirymFont}" FontSize="18">
 
-    <Grid Margin="20,0,20,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="260"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="45"/>
-        </Grid.RowDefinitions>
+    <Border BorderBrush="Black" BorderThickness="1" Margin="12.5,12.5,12.5,20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12.5"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
 
-        <Label Content="Username" Grid.Column="0" Grid.Row="0" Margin="0,25,0,-5"/>
-        
-        <Label Content="Password" Grid.Column="0" Grid.Row="1" Margin="0,15,0,-5"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="138.75"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="15"/>
+            </Grid.RowDefinitions>
 
-        <Label Content="Username is not between 3-30 character long" Grid.Column="1" Grid.Row="0" Name="lblUsernameInvalid" Visibility="Hidden"
-               Foreground="Red"/>
+            <Grid Grid.Column="2" Grid.Row="0">
+                <Border BorderBrush="Black" BorderThickness="1" Margin="12.5,32.5,50,32.5">
+                    <Label Content="Register" VerticalAlignment="Center" Margin="7.5,-5,7.5,0" FontSize="40"/>
+                </Border>
+            </Grid>
 
-        <Label Content="Username is already taken." Grid.Column="1" Grid.Row="0" Name="lblUsernameTaken" Visibility="Hidden"
-               Foreground="Red"/>
+            <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="0">
+                <Border BorderBrush="Black" BorderThickness="1" Margin="11.5,30.875,11.5,30.875">
+                    <Image Width="225" Height="275"
+                           Source="pack://application:,,,/Resources/Image/Logo/skirym_dragon_logo.png"/>
+                </Border>
+            </Grid>
 
-        <Label Content="Username cannot have any special characters" Grid.Column="1" Grid.Row="0" Name="lblUsernameSpecialCharacters" Visibility="Hidden"
-               Foreground="Red"/>
+            <Grid Grid.Column="2" Grid.Row="1" Margin="20,0,20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="260"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="45"/>
+                </Grid.RowDefinitions>
 
-        <Label Content="Password is less than 3 characters long" Grid.Column="1" Grid.Row="0" Name="lblPasswordInvalid" Visibility="Hidden"
-               Foreground="Red"/>
+                <Label Content="Username" Grid.Column="0" Grid.Row="0" Margin="0,25,0,-5"/>
 
-        <TextBox Name="txtRegisterUsername" TextChanged="txtRegisterUsername_TextChanged" Grid.Column="1" Grid.Row="0" Margin="0,25,30,-5" Padding="5,0,5,0" TabIndex="0"/>
-        
-        <controls:RandomizedTextBox x:Name="txtRegisterPassword" Grid.Column="1" Grid.Row="1" Margin="0,15,30,5"
-                 VerticalContentAlignment="Center" TextChanged="txtRegisterPassword_TextChanged" Panel.ZIndex="1" TabIndex="1"
-                 Background="Transparent" Foreground="Black" Style="{StaticResource EnchantingTableFont}" Padding="5,0,5,0"/>
-        
-        <Button Content="Register" Name="btnRegister" Click="btnRegister_Click" Grid.Column="1" Grid.Row="2" Margin="145,7.5,30,7.5"
-                TabIndex="2"/>
-        
-        <!--<Label Content="Login" Grid.Column="1" Grid.Row="2" Margin="95,-2.5,115,15"/>-->
+                <Label Content="Password" Grid.Column="0" Grid.Row="1" Margin="0,15,0,-5"/>
 
-        <CheckBox Content="Toggle" Grid.Column="0" Grid.Row="2" Margin="5,14,0,0" Name="chkToggle" TabIndex="4"
-                  IsChecked="{Binding ElementName=txtLoginPassword, Path=IsRandomizationEnabled, Mode=TwoWay}"/>
+                <Label Content="Username is not between 3-15 character long" Grid.Column="1" Grid.Row="0" Name="lblUsernameInvalid" Visibility="Hidden"
+                       Foreground="Red" Margin="-100,-7.5,0,0"/>
 
-        <Label Name="lblRegisterLogin" Content="Login" Grid.Column="1" Grid.Row="2" Margin="80,7,115,0"
-               PreviewMouseDown="lblRegisterLogin_PreviewMouseDown" TabIndex="3" IsTabStop="True"
-               Style="{StaticResource HoverOverText}"/>
-    </Grid>
+                <Label Content="Username is already taken." Grid.Column="1" Grid.Row="0" Name="lblUsernameTaken" Visibility="Hidden"
+                       Foreground="Red" Margin="0,-7.5,0,0"/>
+
+                <Label Content="Username cannot have any special characters" Grid.Column="1" Grid.Row="0" Name="lblUsernameSpecialCharacters" Visibility="Hidden"
+                       Foreground="Red" Margin="-120,-7.5,0,0"/>
+
+                <Label Content="Password is less than 3 characters long" Grid.Column="1" Grid.Row="0" Name="lblPasswordInvalid" Visibility="Hidden"
+                       Foreground="Red" Margin="-85,-7.5,0,0"/>
+
+                <TextBox Name="txtRegisterUsername" TextChanged="txtRegisterUsername_TextChanged" Grid.Column="1" Grid.Row="0" Margin="0,25,30,-5" Padding="5,0,5,0" TabIndex="0"/>
+
+                <controls:RandomizedTextBox x:Name="txtRegisterPassword" Grid.Column="1" Grid.Row="1" Margin="0,15,30,5"
+              VerticalContentAlignment="Center" TextChanged="txtRegisterPassword_TextChanged" Panel.ZIndex="1" TabIndex="1"
+              Background="Transparent" Foreground="Black" Style="{StaticResource EnchantingTableFont}" Padding="5,0,5,0"/>
+
+                <Button Content="Register" Name="btnRegister" Click="btnRegister_Click" Grid.Column="1" Grid.Row="2" Margin="145,7.5,30,7.5"
+             TabIndex="2"/>
+
+                <!--<Label Content="Login" Grid.Column="1" Grid.Row="2" Margin="95,-2.5,115,15"/>-->
+
+                <CheckBox Content="Toggle" Grid.Column="0" Grid.Row="2" Margin="5,14,0,0" Name="chkToggle" TabIndex="4"
+               IsChecked="{Binding ElementName=txtRegisterPassword, Path=IsRandomizationEnabled, Mode=TwoWay}"/>
+
+                <Label Name="lblRegisterLogin" Content="Login" Grid.Column="1" Grid.Row="2" Margin="80,7,115,0"
+            PreviewMouseDown="lblRegisterLogin_PreviewMouseDown" TabIndex="3" IsTabStop="True"
+            Style="{StaticResource HoverOverText}"/>
+            </Grid>
+        </Grid>
+    </Border>
+    
+   
 </Window>

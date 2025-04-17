@@ -10,43 +10,78 @@
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen"
         PreviewKeyDown="Window_PreviewKeyDown"
-        Title="Skirym Login" Height="200" Width="400" Style="{StaticResource SkirymFont}" FontSize="18">
+        Title="Skirym Login" Height="406.25" Width="675" Style="{StaticResource SkirymFont}" FontSize="18">
 
-    <Grid Margin="20,0,20,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="260"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="45"/>
-        </Grid.RowDefinitions>
 
-        <Label Content="Username" Grid.Column="0" Grid.Row="0" Margin="0,25,0,-5"/>
-        
-        <Label Content="Password" Grid.Column="0" Grid.Row="1" Margin="0,15,0,-5"/>
+    <Border BorderBrush="Black" BorderThickness="1" Margin="12.5,12.5,12.5,20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12.5"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
 
-        <Label Content="Invalid Login Information" Grid.Column="1" Grid.Row="0" Name="lblInvalidLogin" Visibility="Hidden"
-               Foreground="Red"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="138.75"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="15"/>
+            </Grid.RowDefinitions>
 
-        <TextBox Name="txtLoginUsername" TextChanged="txtLoginUsername_TextChanged" Grid.Column="1" Grid.Row="0" Margin="0,25,30,-5"
-                 Padding="5,2.5,5,2.5" TabIndex="0"/>
+            <Grid Grid.Column="2" Grid.Row="0">
+                <Border BorderBrush="Black" BorderThickness="1" Margin="12.5,32.5,50,32.5">
+                    <Label Content="Login" VerticalAlignment="Center" Margin="7.5,-5,7.5,0" FontSize="40"/>
+                </Border>
+            </Grid>
 
-        <controls:RandomizedTextBox x:Name="txtLoginPassword" Grid.Column="1" Grid.Row="1" Margin="0,15,30,5"
-                 VerticalContentAlignment="Center" TextChanged="txtLoginPassword_TextChanged" Panel.ZIndex="1" TabIndex="1"
-                 Background="Transparent" Foreground="Black" Style="{StaticResource EnchantingTableFont}" Padding="5,0,5,0"/>
+            <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="0">
+                <Border BorderBrush="Black" BorderThickness="1" Margin="11.5,30.875,11.5,30.875">
+                    <Image Width="225" Height="275"
+                           Source="pack://application:,,,/Resources/Image/Logo/skirym_dragon_logo.png"/>
+                </Border>
+            </Grid>
 
-        <Button Content="Login" Name="btnLogin" Click="btnLogin_Click" Grid.Column="1" Grid.Row="2" Margin="145,7.5,30,7.5"
-                TabIndex="2"/>
-        
-        <!--<Label Content="Register" Grid.Column="1" Grid.Row="2" Margin="95,-2.5,115,15"/>-->
+            <Grid Grid.Column="2" Grid.Row="1" Margin="20,0,20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="260"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="45"/>
+                </Grid.RowDefinitions>
 
-        <CheckBox Content="Toggle" Grid.Column="0" Grid.Row="2" Margin="5,14,0,0" Name="chkToggle" TabIndex="4"
-                  IsChecked="{Binding ElementName=txtLoginPassword, Path=IsRandomizationEnabled, Mode=TwoWay}"/>
+                <Label Content="Username" Grid.Column="0" Grid.Row="0" Margin="0,25,0,-5"/>
 
-        <Label Name="lblLoginRegister" Content="Register" Grid.Column="1" Grid.Row="2" Margin="60,7,115,0"
-                   PreviewMouseDown="lblLoginRegister_PreviewMouseDown" TabIndex="3" IsTabStop="True"
-                   Style="{StaticResource HoverOverText}"/>
-    </Grid>
+                <Label Content="Password" Grid.Column="0" Grid.Row="1" Margin="0,15,0,-5"/>
+
+                <Label Content="Invalid Login Information" Grid.Column="1" Grid.Row="0" Name="lblInvalidLogin" Visibility="Hidden"
+               Foreground="Red" Margin="0,-7.5,30,-5"/>
+
+                <TextBox Name="txtLoginUsername" TextChanged="txtLoginUsername_TextChanged" Grid.Column="1" Grid.Row="0" Margin="0,25,30,-5"
+         Padding="5,2.5,5,2.5" TabIndex="0"/>
+
+                <controls:RandomizedTextBox x:Name="txtLoginPassword" Grid.Column="1" Grid.Row="1" Margin="0,15,30,5"
+         VerticalContentAlignment="Center" TextChanged="txtLoginPassword_TextChanged" Panel.ZIndex="1" TabIndex="1"
+         Background="Transparent" Foreground="Black" Style="{StaticResource EnchantingTableFont}" Padding="5,0,5,0"/>
+
+                <Button Content="Login" Name="btnLogin" Click="btnLogin_Click" Grid.Column="1" Grid.Row="2" Margin="145,7.5,30,7.5"
+        TabIndex="2"/>
+
+                <!--<Label Content="Register" Grid.Column="1" Grid.Row="2" Margin="95,-2.5,115,15"/>-->
+
+                <CheckBox Content="Toggle" Grid.Column="0" Grid.Row="2" Margin="5,14,0,0" Name="chkToggle" TabIndex="4"
+          IsChecked="{Binding ElementName=txtLoginPassword, Path=IsRandomizationEnabled, Mode=TwoWay}"/>
+
+                <Label Name="lblLoginRegister" Content="Register" Grid.Column="1" Grid.Row="2" Margin="60,7,115,0"
+           PreviewMouseDown="lblLoginRegister_PreviewMouseDown" TabIndex="3" IsTabStop="True"
+           Style="{StaticResource HoverOverText}"/>
+            </Grid>
+
+
+        </Grid>
+    </Border>
+    
+
+    
 </Window>

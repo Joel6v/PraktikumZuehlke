@@ -73,5 +73,14 @@ namespace CharacterConfigurator.View
             lblUsernameSpecialCharacters.Visibility = Visibility.Hidden;
             lblUsernameInvalid.Visibility = Visibility.Hidden;
         }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                e.Handled = true;
+                btnRegister_Click(btnRegister, new RoutedEventArgs());
+            }
+        }
     }
 }

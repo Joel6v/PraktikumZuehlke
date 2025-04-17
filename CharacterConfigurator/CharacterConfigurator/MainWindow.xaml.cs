@@ -82,6 +82,11 @@ public partial class MainWindow : Window
 
         //Username
         lblUsername.Content = MainController.User.CurrentUser.Name;
+
+        brdHeadwear.Visibility = Visibility.Hidden;
+        brdBody.Visibility = Visibility.Hidden;
+        brdGloves.Visibility = Visibility.Hidden;
+        brdShoes.Visibility = Visibility.Hidden;
     }
 
     private void CheckAmountCharacter()
@@ -303,6 +308,11 @@ public partial class MainWindow : Window
         {
             MessageBox.Show(ex.Message);
         }
+
+        brdHeadwear.Visibility = Visibility.Visible;
+        brdBody.Visibility = Visibility.Visible;
+        brdGloves.Visibility = Visibility.Visible;
+        brdShoes.Visibility = Visibility.Visible;
     }
 
     private void CalcStatsField()
@@ -447,11 +457,6 @@ public partial class MainWindow : Window
 
         lblUsername.IsEnabled = true;
 
-        brdHeadwear.Visibility = Visibility.Hidden;
-        brdBody.Visibility = Visibility.Hidden;
-        brdGloves.Visibility = Visibility.Hidden;
-        brdShoes.Visibility = Visibility.Hidden;
-
         btnPageLeft.Visibility = Visibility.Visible;
         btnPageRight.Visibility = Visibility.Visible;
 
@@ -464,6 +469,8 @@ public partial class MainWindow : Window
 
         CheckPageButtons();
     }
+
+
 
     private void lblUsername_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
