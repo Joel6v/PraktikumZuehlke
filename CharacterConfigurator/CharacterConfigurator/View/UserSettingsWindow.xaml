@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
-        Title="User Settings" Height="675" Width="630" Style="{StaticResource SkirymFont}" FontSize="18">
+        Title="User Settings" Height="675" Width="605" Style="{StaticResource SkirymFont}" FontSize="18">
     <!--Height=625 Width=755-->
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -24,7 +24,7 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="325"/>
-                <ColumnDefinition Width="275"/>
+                <ColumnDefinition Width="250"/>
             </Grid.ColumnDefinitions>
             
             <Border Style="{StaticResource GridBorderOutLine}" Margin="12.5,12.5,125,12.5">
@@ -35,7 +35,7 @@
             <!--Top Right Grid-->
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="87.5"/>
+                    <ColumnDefinition Width="62.5"/>
                     <ColumnDefinition Width="162.5"/>
                 </Grid.ColumnDefinitions>
 
@@ -49,7 +49,7 @@
         <Grid Grid.Row="1" Margin="12.5,25">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="133"/>
-                <ColumnDefinition Width="417"/>
+                <ColumnDefinition Width="392"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -64,7 +64,7 @@
             </Grid.RowDefinitions>
 
             <!--Left Column-->
-            <Border Style="{StaticResource GridBorderOutLine}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+            <Border Style="{StaticResource GridBorderOutLine}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="7.5">
                 <Image Name="imgProfilePicture"/>
             </Border>
             <Button Grid.Column="1" Grid.Row="0" Content="Change Profile Picture" Name="btnChangeProfilePicture"
@@ -74,35 +74,35 @@
             
             
             <TextBlock Grid.Column="0" Grid.Row="2" Text="Username" VerticalAlignment="Center" Margin="22.5,0"/>
-            <TextBox Grid.Column="1" Grid.Row="2" Name="txtChangeUsername" IsEnabled="False"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Name="txtChangeUsername" IsEnabled="False" Margin="17.5,5.5"/>
             <Button Grid.Column="1" Grid.Row="3" Content="Change Username" Name="btnChangeUsername"
-                    Click="btnChangeUsername_Click" Margin="17.5,5.5"/>
+                    Click="btnChangeUsername_Click" Margin="17.5,0,17.5,11"/>
             
             
             <TextBlock Grid.Column="0" Grid.Row="4" Text="Password" VerticalAlignment="Center" Margin="22.5,0"/>
-            <TextBox Grid.Column="1" Grid.Row="4" Name="txtChangePassword" IsEnabled="False"/>
+            <TextBox Grid.Column="1" Grid.Row="4" Name="txtChangePassword" IsEnabled="False" Margin="17.5,5.5"/>
             <Button Grid.Column="1" Grid.Row="5" Content="Change Password" Name="btnChangePassword"
-                    Click="btnChangePassword_Click" Margin="17.5,5.5"/>
+                    Click="btnChangePassword_Click" Margin="17.5,0,17.5,11"/>
             
             
             <GroupBox Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Header="Appearance" Name="grpAppearance" Margin="12.5,0,12.5,-2.5">
                 <StackPanel Orientation="Horizontal">
                     <RadioButton Content="Light Mode" Name="radLightMode" IsChecked="True" Checked="radLightMode_Checked"
-                                 VerticalAlignment="Center" Margin="12.5,0,75,0"/>
+                                 VerticalAlignment="Center" Margin="12.5,0,62.5,0"/>
                     
                     <RadioButton Content="Dark Mode" Name="radDarkMode" IsChecked="False" Checked="radDarkMode_Checked"
                                  VerticalAlignment="Center" Margin="0,0,0,0"/>
                     
                     <RadioButton Content="Grey Mode" Name="radGreyMode" IsChecked="False" Checked="radGreyMode_Checked"
-                                 VerticalAlignment="Center" Margin="75,0,0,0"/>
+                                 VerticalAlignment="Center" Margin="62.5,0,0,0"/>
                 </StackPanel>
             </GroupBox>
 
 
             <TextBlock Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Text="Account Creation Date" VerticalAlignment="Center"
-                       Margin="22.5,0"/>
-            <TextBlock Grid.Column="1" Grid.Row="8" HorizontalAlignment="Right" Text="Date" VerticalAlignment="Center" Margin="12.5"
-                       Name="txtblAccountCreationDate"/>
+                       Margin="22.5,0,22.5,-5"/>
+            <TextBlock Grid.Column="1" Grid.Row="8" Text="Date" VerticalAlignment="Center" 
+                       Margin="250,5,22.5,0" Name="txtblAccountCreationDate"/>
 
 
         </Grid>
