@@ -161,7 +161,7 @@ public partial class MainWindow : Window
     private void LoadUiDefaultCharacter()
     {
         txtCharacterName.Text = "character name";
-        txtCharacterCreationDate.Text = "dd.mm.yyyy hh:mm:ss";
+        txtCharacterCreationDate.Text = "creation date";
         //ComboBoxes
         settingAllCmb = true;
         cmbConsumable.SelectedIndex = 0;

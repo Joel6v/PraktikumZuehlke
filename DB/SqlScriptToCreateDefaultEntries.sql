@@ -22,24 +22,37 @@ INSERT INTO race (name, health, magicka, stamina, skill, imageMale, imageFemale)
 -- -----------------------------------------------------
 DELETE FROM headgear;
 INSERT INTO headgear (name, defense, image) VALUES
-('None', 1, LOAD_FILE(CONCAT(@folder, 'Clothing\\Headwear\\headwear_none.png'))),
-('Cowl', 1, LOAD_FILE(CONCAT(@folder, 'Clothing\\Headwear\\cowl.png'))),
-('Fine Hat', 1, LOAD_FILE(CONCAT(@folder, 'Clothing\\Headwear\\fine_hat.png'))),
+('None', 0, LOAD_FILE(CONCAT(@folder, 'Clothing\\Headwear\\headwear_none.png'))),
+('Chefs Hat', 3, LOAD_FILE(CONCAT(@folder, 'Clothing\\Headwear\\chefs_hat.png'))),
+('Cowl', 3, LOAD_FILE(CONCAT(@folder, 'Clothing\\Headwear\\cowl.png'))),
+('Fine Hat', 2, LOAD_FILE(CONCAT(@folder, 'Clothing\\Headwear\\fine_hat.png'))),
 ('Hat', 1, LOAD_FILE(CONCAT(@folder, 'Clothing\\Headwear\\hat.png')));
 DELETE FROM chest;
 INSERT INTO chest (name, defense, image) VALUES
-('None', 2, LOAD_FILE(CONCAT(@folder, 'Clothing\\Body\\Body_none.png'))),
-('Ragged Robes', 2, LOAD_FILE(CONCAT(@folder, 'Clothing\\Body\\ragged_robes.png'))),
-('Ragged Trousers', 2, LOAD_FILE(CONCAT(@folder, 'Clothing\\Body\\ragged_trousers.png')));
+('None', 0, LOAD_FILE(CONCAT(@folder, 'Clothing\\Body\\body_none.png'))),
+('Blue Clothes', 3, LOAD_FILE(CONCAT(@folder, 'Clothing\\Body\\blue_clothes.png'))),
+('Yellow Clothes', 3, LOAD_FILE(CONCAT(@folder, 'Clothing\\Body\\yellow_clothes.png'))),
+('Blue Dress', 3, LOAD_FILE(CONCAT(@folder, 'Clothing\\Body\\blue_dress.png'))),
+('Brown Dress', 3, LOAD_FILE(CONCAT(@folder, 'Clothing\\Body\\brown_dress.png'))),
+('White Tunic', 3, LOAD_FILE(CONCAT(@folder, 'Clothing\\Body\\white_tunic.png'))),
+('Chefs Tunic', 6, LOAD_FILE(CONCAT(@folder, 'Clothing\\Body\\chefs_tunic.png'))),
+('Fine Clothes', 5, LOAD_FILE(CONCAT(@folder, 'Clothing\\Body\\fine_clothes.png'))),
+('Ragged Robes', 4, LOAD_FILE(CONCAT(@folder, 'Clothing\\Body\\ragged_robes.png'))),
+('Ragged Trousers', 4, LOAD_FILE(CONCAT(@folder, 'Clothing\\Body\\ragged_trousers.png')));
 DELETE FROM gloves;
 INSERT INTO gloves (name, defense, image) VALUES
-('None', 1, LOAD_FILE(CONCAT(@folder, 'Clothing\\Gloves\\gloves_none.png'))),
-('Vampire', 1, LOAD_FILE(CONCAT(@folder, 'Clothing\\Gloves\\vampire_gloves.png')));
+('None', 0, LOAD_FILE(CONCAT(@folder, 'Clothing\\Gloves\\gloves_none.png'))),
+('Brown Gloves', 1, LOAD_FILE(CONCAT(@folder, 'Clothing\\Gloves\\gloves.png'))),
+('Mystic Gloves', 5, LOAD_FILE(CONCAT(@folder, 'Clothing\\Gloves\\mystic_gloves.png'))),
+('Shrouded Gloves', 3, LOAD_FILE(CONCAT(@folder, 'Clothing\\Gloves\\shrouded_gloves.png'))),
+('Vampire Gloves', 4, LOAD_FILE(CONCAT(@folder, 'Clothing\\Gloves\\vampire_gloves.png')));
 DELETE FROM legs;
 INSERT INTO legs (name, defense, image) VALUES
-('None', 1, LOAD_FILE(CONCAT(@folder, 'Clothing\\Shoes\\shoes_none.png'))),
-('Vampire Boots', 1, LOAD_FILE(CONCAT(@folder, 'Clothing\\Shoes\\vampire_boots.png')));
-
+('None', 0, LOAD_FILE(CONCAT(@folder, 'Clothing\\Shoes\\shoes_none.png'))),
+('Boots', 3, LOAD_FILE(CONCAT(@folder, 'Clothing\\Shoes\\boots.png'))),
+('Footwraps', 1, LOAD_FILE(CONCAT(@folder, 'Clothing\\Shoes\\footwraps.png'))),
+('Vampire Boots', 4, LOAD_FILE(CONCAT(@folder, 'Clothing\\Shoes\\vampire_boots.png'))),
+('Wrapped Boots', 2, LOAD_FILE(CONCAT(@folder, 'Clothing\\Shoes\\wrapped_boots.png')));
 -- -----------------------------------------------------
 -- Table 'weapon'
 -- -----------------------------------------------------
