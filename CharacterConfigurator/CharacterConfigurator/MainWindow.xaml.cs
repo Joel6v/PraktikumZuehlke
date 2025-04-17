@@ -404,6 +404,7 @@ public partial class MainWindow : Window
         if (cmbSex.SelectedIndex >= 0)
         {
             txtblSex.Visibility = Visibility.Hidden;
+            imgCharacter.Source = MainController.Race.Get(cmbRace.SelectedIndex).GetImage((Sex)cmbSex.SelectedIndex);
         }
     }
 
