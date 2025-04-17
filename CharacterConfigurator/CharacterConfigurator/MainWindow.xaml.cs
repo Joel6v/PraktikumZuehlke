@@ -3,6 +3,7 @@ using CharacterConfigurator.Model;
 using CharacterConfigurator.Model.CharacterEnum;
 using CharacterConfigurator.Model.Clothing;
 using CharacterConfigurator.View;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -25,7 +26,6 @@ public partial class MainWindow : Window
             CheckAmountCharacter();
             LoadUiCharacter();
             SetDisabledElements();
-
         }
         else
         {
@@ -57,6 +57,7 @@ public partial class MainWindow : Window
         for (int i = 0; i < MainController.Gloves.Count(); i++)
         {
             cmbGloves.Items.Add(MainController.Gloves.Get(i).Name);
+            string name = MainController.Gloves.Get(i).Name;
         }
         for (int i = 0; i < MainController.Legs.Count(); i++)
         {
@@ -80,16 +81,21 @@ public partial class MainWindow : Window
     {
         if (MainController.Character.Count() == 1)
         {
-            btnPageRight.IsEnabled = false;
-            btnPageLeft.IsEnabled = false;
+            btnEdit.IsEnabled = true;
+            btnDelete.IsEnabled = true;
 
             CurrentCharaterIndex = 0;
         }else if(MainController.Character.Count() > 1)
         {
-            btnPageRight.Focus();
-            btnPageLeft.IsEnabled = false;
+            btnEdit.IsEnabled = true;
+            btnDelete.IsEnabled = true;
 
-            CurrentCharaterIndex = 0;
+            btnPageRight.Focus();
+
+            if(CurrentCharaterIndex == -1)
+            {
+                CurrentCharaterIndex = 0;
+            }
         }
         else
         {
@@ -101,6 +107,8 @@ public partial class MainWindow : Window
             btnEdit.IsEnabled = false;
             //CurrentCharaterIndex = -1; //is set in the top
         }
+
+        CheckPageButtons();
     }
 
     private bool settingAllCmb = false;
@@ -110,7 +118,7 @@ public partial class MainWindow : Window
         {
             settingAllCmb = true;
             txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).Name;
-            txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.ToString();
+            txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.ToString(DataHandler.Format);
             //ComboBoxes
             cmbConsumable.SelectedIndex = MainController.Consumable.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Consumable);
             cmbWeapon.SelectedIndex = MainController.Weapon.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Weapon);
@@ -141,7 +149,7 @@ public partial class MainWindow : Window
     private void LoadUiDefaultCharacter()
     {
         txtCharacterName.Text = "character name";
-        txtCharacterCreationDate.Text = "creation date";
+        txtCharacterCreationDate.Text = "dd.mm.yyyy hh:mm:ss";
         //ComboBoxes
         settingAllCmb = true;
         cmbConsumable.SelectedIndex = 0;
@@ -190,25 +198,36 @@ public partial class MainWindow : Window
     private void btnPageLeft_Click(object sender, RoutedEventArgs e)
     {
         CurrentCharaterIndex--;
-        if (CurrentCharaterIndex <= 0) 
-        {
-            btnPageLeft.IsEnabled = false;
-        }
-
-        btnPageLeft.IsEnabled = true;
+        CheckPageButtons();
         LoadUiCharacter();
     }
 
     private void btnPageRight_Click(object sender, RoutedEventArgs e)
     {
         CurrentCharaterIndex++;
+        CheckPageButtons();
+        LoadUiCharacter();
+    }
+
+    private void CheckPageButtons()
+    {
+        if(CurrentCharaterIndex <= 0)
+        {
+            btnPageLeft.IsEnabled = false;
+        }
+        else
+        {
+            btnPageLeft.IsEnabled = true;
+        }
+
         if(CurrentCharaterIndex >= MainController.Character.Count()-1) //Pay attention, index vs count
         {
             btnPageRight.IsEnabled = false;
         }
-
-        btnPageLeft.IsEnabled = true;
-        LoadUiCharacter();
+        else
+        {
+            btnPageRight.IsEnabled = true;
+        }
     }
 
     private int beforeCharacter;
@@ -225,6 +244,7 @@ public partial class MainWindow : Window
         if(CurrentCharaterIndex != 1)
         {
             SetEnabledElements();
+            beforeCharacter = CurrentCharaterIndex;
         }
     }
 
@@ -233,6 +253,7 @@ public partial class MainWindow : Window
         if (CurrentCharaterIndex != -1) 
         {
             MainController.Character.Delete(CurrentCharaterIndex);
+            CurrentCharaterIndex--;
             CheckAmountCharacter();
             LoadUiCharacter();
         }
@@ -247,16 +268,33 @@ public partial class MainWindow : Window
 
     private void btnSave_Click(object sender, RoutedEventArgs e)
     {
-        SetDisabledElements();
-        if(CurrentCharaterIndex == MainController.Character.Count())
+        try
         {
-            MainController.Character.Add(ReadCharacter());
+            if (CurrentCharaterIndex == MainController.Character.Count())
+            {
+                MainController.Character.Add(ReadCharacter());
+                txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.ToString(DataHandler.Format);
+            }
+            else
+            {
+                Character editCharacter = ReadCharacter();
+                editCharacter.Id = MainController.Character.Get(CurrentCharaterIndex).Id;
+                MainController.Character.Update(editCharacter);
+            }
+            SetDisabledElements();
+            CheckAmountCharacter();
         }
-        else
+        catch (ExceptionAlreadyExistingName ex)
         {
-            Character editCharacter = ReadCharacter();
-            editCharacter.Id = MainController.Character.Get(CurrentCharaterIndex).Id;
-            MainController.Character.Update(editCharacter);
+            MessageBox.Show(ex.Message);
+        }
+        catch (ExceptionInvalidLetters ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch (ExceptionNameLength ex)
+        {
+            MessageBox.Show(ex.Message);
         }
     }
 
@@ -295,7 +333,7 @@ public partial class MainWindow : Window
         if (cmbWeapon.SelectedIndex >= 0)
         {
             txtblWeapon.Visibility = Visibility.Hidden;
-
+            imgWeapon.Source = MainController.Weapon.Get(cmbWeapon.SelectedIndex).Image;
             CalcStatsField();
         }
     }
@@ -306,7 +344,7 @@ public partial class MainWindow : Window
         {
             txtblHeadgear.Visibility = Visibility.Hidden;
             brdHeadwear.Visibility = Visibility.Visible;
-
+            imgHeadwear.Source = MainController.Headgear.Get(cmbHeadgear.SelectedIndex).Image;
             CalcStatsField();
         }
     }
@@ -317,7 +355,7 @@ public partial class MainWindow : Window
         {
             txtblChest.Visibility = Visibility.Hidden;
             brdBody.Visibility = Visibility.Visible;
-
+            imgBody.Source = MainController.Chest.Get(cmbChest.SelectedIndex).Image;
             CalcStatsField();
         }
     }
@@ -328,7 +366,7 @@ public partial class MainWindow : Window
         {
             txtblGloves.Visibility = Visibility.Hidden;
             brdGloves.Visibility = Visibility.Visible;
-
+            imgGloves.Source = MainController.Gloves.Get(cmbGloves.SelectedIndex).Image;
             CalcStatsField();
         }
     }
@@ -337,9 +375,9 @@ public partial class MainWindow : Window
     {
         if (cmbLegs.SelectedIndex >= 0)
         {
-            txtblLegs.Visibility = Visibility.Hidden;
+            //txtblLegs.Visibility = Visibility.Hidden;
             brdShoes.Visibility = Visibility.Visible;
-
+            imgShoes.Source = MainController.Legs.Get(cmbLegs.SelectedIndex).Image;
             CalcStatsField();
         }
     }
@@ -349,6 +387,7 @@ public partial class MainWindow : Window
         if (cmbRace.SelectedIndex >= 0)
         {
             txtblRace.Visibility = Visibility.Hidden;
+            imgCharacter.Source = MainController.Race.Get(cmbRace.SelectedIndex).GetImage((Sex)cmbSex.SelectedIndex);
             CalcStatsField();
         }
     }
@@ -414,6 +453,8 @@ public partial class MainWindow : Window
 
         btnCancel.Visibility = Visibility.Hidden;
         btnSave.Visibility = Visibility.Hidden;
+
+        CheckPageButtons();
     }
 
     private void lblUsername_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

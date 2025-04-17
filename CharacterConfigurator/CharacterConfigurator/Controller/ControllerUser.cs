@@ -62,9 +62,9 @@ namespace CharacterConfigurator.Controller
 
         public void Add(User user)
         {
-            if (CheckIfNameExists(user.Name)) { throw new ExceptionAlreadyExistingName(); }
-            if (CheckIfNameExists(user.Name)) { throw new ExceptionAlreadyExistingName(); }
-            if (CheckIfNameLenght(user.Name)) { throw new ExceptionNameLenght(); }
+            if (!CheckIfNameNotExists(user.Name)) { throw new ExceptionAlreadyExistingName(); }
+            if (!CheckIfNameValid(user.Name)) { throw new ExceptionInvalidLetters(); }
+            if (!CheckIfNameLength(user.Name)) { throw new ExceptionNameLength(); }
             int newId = Repository.Save(user);
             user.Id = newId;
             UserList.Add(user);
@@ -91,6 +91,9 @@ namespace CharacterConfigurator.Controller
                     break;
                 }
             }
+            if (!CheckIfNameNotExists(user.Name, index)) { throw new ExceptionAlreadyExistingName(); }
+            if (!CheckIfNameValid(user.Name)) { throw new ExceptionInvalidLetters(); }
+            if (!CheckIfNameLength(user.Name)) { throw new ExceptionNameLength(); }
             Repository.Update(user);
             UserList[index] = user;
         }
@@ -102,7 +105,7 @@ namespace CharacterConfigurator.Controller
 
         public bool Validate(string loginName, string loginPassword)
         {
-            byte[] loginPasswordHash = DataConverter.GenerateHex(loginPassword);
+            byte[] loginPasswordHash = DataHandler.GenerateHex(loginPassword);
             foreach (User user in UserList)
             {
                 if (loginName == user.Name && loginPasswordHash.SequenceEqual(user.Password))
@@ -121,23 +124,36 @@ namespace CharacterConfigurator.Controller
             MainController.Character.CurrentUserChanged();
         }
 
-        public bool CheckIfNameExists(string newName)
+        public bool CheckIfNameNotExists(string newName)
         {
             foreach (User baseModel in UserList)
             {
                 if (baseModel.Name == newName)
                 {
-                    return true;
+                    return false;
                 }
             }
 
-            return false;
+            return true;
         }
 
-        public bool CheckIfNameLenght(string newName)
+        public bool CheckIfNameNotExists(string newName, int indexExlude)
+        {
+            for (int i = 0; i < UserList.Count; i++)
+            {
+                if (UserList[i].Name == newName && i != indexExlude)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool CheckIfNameLength(string newName)
         {
 
-            if (newName.Length < DataConverter.MinNameLength || newName.Length > DataConverter.MaxNameLength)
+            if (newName.Length < DataHandler.MinNameLength || newName.Length > DataHandler.MaxNameLength)
             {
                 return false;
             }

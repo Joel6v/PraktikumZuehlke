@@ -61,7 +61,7 @@ namespace CharacterConfigurator.Repository
             {
                 sqlInsert += "(" + baseModel.GetAttributes() + "),";
             }
-            sqlInsert.Remove(sqlInsert.Length - 1);
+            sqlInsert = sqlInsert.Remove(sqlInsert.Length - 1);
             sqlInsert += ";";
 
             using (DbConnection dbConnection = new())
@@ -92,9 +92,9 @@ namespace CharacterConfigurator.Repository
             {
                 sqlUpdate += TBaseModel.DbModel.GetListColumns()[i] + " = " + baseModel.GetListAttributes()[i] + ",";
             }
-            sqlUpdate.Remove(sqlUpdate.Length - 1);
+            sqlUpdate = sqlUpdate.Remove(sqlUpdate.Length - 1);
 
-            sqlUpdate += "WHERE id = " + baseModel.Id;
+            sqlUpdate += " WHERE id = " + baseModel.Id;
             sqlUpdate += ";";
 
             using (DbConnection dbConnection = new())

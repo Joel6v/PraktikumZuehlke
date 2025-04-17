@@ -26,7 +26,7 @@ namespace CharacterConfigurator.Model
             Name = sqlResult.GetString(1);
             DamagePerHit = sqlResult.GetInt32(2);
             AttackSpeed = (AttackSpeed)sqlResult.GetInt32(3);
-            Image = DataConverter.LoadImage((byte[])sqlResult.GetValue(4));
+            Image = DataHandler.LoadImage((byte[])sqlResult.GetValue(4));
         }
 
         public int DamagePerHit {  get; private set; }

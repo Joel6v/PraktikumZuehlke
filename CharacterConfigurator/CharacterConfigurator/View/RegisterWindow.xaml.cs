@@ -44,7 +44,7 @@ namespace CharacterConfigurator.View
             {
                 lblUsernameSpecialCharacters.Visibility = Visibility.Visible;
             }
-            catch (ExceptionNameLenght ex)
+            catch (ExceptionNameLength ex)
             {
                 lblUsernameInvalid.Visibility = Visibility.Visible;
             }

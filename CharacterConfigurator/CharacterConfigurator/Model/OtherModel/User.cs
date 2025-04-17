@@ -51,13 +51,13 @@ namespace CharacterConfigurator.Model
 
         public void SetPasswordStr(string password)
         {
-            if (password.Length >= DataConverter.MinNameLength) 
+            if (password.Length >= DataHandler.MinNameLength) 
             {
-                Password = DataConverter.GenerateHex(password);
+                Password = DataHandler.GenerateHex(password);
             }
             else
             {
-                throw new Exception($"The Password is too short. The minimum length is {DataConverter.MinNameLength}.");
+                throw new Exception($"The Password is too short. The minimum length is {DataHandler.MinNameLength}.");
             }
         }
     }

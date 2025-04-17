@@ -1,4 +1,5 @@
 ﻿using CharacterConfigurator.Controller;
+using CharacterConfigurator.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,13 @@ namespace CharacterConfigurator.View
         public UserSettingsWindow()
         {
             InitializeComponent();
+        }
+
+        private void LoadUiStatic()
+        {
+            lblUsername.Content = MainController.User.CurrentUser.Name;
+            txtChangeUsername.Text = MainController.User.CurrentUser.Name;
+            txtblAccountCreationDate.Text = MainController.User.CurrentUser.TimeStamp.ToString(DataHandler.Format);
         }
 
         private void btnDeleteAccount_Click(object sender, RoutedEventArgs e)
@@ -61,12 +69,36 @@ namespace CharacterConfigurator.View
 
         private void btnChangeUsername_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                MainController.User.CurrentUser.Name = txtChangeUsername.Text;
+                MainController.User.Save();
+                lblUsername.Content = MainController.User.CurrentUser.Name;
+            }
+            catch (ExceptionAlreadyExistingName ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (ExceptionInvalidLetters ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (ExceptionNameLength ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnChangePassword_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                
+            }
+            catch (ExceptionNameLength ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void radLightMode_Checked(object sender, RoutedEventArgs e)

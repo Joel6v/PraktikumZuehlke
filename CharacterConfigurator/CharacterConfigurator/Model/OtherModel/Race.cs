@@ -52,8 +52,8 @@ namespace CharacterConfigurator.Model
             Magicka = sqlResult.GetInt32(3);
             Stamina = sqlResult.GetInt32(4);
             Skill = (Skill)sqlResult.GetInt32(5);
-            _ImageMale = DataConverter.LoadImage((byte[])sqlResult.GetValue(6));
-            _ImageFemale = DataConverter.LoadImage((byte[])sqlResult.GetValue(7));
+            _ImageMale = DataHandler.LoadImage((byte[])sqlResult.GetValue(6));
+            _ImageFemale = DataHandler.LoadImage((byte[])sqlResult.GetValue(7));
         }
     }
 }

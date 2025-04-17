@@ -33,7 +33,7 @@ namespace CharacterConfigurator.Model.Clothing
             Id = sqlResult.GetInt32(0);
             Name = sqlResult.GetString(1);
             Defense = sqlResult.GetInt32(2);
-            Image = DataConverter.LoadImage((byte[])sqlResult.GetValue(3));
+            Image = DataHandler.LoadImage((byte[])sqlResult.GetValue(3));
         }
     }
 }
