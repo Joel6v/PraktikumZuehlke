@@ -159,7 +159,7 @@ public partial class MainWindow : Window
         txtCharacterCreationDate.Text = "creation date";
         //ComboBoxes
         settingAllCmb = true;
-        cmbConsumable.SelectedValue = null;
+        cmbConsumable.SelectedIndex = 0;
         cmbWeapon.SelectedIndex = 0;
         cmbRace.SelectedIndex = 0;
         cmbSex.SelectedIndex = 0;
