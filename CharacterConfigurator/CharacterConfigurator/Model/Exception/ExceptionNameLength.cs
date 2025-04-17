@@ -1,4 +1,6 @@
-﻿namespace CharacterConfigurator.Model
+﻿using CharacterConfigurator.Controller;
+
+namespace CharacterConfigurator.Model
 {
     public class ExceptionNameLength : Exception
     {

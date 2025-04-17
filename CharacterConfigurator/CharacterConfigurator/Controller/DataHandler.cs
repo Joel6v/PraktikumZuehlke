@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CharacterConfigurator.Model;
+using System;
 using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Media.Imaging;
 
-namespace CharacterConfigurator.Model
+namespace CharacterConfigurator.Controller
 {
     public static class DataHandler
     {
@@ -82,7 +83,7 @@ namespace CharacterConfigurator.Model
         public static bool CheckIfNameLength(string newName)
         {
 
-            if (newName.Length < DataHandler.MinNameLength || newName.Length > DataHandler.MaxNameLength)
+            if (newName.Length < MinNameLength || newName.Length > MaxNameLength)
             {
                 return false;
             }
