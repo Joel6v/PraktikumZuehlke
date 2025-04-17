@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
-        Title="User Settings" Height="675" Width="605" Style="{StaticResource SkirymFont}" FontSize="18"
+        Title="User Settings" Height="675" Width="590" Style="{StaticResource SkirymFont}" FontSize="18"
         Closing="Window_Closing">
     <!--Height=625 Width=755-->
     <Grid Margin="20">
@@ -36,11 +36,11 @@
             <!--Top Right Grid-->
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="62.5"/>
-                    <ColumnDefinition Width="162.5"/>
+                    <ColumnDefinition Width="12.5"/>
+                    <ColumnDefinition Width="237.5"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="1" Content="username" HorizontalAlignment="Center" VerticalAlignment="Center"
+                <Label Grid.Row="0" Grid.Column="1" Content="username" VerticalAlignment="Center" Margin="12.5"
                        FontSize="28" Name="lblUsername"/>
                 
             </Grid>
@@ -103,7 +103,7 @@
             <TextBlock Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Text="Account Creation Date" VerticalAlignment="Center"
                        Margin="22.5,0,22.5,-5"/>
             <TextBlock Grid.Column="1" Grid.Row="8" Text="Date" VerticalAlignment="Center" 
-                       Margin="250,5,22.5,0" Name="txtblAccountCreationDate"/>
+                       Margin="237.5,5,22.5,0" Name="txtblAccountCreationDate"/>
 
 
         </Grid>
@@ -120,10 +120,10 @@
             <Button Grid.Column="0" Style="{StaticResource StandardButton}" Content="Delete Account" Margin="12.5"
                     Name="btnDeleteAccount" Click="btnDeleteAccount_Click"/>
 
-            <Button Grid.Column="2" Style="{StaticResource StandardButton}" Content="Cancel" Margin="12.5"
+            <Button Grid.Column="2" Style="{StaticResource StandardButton}" Content="Cancel" Margin="0,12.5,18.75,12.5"
                     Name="btnSettingsCancel" Click="btnSettingsCancel_Click"/>
 
-            <Button Grid.Column="3" Style="{StaticResource StandardButton}" Content="Save" Margin="12.5"
+            <Button Grid.Column="3" Style="{StaticResource StandardButton}" Content="Save" Margin="-6.25,12.5,31.25,12.5"
                     Name="btnSettingsSave" Click="btnSettingsSave_Click"/>
 
 

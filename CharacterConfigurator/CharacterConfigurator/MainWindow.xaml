@@ -15,14 +15,13 @@
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="72.5"/>
-            <RowDefinition Height="187.165"/>
-            <RowDefinition Height="412.835"/>
+            <RowDefinition Height="600"/>
             <RowDefinition Height="72.5"/>
         </Grid.RowDefinitions>
         
         <Border Grid.Row="0" Style="{StaticResource GridBorderOutLine}"/>
-        <Border Grid.Row="1" Style="{StaticResource GridBorderOutLine}" Margin="0,12,0,12" Grid.RowSpan="2"/>
-        <Border Grid.Row="2" Style="{StaticResource GridBorderOutLine}" Margin="0,412,0,0" Grid.RowSpan="2"/>
+        <Border Grid.Row="1" Style="{StaticResource GridBorderOutLine}" Margin="0,12.5,0,12.5"/>
+        <Border Grid.Row="2" Style="{StaticResource GridBorderOutLine}"/>
 
         <!--Top Middle Grid-->
         <Grid Grid.Row="0">
@@ -52,7 +51,7 @@
 
 
         <!--Middle Grid-->
-        <Grid Margin="0,72,0,0" Grid.RowSpan="3">
+        <Grid Grid.Row="1">
             <DockPanel>
                 <!-- Left Column -->
                 <StackPanel DockPanel.Dock="Left" Width="325">
@@ -227,6 +226,7 @@
 
                         <Border Style="{StaticResource GridBorderOutLine}" Margin="12.5,25,12.5,25">
                             <Image Name="imgCharacter"/>
+                            <!--Width=523 Height=548-->
                         </Border>
 
                         <TextBox Text="character name" Name="txtCharacterName" Margin="25,37.5,325,530" VerticalContentAlignment="Center" Padding="5,0,5,0"/>
@@ -245,7 +245,7 @@
         </Grid>
 
         <!--Bottom Grid-->
-        <Grid Grid.Row="2" Margin="0,412,0,0" Grid.RowSpan="2">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="325"/>
                 <ColumnDefinition Width="550"/>

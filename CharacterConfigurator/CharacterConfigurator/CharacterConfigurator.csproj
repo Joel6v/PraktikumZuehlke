@@ -48,6 +48,7 @@
     <None Remove="Resources\Image\Consumable\scroll.png" />
     <None Remove="Resources\Image\Favicon\skirym_dragon_Logo.ico" />
     <None Remove="Resources\Image\Favicon\s_logo.ico" />
+    <None Remove="Resources\Image\Race\Female\altmer.png" />
     <None Remove="Resources\Image\robin.png" />
     <None Remove="View\Font\Balgruf-JRye7.ttf" />
     <None Remove="View\Font\minecraft-enchantment.ttf" />
@@ -59,8 +60,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Image\Race\Male\" />
-    <Folder Include="Resources\Image\Race\Female\" />
     <Folder Include="Resources\Image\Weapon\" />
   </ItemGroup>
 
@@ -126,6 +125,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Image\Consumable\scroll.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Image\Race\Female\altmer.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="View\Font\Balgruf-JRye7.ttf">

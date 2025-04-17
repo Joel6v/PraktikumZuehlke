@@ -123,12 +123,12 @@ namespace CharacterConfigurator.View
 
         private void radLightMode_Checked(object sender, RoutedEventArgs e)
         {
-
+            ThemeManager.ApplyTheme("Light");
         }
 
         private void radDarkMode_Checked(object sender, RoutedEventArgs e)
         {
-
+            ThemeManager.ApplyTheme("Dark");
         }
 
         private void radGreyMode_Checked(object sender, RoutedEventArgs e)

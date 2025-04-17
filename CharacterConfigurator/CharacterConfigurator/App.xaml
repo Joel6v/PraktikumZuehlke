@@ -4,93 +4,101 @@
              xmlns:local="clr-namespace:CharacterConfigurator"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style x:Key="SkirymFont">
-            <Setter Property="TextElement.FontFamily"
-                    Value="pack://application:,,,View/Font/Balgruf-JRye7.ttf#Balgruf">
-            </Setter>
-        </Style>
+        <ResourceDictionary>
+            <Style x:Key="SkirymFont">
+                <Setter Property="TextElement.FontFamily"
+            Value="pack://application:,,,View/Font/Balgruf-JRye7.ttf#Balgruf">
+                </Setter>
+            </Style>
 
-        <Style x:Key="EnchantingTableFont">
-            <Setter Property="TextElement.FontFamily"
-                    Value="pack://application:,,,View/Font/#minecraft enchantment"/>
-        </Style>
+            <Style x:Key="EnchantingTableFont">
+                <Setter Property="TextElement.FontFamily"
+            Value="pack://application:,,,View/Font/#minecraft enchantment"/>
+            </Style>
 
-        <Style x:Key="HoverOverText" TargetType="Label">
-            <Setter Property="Foreground">
-                <Setter.Value>
-                    <SolidColorBrush Color="Black"/>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <EventTrigger RoutedEvent="MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation To="CornflowerBlue"
-                                        Duration="0:0:0.2"
-                                        Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
+            <Style x:Key="HoverOverText" TargetType="Label">
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="Black"/>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="CornflowerBlue"
+                                Duration="0:0:0.2"
+                                Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
 
-                <EventTrigger RoutedEvent="MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation To="Black"
-                                        Duration="0:0:0.2"
-                                        Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Style.Triggers>
-        </Style>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="Black"
+                                Duration="0:0:0.2"
+                                Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
 
-        <Style x:Key="GridBorderOutLine" TargetType="Border">
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="0"/>
-        </Style>
+            <Style x:Key="GridBorderOutLine" TargetType="Border">
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
 
-        <Style x:Key="ClothingBorder" TargetType="Border">
-            <Setter Property="BorderBrush" Value="White"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Background" Value="Transparent"/>
-        </Style>
+            <Style x:Key="ClothingBorder" TargetType="Border">
+                <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
 
-        <Style x:Key="StandardButton" TargetType="Button">
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="FontSize" Value="28"/>
-        </Style>
+            <Style x:Key="StandardButton" TargetType="Button">
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="FontSize" Value="28"/>
+            </Style>
 
-        <Style x:Key="SettingsButton" TargetType="Button">
-            <Setter Property="Margin" Value="17.5"/>
-        </Style>
+            <Style x:Key="SettingsButton" TargetType="Button">
+                <Setter Property="Margin" Value="17.5"/>
+            </Style>
+
+            <Style x:Key="StatsTextBlockLeft" TargetType="TextBlock">
+                <Setter Property="Margin" Value="12.5,12.5,0,0"/>
+            </Style>
+
+            <Style x:Key="ProgressBarStat" TargetType="ProgressBar">
+                <Setter Property="Height" Value="12.5"/>
+                <Setter Property="Margin" Value="15,18.5,-37.5,10"/>
+                <Setter Property="Value" Value="100"/>
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
+
+            <Style x:Key="StatsTextBlockRight" TargetType="TextBlock">
+                <Setter Property="Margin" Value="15,12.5,0,0"/>
+            </Style>
+
+            <Style x:Key="HiddenSelectedTextComboBox" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+                <Style.Resources>
+                    <Style TargetType="ContentPresenter">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ComboBoxItem}}" Value="{x:Null}">
+                                <Setter Property="Opacity" Value="0"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Style.Resources>
+            </Style>
+
+            <ResourceDictionary.MergedDictionaries>
+                <!--Placeholder-->
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
         
-        <Style x:Key="StatsTextBlockLeft" TargetType="TextBlock">
-            <Setter Property="Margin" Value="12.5,12.5,0,0"/>
-        </Style>
-
-        <Style x:Key="ProgressBarStat" TargetType="ProgressBar">
-            <Setter Property="Height" Value="12.5"/>
-            <Setter Property="Margin" Value="15,18.5,-37.5,10"/>
-            <Setter Property="Value" Value="100"/>
-            <Setter Property="Background" Value="Transparent"/>
-        </Style>
-
-        <Style x:Key="StatsTextBlockRight" TargetType="TextBlock">
-            <Setter Property="Margin" Value="15,12.5,0,0"/>
-        </Style>
-
-        <Style x:Key="HiddenSelectedTextComboBox" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
-            <Style.Resources>
-                <Style TargetType="ContentPresenter">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ComboBoxItem}}" Value="{x:Null}">
-                            <Setter Property="Opacity" Value="0"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Style.Resources>
-        </Style>
 
     </Application.Resources>
 </Application>
