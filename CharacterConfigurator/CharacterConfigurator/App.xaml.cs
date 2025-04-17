@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using CharacterConfigurator.View;
+using System.Configuration;
 using System.Data;
 using System.Windows;
 
@@ -9,5 +10,10 @@ namespace CharacterConfigurator;
 /// </summary>
 public partial class App : Application
 {
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+        ThemeManager.ApplyTheme("Light"); // Set default theme
+    }
 }
 
