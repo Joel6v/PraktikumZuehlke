@@ -30,7 +30,14 @@ public partial class MainWindow : Window
         else
         {
             MainController.Load();
-            new LoginWindow().Show();
+            if (MainController.User.Count() != 0)
+            {
+                new LoginWindow().Show();
+            }
+            else
+            {
+                new RegisterWindow().Show();
+            }
             this.Close();
         }
     }
@@ -118,7 +125,7 @@ public partial class MainWindow : Window
         {
             settingAllCmb = true;
             txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).Name;
-            txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.ToString(DataHandler.Format);
+            txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.ToString(DataHandler.FormatCurrent);
             //ComboBoxes
             cmbConsumable.SelectedIndex = MainController.Consumable.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Consumable);
             cmbWeapon.SelectedIndex = MainController.Weapon.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Weapon);
@@ -273,7 +280,7 @@ public partial class MainWindow : Window
             if (CurrentCharaterIndex == MainController.Character.Count())
             {
                 MainController.Character.Add(ReadCharacter());
-                txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.ToString(DataHandler.Format);
+                txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.ToString(DataHandler.FormatCurrent);
             }
             else
             {

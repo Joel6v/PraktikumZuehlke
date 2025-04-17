@@ -10,9 +10,10 @@ namespace CharacterConfigurator.Model
     public static class DataHandler
     {
         public const int MinNameLength = 3;
-        public const int MaxNameLength = 30;
+        public const int MaxNameLength = 15;
 
-        public static CultureInfo Format = CultureInfo.GetCultureInfo("de-DE");
+        public static CultureInfo FormatCurrent = CultureInfo.CurrentUICulture;
+        public static string FormtDb = "yyyy-MM-dd HH:mm:ss"; //SQL DateTime YYYY-MM-DD HH:MI:SS
 
         public static byte[] GenerateHex(string text)
         {
