@@ -21,6 +21,8 @@ namespace CharacterConfigurator.View
     /// </summary>
     public partial class UserSettingsWindow : Window
     {
+        User changedUser = MainController.User.CurrentUser;
+
         public UserSettingsWindow()
         {
             InitializeComponent();
@@ -53,6 +55,7 @@ namespace CharacterConfigurator.View
 
         private void btnSettingsSave_Click(object sender, RoutedEventArgs e)
         {
+
             this.DialogResult = true;
             this.Close();
         }
@@ -71,9 +74,7 @@ namespace CharacterConfigurator.View
         {
             try
             {
-                MainController.User.CurrentUser.Name = txtChangeUsername.Text;
-                MainController.User.Save();
-                lblUsername.Content = MainController.User.CurrentUser.Name;
+                changedUser.Name = txtChangeUsername.Text;
             }
             catch (ExceptionAlreadyExistingName ex)
             {
@@ -93,7 +94,7 @@ namespace CharacterConfigurator.View
         {
             try
             {
-                
+                changedUser.SetPasswordStr(txtChangePassword.Text);
             }
             catch (ExceptionNameLength ex)
             {
