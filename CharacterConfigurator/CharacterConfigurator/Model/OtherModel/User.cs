@@ -57,7 +57,7 @@ namespace CharacterConfigurator.Model
             }
             else
             {
-                throw new Exception($"The Password is too short. The minimum length is {DataHandler.MinNameLength}.");
+                throw new ExceptionNameLength(false);
             }
         }
     }

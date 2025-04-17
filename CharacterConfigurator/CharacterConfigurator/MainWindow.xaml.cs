@@ -465,5 +465,10 @@ public partial class MainWindow : Window
             new RegisterWindow().Show();
             Close();
         }
+        else
+        {
+            //Username
+            lblUsername.Content = MainController.User.CurrentUser.Name;
+        }
     }
 }

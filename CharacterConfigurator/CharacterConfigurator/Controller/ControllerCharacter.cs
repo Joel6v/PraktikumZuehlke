@@ -1,5 +1,6 @@
 ﻿using CharacterConfigurator.Model;
 using CharacterConfigurator.Repository;
+using System;
 
 namespace CharacterConfigurator.Controller
 {
@@ -65,9 +66,7 @@ namespace CharacterConfigurator.Controller
 
         public void Add(Character character)
         {
-            if(!CheckIfNameNotExists(character.Name)) { throw new ExceptionAlreadyExistingName(); }
-            if(!CheckIfNameValid(character.Name)) { throw new ExceptionInvalidLetters(); }
-            if (!CheckIfNameLength(character.Name)) { throw new ExceptionNameLength(); }
+            DataHandler.CheckName(GetAllNames(), character.Name);
             int newId = Repository.Save(character);
             character.Id = newId;
             CharacterListCurrentUser.Add(character);
@@ -101,60 +100,9 @@ namespace CharacterConfigurator.Controller
                     break;
                 }
             }
-            if (!CheckIfNameNotExists(character.Name, index)) { throw new ExceptionAlreadyExistingName(); }
-            if (!CheckIfNameValid(character.Name)) { throw new ExceptionInvalidLetters(); }
-            if (!CheckIfNameLength(character.Name)) { throw new ExceptionNameLength(); }
+            DataHandler.CheckName(GetAllNames(), character.Name, index);
             Repository.Update(character);
             CharacterListCurrentUser[index] = character;
-        }
-
-        public bool CheckIfNameNotExists(string newName)
-        {
-            foreach (Character baseModel in CharacterListCurrentUser)
-            {
-                if (baseModel.Name == newName)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        public bool CheckIfNameNotExists(string newName, int indexExlude)
-        {
-            for(int i = 0;i < CharacterListCurrentUser.Count; i++)
-            {
-                if(CharacterListCurrentUser[i].Name == newName && i != indexExlude)
-                { 
-                    return false; 
-                }
-            }
-
-            return true;
-        }
-
-        public bool CheckIfNameLength(string newName)
-        {
-
-            if (newName.Length < DataHandler.MinNameLength || newName.Length > DataHandler.MaxNameLength)
-            {
-                return false;
-            }
-            return true;
-        }
-
-
-        public bool CheckIfNameValid(string newName)
-        {
-            foreach (char c in newName)
-            {
-                if (!(char.IsLetterOrDigit(c) || c == ' '))
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 
         private void Load()

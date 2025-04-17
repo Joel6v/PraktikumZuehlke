@@ -11,9 +11,16 @@ namespace CharacterConfigurator.Model
         private string _Message;
         public override string Message => _Message;
 
-        public ExceptionNameLength()
+        public ExceptionNameLength(bool maxLength)
         {
-            _Message = $"The Username is too short or too long. The minimum length is {DataHandler.MinNameLength} and the maximum length is {DataHandler.MaxNameLength}.";
+            if (maxLength)
+            {
+                _Message = $"The Username is too short or too long. The minimum length is {DataHandler.MinNameLength} and the maximum length is {DataHandler.MaxNameLength}.";
+            }
+            else
+            {
+                _Message = $"The Username is too short. The minimum length is {DataHandler.MinNameLength}.";
+            }
         }
     }
 }
