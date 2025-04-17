@@ -36,6 +36,7 @@ namespace CharacterConfigurator.View
             txtblAccountCreationDate.Text = MainController.User.CurrentUser.TimeStamp.ToString(DataHandler.Format);
             txtChangeUsername.IsEnabled = false;
             txtChangePassword.IsEnabled = false;
+            btnSettingsSave.IsEnabled = false;
         }
 
         private void btnDeleteAccount_Click(object sender, RoutedEventArgs e)
@@ -58,6 +59,9 @@ namespace CharacterConfigurator.View
 
         private void btnSettingsSave_Click(object sender, RoutedEventArgs e)
         {
+            txtChangeUsername.IsEnabled = false;
+            txtChangePassword.IsEnabled = false;
+
             bool errorUsername = false;
             try
             {
@@ -77,6 +81,10 @@ namespace CharacterConfigurator.View
             {
                 MessageBox.Show(ex.Message);
                 errorUsername = true;
+            }
+            if (errorUsername)
+            {
+                btnChangeUsername.Focus();
             }
 
             bool errorPassword = false;
