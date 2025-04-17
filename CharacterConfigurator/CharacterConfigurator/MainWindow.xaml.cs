@@ -373,6 +373,8 @@ public partial class MainWindow : Window
         cmbSex.IsEnabled = true;
         txtCharacterName.IsEnabled = true;
 
+        lblUsername.IsEnabled = false;
+
         btnPageLeft.Visibility = Visibility.Hidden;
         btnPageRight.Visibility = Visibility.Hidden;
 
@@ -395,6 +397,8 @@ public partial class MainWindow : Window
         cmbRace.IsEnabled = false;
         cmbSex.IsEnabled = false;
         txtCharacterName.IsEnabled = false;
+
+        lblUsername.IsEnabled = true;
 
         brdHeadwear.Visibility = Visibility.Hidden;
         brdBody.Visibility = Visibility.Hidden;

@@ -68,33 +68,41 @@
                 <Image Name="imgProfilePicture"/>
             </Border>
             <Button Grid.Column="1" Grid.Row="0" Content="Change Profile Picture" Name="btnChangeProfilePicture"
-                    Click="btnChangeProfilePicture_Click"/>
+                    Click="btnChangeProfilePicture_Click" Style="{StaticResource SettingsButton}"/>
             <Button Grid.Column="1" Grid.Row="1" Content="Delete Profile Picture" Name="btnDeleteProfilePicture"
-                    Click="btnDeleteProfilePicture_Click"/>
+                    Click="btnDeleteProfilePicture_Click" Style="{StaticResource SettingsButton}"/>
             
             
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="Username"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Username" VerticalAlignment="Center" Margin="22.5,0"/>
             <TextBox Grid.Column="1" Grid.Row="2" Name="txtChangeUsername" IsEnabled="False"/>
             <Button Grid.Column="1" Grid.Row="3" Content="Change Username" Name="btnChangeUsername"
-                    Click="btnChangeUsername_Click"/>
+                    Click="btnChangeUsername_Click" Margin="17.5,5.5"/>
             
             
-            <TextBlock Grid.Column="0" Grid.Row="4" Text="Password"/>
+            <TextBlock Grid.Column="0" Grid.Row="4" Text="Password" VerticalAlignment="Center" Margin="22.5,0"/>
             <TextBox Grid.Column="1" Grid.Row="4" Name="txtChangePassword" IsEnabled="False"/>
             <Button Grid.Column="1" Grid.Row="5" Content="Change Password" Name="btnChangePassword"
-                    Click="btnChangePassword_Click"/>
+                    Click="btnChangePassword_Click" Margin="17.5,5.5"/>
             
             
-            <GroupBox Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Header="Appearance" Name="grpAppearance">
+            <GroupBox Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Header="Appearance" Name="grpAppearance" Margin="12.5,0,12.5,-2.5">
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="Light Mode" Name="radLightMode" IsChecked="True"/>
-                    <RadioButton Content="Dark Mode" Name="radDarkMode" IsChecked="False"/>
+                    <RadioButton Content="Light Mode" Name="radLightMode" IsChecked="True" Checked="radLightMode_Checked"
+                                 VerticalAlignment="Center" Margin="12.5,0,75,0"/>
+                    
+                    <RadioButton Content="Dark Mode" Name="radDarkMode" IsChecked="False" Checked="radDarkMode_Checked"
+                                 VerticalAlignment="Center" Margin="0,0,0,0"/>
+                    
+                    <RadioButton Content="Grey Mode" Name="radGreyMode" IsChecked="False" Checked="radGreyMode_Checked"
+                                 VerticalAlignment="Center" Margin="75,0,0,0"/>
                 </StackPanel>
             </GroupBox>
-            
-            
-            <TextBlock Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Text="Account Creation Date"/>
-            <TextBlock Grid.Column="1" Grid.Row="8" HorizontalAlignment="Right" Text="Date" Name="txtblAccountCreationDate"/>
+
+
+            <TextBlock Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Text="Account Creation Date" VerticalAlignment="Center"
+                       Margin="22.5,0"/>
+            <TextBlock Grid.Column="1" Grid.Row="8" HorizontalAlignment="Right" Text="Date" VerticalAlignment="Center" Margin="12.5"
+                       Name="txtblAccountCreationDate"/>
 
 
         </Grid>

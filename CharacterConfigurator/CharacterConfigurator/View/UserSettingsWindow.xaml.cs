@@ -68,5 +68,20 @@ namespace CharacterConfigurator.View
         {
 
         }
+
+        private void radLightMode_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void radDarkMode_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void radGreyMode_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

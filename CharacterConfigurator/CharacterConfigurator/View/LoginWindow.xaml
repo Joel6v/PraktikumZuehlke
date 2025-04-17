@@ -9,8 +9,9 @@
         ResizeMode="CanMinimize"
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen"
+        PreviewKeyDown="Window_PreviewKeyDown"
         Title="Skirym Login" Height="200" Width="400" Style="{StaticResource SkirymFont}" FontSize="18">
-    
+
     <Grid Margin="20,0,20,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
