@@ -11,11 +11,11 @@ SELECT LOAD_FILE(CONCAT(@folder, 'Weapon\\dagger.png')) IS NOT NULL AS 'Weapon D
 -- -----------------------------------------------------
 DELETE FROM race;
 INSERT INTO race (name, health, magicka, stamina, skill, imageMale, imageFemale) VALUES
-('Nord', 85, 40, 85, 1, LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png'))),
-('Redguard', 85, 55, 70, 2, LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png'))),
-('Altmer', 50, 100, 60, 3, LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png'))),
-('Orc', 100, 55, 60, 0, LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png'))),
-('Khajiit', 65, 45, 100, 4, LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\robin.png')));
+('Nord', 85, 40, 85, 1, LOAD_FILE(CONCAT(@folder, 'Race\\Male\\nord.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\nord.png'))),
+('Redguard', 85, 55, 70, 2, LOAD_FILE(CONCAT(@folder, 'Race\\Male\\redguard.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\redguard.png'))),
+('Altmer', 50, 100, 60, 3, LOAD_FILE(CONCAT(@folder, 'Race\\Male\\altmer.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\altmer.png'))),
+('Orc', 100, 55, 60, 0, LOAD_FILE(CONCAT(@folder, 'Race\\Male\\orc.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\orc.png'))),
+('Khajiit', 65, 45, 100, 4, LOAD_FILE(CONCAT(@folder, 'Race\\Male\\khajiit.png')), LOAD_FILE(CONCAT(@folder, 'Race\\Female\\khajiit.png')));
 
 -- -----------------------------------------------------
 -- Tables from type 'clothing'
