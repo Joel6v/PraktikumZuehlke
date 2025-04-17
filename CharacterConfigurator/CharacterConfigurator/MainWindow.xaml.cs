@@ -382,7 +382,7 @@ public partial class MainWindow : Window
     {
         if (cmbLegs.SelectedIndex >= 0)
         {
-            //txtblLegs.Visibility = Visibility.Hidden;
+            txtblLegs.Visibility = Visibility.Hidden;
             brdShoes.Visibility = Visibility.Visible;
             imgShoes.Source = MainController.Legs.Get(cmbLegs.SelectedIndex).Image;
             CalcStatsField();
