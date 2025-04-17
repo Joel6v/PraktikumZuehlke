@@ -26,6 +26,7 @@ namespace CharacterConfigurator.View
         public UserSettingsWindow()
         {
             InitializeComponent();
+            LoadUiStatic();
         }
 
         private void LoadUiStatic()
@@ -33,6 +34,8 @@ namespace CharacterConfigurator.View
             lblUsername.Content = MainController.User.CurrentUser.Name;
             txtChangeUsername.Text = MainController.User.CurrentUser.Name;
             txtblAccountCreationDate.Text = MainController.User.CurrentUser.TimeStamp.ToString(DataHandler.Format);
+            txtChangeUsername.IsEnabled = false;
+            txtChangePassword.IsEnabled = false;
         }
 
         private void btnDeleteAccount_Click(object sender, RoutedEventArgs e)
@@ -42,36 +45,20 @@ namespace CharacterConfigurator.View
             if (accountDeletion == MessageBoxResult.Yes) 
             {
                 MainController.User.Delete();
-                this.DialogResult = false;
-                this.Close();                
+                DialogResult = false;
+                Close();
             }
         }
 
         private void btnSettingsCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
-            this.Close();
+            DialogResult = true;
+            Close();
         }
 
         private void btnSettingsSave_Click(object sender, RoutedEventArgs e)
         {
-
-            this.DialogResult = true;
-            this.Close();
-        }
-
-        private void btnChangeProfilePicture_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnDeleteProfilePicture_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnChangeUsername_Click(object sender, RoutedEventArgs e)
-        {
+            bool errorUsername = false;
             try
             {
                 changedUser.Name = txtChangeUsername.Text;
@@ -79,19 +66,20 @@ namespace CharacterConfigurator.View
             catch (ExceptionAlreadyExistingName ex)
             {
                 MessageBox.Show(ex.Message);
+                errorUsername = true;
             }
             catch (ExceptionInvalidLetters ex)
             {
                 MessageBox.Show(ex.Message);
+                errorUsername = true;
             }
             catch (ExceptionNameLength ex)
             {
                 MessageBox.Show(ex.Message);
+                errorUsername = true;
             }
-        }
 
-        private void btnChangePassword_Click(object sender, RoutedEventArgs e)
-        {
+            bool errorPassword = false;
             try
             {
                 changedUser.SetPasswordStr(txtChangePassword.Text);
@@ -99,7 +87,38 @@ namespace CharacterConfigurator.View
             catch (ExceptionNameLength ex)
             {
                 MessageBox.Show(ex.Message);
+                errorPassword = true;
             }
+
+            if (!errorUsername && !errorPassword)
+            {
+                DialogResult = true;
+                Close();
+            }
+            else
+            {
+                btnSettingsSave.IsEnabled = false;
+            }
+        }
+
+        private void btnChangeProfilePicture_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnDeleteProfilePicture_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnChangeUsername_Click(object sender, RoutedEventArgs e)
+        {
+            txtChangeUsername.IsEnabled = !txtChangeUsername.IsEnabled;
+        }
+
+        private void btnChangePassword_Click(object sender, RoutedEventArgs e)
+        {
+            txtChangePassword.IsEnabled = !txtChangePassword.IsEnabled;
         }
 
         private void radLightMode_Checked(object sender, RoutedEventArgs e)
@@ -115,6 +134,11 @@ namespace CharacterConfigurator.View
         private void radGreyMode_Checked(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.DialogResult = (this.DialogResult == null) ? true : this.DialogResult;
         }
     }
 }
