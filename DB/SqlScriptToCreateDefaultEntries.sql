@@ -69,12 +69,12 @@ INSERT INTO consumable (name, image) VALUES
 -- Table 'user'
 -- -----------------------------------------------------
 DELETE FROM user;
-INSERT INTO user (name, password, timestamp) VALUES
-('User1', 'E6FA3CA87B1B641AB646D3B4933BBA8D0970763F030B6578A60ABDEAE7366247', NOW()); -- Password: Test
+-- INSERT INTO user (name, password, timestamp) VALUES
+-- ('User1', 'E6FA3CA87B1B641AB646D3B4933BBA8D0970763F030B6578A60ABDEAE7366247', NOW()); -- Password: Test
 
 -- -----------------------------------------------------
 -- Table 'character'
 -- -----------------------------------------------------
 DELETE FROM characterconfiguration;
-INSERT INTO characterconfiguration (name, timestamp, userId, raceId, headgearId, chestId, glovesId, legsId, weaponId, consumableId) VALUES
-('TestCharacter', NOW(), 1, 1, 1, 1, 1, 1, 1, 1);
+-- INSERT INTO characterconfiguration (name, timestamp, userId, raceId, headgearId, chestId, glovesId, legsId, weaponId, consumableId) VALUES
+-- ('TestCharacter', NOW(), 1, 1, 1, 1, 1, 1, 1, 1);

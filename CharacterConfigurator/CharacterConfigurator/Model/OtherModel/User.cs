@@ -36,7 +36,8 @@ namespace CharacterConfigurator.Model
 
         public List<string> GetListAttributes()
         {
-            return new List<string>() { $"'{Name}'", $"'{BitConverter.ToString(Password).Replace("-", "")}'", $"'{TimeStamp.ToString()}'"};
+
+            return new List<string>() { $"'{Name}'", $"'{BitConverter.ToString(Password).Replace("-", "")}'", $"'{TimeStamp.ToString(DataHandler.FormtDb)}'"};
         }
 
         public void SetAttributes(MySqlDataReader sqlResult)

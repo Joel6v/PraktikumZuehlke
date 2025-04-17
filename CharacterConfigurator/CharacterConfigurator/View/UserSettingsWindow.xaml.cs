@@ -21,7 +21,8 @@ namespace CharacterConfigurator.View
     /// </summary>
     public partial class UserSettingsWindow : Window
     {
-        User changedUser = MainController.User.CurrentUser;
+        private string newUsername = string.Empty;
+        private string newPassword = string.Empty;
 
         public UserSettingsWindow()
         {
@@ -33,9 +34,10 @@ namespace CharacterConfigurator.View
         {
             lblUsername.Content = MainController.User.CurrentUser.Name;
             txtChangeUsername.Text = MainController.User.CurrentUser.Name;
-            txtblAccountCreationDate.Text = MainController.User.CurrentUser.TimeStamp.ToString(DataHandler.Format);
+            txtblAccountCreationDate.Text = MainController.User.CurrentUser.TimeStamp.ToString(DataHandler.FormatCurrent);
             txtChangeUsername.IsEnabled = false;
             txtChangePassword.IsEnabled = false;
+            btnSettingsSave.IsEnabled = false;
         }
 
         private void btnDeleteAccount_Click(object sender, RoutedEventArgs e)
@@ -58,46 +60,48 @@ namespace CharacterConfigurator.View
 
         private void btnSettingsSave_Click(object sender, RoutedEventArgs e)
         {
-            bool errorUsername = false;
+            btnSettingsSave.IsEnabled = false;
+            User changedUser = MainController.User.CurrentUser;
+
+            if (txtChangeUsername.IsEnabled)
+            {
+                txtChangeUsername.IsEnabled = false;
+                changedUser.Name = txtChangeUsername.Text;
+            }
+
+
+            if (txtChangePassword.IsEnabled)
+            {
+               txtChangePassword.IsEnabled = false;
+               changedUser.SetPasswordStr(txtChangePassword.Text);
+            }
+
+            bool error = false;
             try
             {
-                changedUser.Name = txtChangeUsername.Text;
+                MainController.User.Update(changedUser);
             }
             catch (ExceptionAlreadyExistingName ex)
             {
                 MessageBox.Show(ex.Message);
-                errorUsername = true;
+                error = true;
             }
             catch (ExceptionInvalidLetters ex)
             {
                 MessageBox.Show(ex.Message);
-                errorUsername = true;
+                error = true;
             }
             catch (ExceptionNameLength ex)
             {
                 MessageBox.Show(ex.Message);
-                errorUsername = true;
+                error = true;
             }
 
-            bool errorPassword = false;
-            try
-            {
-                changedUser.SetPasswordStr(txtChangePassword.Text);
-            }
-            catch (ExceptionNameLength ex)
-            {
-                MessageBox.Show(ex.Message);
-                errorPassword = true;
-            }
 
-            if (!errorUsername && !errorPassword)
+            if (!error)
             {
                 DialogResult = true;
                 Close();
-            }
-            else
-            {
-                btnSettingsSave.IsEnabled = false;
             }
         }
 
@@ -114,11 +118,13 @@ namespace CharacterConfigurator.View
         private void btnChangeUsername_Click(object sender, RoutedEventArgs e)
         {
             txtChangeUsername.IsEnabled = !txtChangeUsername.IsEnabled;
+            btnSettingsSave.IsEnabled = (txtChangeUsername.IsEnabled || txtChangePassword.IsEnabled) ? true : false;
         }
 
         private void btnChangePassword_Click(object sender, RoutedEventArgs e)
         {
             txtChangePassword.IsEnabled = !txtChangePassword.IsEnabled;
+            btnSettingsSave.IsEnabled = (txtChangeUsername.IsEnabled || txtChangePassword.IsEnabled) ? true : false;
         }
 
         private void radLightMode_Checked(object sender, RoutedEventArgs e)
