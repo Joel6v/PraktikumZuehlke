@@ -12,7 +12,7 @@ namespace CharacterConfigurator.Model
         {
         }
 
-        public Character(string name, Race race, Headgear headgear, Chest chest, Gloves gloves, Legs legs, Consumable consumable, Weapon weapon)
+        public Character(string name, Race race, Headgear headgear, Chest chest, Gloves gloves, Legs legs, Consumable consumable, Weapon weapon, Sex sex)
         {
             User = MainController.User.CurrentUser;
             Name = name;
@@ -23,6 +23,7 @@ namespace CharacterConfigurator.Model
             Legs = legs;
             Consumable = consumable;
             Weapon = weapon;
+            Sex = sex;
             TimeStamp = DateTime.Now;
         }
 
@@ -47,7 +48,7 @@ namespace CharacterConfigurator.Model
             Id = sqlResult.GetInt32(0);
             Name = sqlResult.GetString(1);
             TimeStamp = sqlResult.GetDateTime(2);
-            User = MainController.User.Get(sqlResult.GetInt32(3) - 1); //-1 because the Id's in the Db starts with 1
+            User = MainController.User.GetById(sqlResult.GetInt32(3) - 1); //-1 because the Id's in the Db starts with 1
             Race = MainController.Race.Get(sqlResult.GetInt32(4) - 1);
             Headgear = MainController.Headgear.Get(sqlResult.GetInt32(5) - 1);
             Chest = MainController.Chest.Get(sqlResult.GetInt32(6) - 1);

@@ -28,6 +28,19 @@ namespace CharacterConfigurator.Controller
             return UserList[index];
         }
 
+        public User GetById(int id)
+        {
+            for (int i = 0; i < UserList.Count; i++)
+            {
+                if(UserList[i].Id == id)
+                {
+                    return UserList[i];
+                }
+            }
+
+            return null;
+        }
+
         public List<User> GetAll()
         {
             return UserList;

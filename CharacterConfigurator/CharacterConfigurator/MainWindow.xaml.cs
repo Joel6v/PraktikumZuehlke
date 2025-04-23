@@ -129,7 +129,7 @@ public partial class MainWindow : Window
         if (CurrentCharaterIndex != -1)
         {
             settingAllCmb = true;
-            txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).Name;
+            txtCharacterName.Text = MainController.Character.Get(CurrentCharaterIndex).Name;
             txtCharacterCreationDate.Text = MainController.Character.Get(CurrentCharaterIndex).TimeStamp.ToString(DataHandler.FormatCurrent);
             //ComboBoxes
             cmbConsumable.SelectedIndex = MainController.Consumable.GetIndex(MainController.Character.Get(CurrentCharaterIndex).Consumable);
@@ -196,7 +196,7 @@ public partial class MainWindow : Window
         Weapon weapon = MainController.Weapon.Get(cmbWeapon.SelectedIndex);
         Consumable consumable = MainController.Consumable.Get(cmbConsumable.SelectedIndex);
         Sex sex = (Sex)cmbSex.SelectedIndex;
-        Character newCharacter = new Character(name, race, headgear, chest, gloves, legs, consumable, weapon);
+        Character newCharacter = new Character(name, race, headgear, chest, gloves, legs, consumable, weapon, sex);
         return newCharacter;
     }
 
@@ -253,7 +253,7 @@ public partial class MainWindow : Window
 
     private void btnEdit_Click(object sender, RoutedEventArgs e)
     {
-        if(CurrentCharaterIndex != 1)
+        if(CurrentCharaterIndex != -1)
         {
             SetEnabledElements();
             beforeCharacter = CurrentCharaterIndex;
