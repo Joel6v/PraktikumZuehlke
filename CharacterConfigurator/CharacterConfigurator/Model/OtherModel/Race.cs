@@ -18,7 +18,7 @@ namespace CharacterConfigurator.Model
 
         public string Name { get; set; }
 
-        public BitmapImage Image { get { return null; } set { } }
+        public BitmapImage Image { get { throw new NotImplementedException(); } set { } }
 
         public BitmapImage GetImage(Sex sex)
         {
