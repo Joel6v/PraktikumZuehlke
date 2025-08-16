@@ -1,4 +1,4 @@
-Copyright (c) 2025 Joel Eyer
+Copyright (c) 2025 Joel Eyer, Alicja Jedynska
 
 All rights reserved.
 
