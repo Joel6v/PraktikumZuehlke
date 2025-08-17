@@ -1,5 +1,5 @@
-# PraktikumZuehlke - Charaterkofiguration
-Projektaufgabe für das Kurzzeitpraktikum bei Zühlke: Eine Characterkonfiguration für *Skirym*. 
+# PraktikumZuehlke - Charakterkofigurator
+Projektaufgabe für das Kurzzeitpraktikum bei Zühlke: Eine Charakterkonfigurator für *Skirym*. 
 
 ## Benutzer
 Der Benutzer muss zuerst ein Konto erstellen, damit kann er sich später wieder anmelden. Er kann nachdem er sich angemeldet hat neue *Character* erstellen, bestehende bearbeiten und löschen. Ein *Character* besteht aus *Consumable*, *Weapon* und *Clothing* (das besteht aus *Headwear*, *Body*, *Gloves* und *Shoes*). Er kann bei seinem bestehendem Konto den Benutzernamen und Passwort ändern und das Konto löschen.
