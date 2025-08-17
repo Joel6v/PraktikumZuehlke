@@ -6,7 +6,7 @@ namespace CharacterConfigurator.Controller
 {
     public class ControllerCharacter
     {
-        private List<Character> CharacterListCurrentUser { get; set; } = new List<Character>(); //For testing resons in must be set
+        private List<Character> CharacterListCurrentUser { get; set; } = new List<Character>();
 
         private RepositoryVariable<Character, Character> Repository;
 
@@ -42,11 +42,11 @@ namespace CharacterConfigurator.Controller
             return CharacterListCurrentUser.Count;
         }
 
-        public int GetIndex(Character baseModel)
+        public int GetIndex(Character character)
         {
             for (int i = 0; i < CharacterListCurrentUser.Count; i++)
             {
-                if (baseModel.Id == CharacterListCurrentUser[i].Id)
+                if (character.Id == CharacterListCurrentUser[i].Id)
                 {
                     return i;
                 }

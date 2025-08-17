@@ -40,16 +40,16 @@ namespace CharacterConfigurator.Controller
             }
         }
 
-        public static void CheckName(List<string> nametToCheck, string name, int index)
+        public static void CheckName(List<string> namesToCheck, string name, int index)
         {
-            if (!CheckIfNameNotExists(nametToCheck, name, index)) { throw new ExceptionAlreadyExistingName(); }
+            if (!CheckIfNameNotExists(namesToCheck, name, index)) { throw new ExceptionAlreadyExistingName(); }
             if (!CheckIfNameValid(name)) { throw new ExceptionInvalidLetters(); }
             if (!CheckIfNameLength(name)) { throw new ExceptionNameLength(true); }
         }
 
-        public static void CheckName(List<string> nametToCheck, string name)
+        public static void CheckName(List<string> namesToCheck, string name)
         {
-            if (!CheckIfNameNotExists(nametToCheck, name)) { throw new ExceptionAlreadyExistingName(); }
+            if (!CheckIfNameNotExists(namesToCheck, name)) { throw new ExceptionAlreadyExistingName(); }
             if (!CheckIfNameValid(name)) { throw new ExceptionInvalidLetters(); }
             if (!CheckIfNameLength(name)) { throw new ExceptionNameLength(true); }
         }

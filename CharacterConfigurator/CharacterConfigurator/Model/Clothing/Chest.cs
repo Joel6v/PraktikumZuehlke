@@ -28,6 +28,16 @@ namespace CharacterConfigurator.Model.Clothing
 
         public int Defense { get; set; }
 
+        public string GetAttributs()
+        {
+            return string.Join(", ", GetListAttributes());
+        }
+
+        public List<string> GetListAttributes()
+        {
+            return new List<string>() { $"'{Name}'", $"{Defense}" };
+        }
+
         public void SetAttributes(MySqlDataReader sqlResult)
         {
             Id = sqlResult.GetInt32(0);
